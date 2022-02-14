@@ -180,4 +180,4 @@ def print_battery_parameters(parameter_file_path=None):
         ["BatPaC sheet", "Column", "Row", "Unit", "Note"], axis=1
     )
 
-    return df_parameters
+    return df_parameters.set_index('Parameter family')

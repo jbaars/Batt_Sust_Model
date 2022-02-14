@@ -24,9 +24,9 @@ def parameter_to_batpac(batpac_path, parameter_dict, visible=False, wb=None):
     wb_batpac.app.calculation = "manual"  # Suppress calculation after each value input
     sheets = [sheet.name for sheet in wb_batpac.sheets]
 
-    add_default_param(
-        wb_batpac, param_dict["vehicle_type"]["value"]
-    )  # Add the default vehicle parameters
+    # add_default_param(
+    #     wb_batpac, param_dict["vehicle_type"]
+    # )  # Add the default vehicle parameters
 
     if (
         parameter_dict["A_coefficient"]["value"] != None
@@ -56,6 +56,7 @@ def parameter_to_batpac(batpac_path, parameter_dict, visible=False, wb=None):
             ):  # Skip parameters for vehicle model if vehicle parameters not assigned
                 continue
             elif param["value"] is not None:
+
                 param_sheet = param["sheet"]
                 param_column = parameter_column(param, parameter_dict)
                 param_index = param_column + str(int(param["row"]))
@@ -69,19 +70,20 @@ def parameter_to_batpac(batpac_path, parameter_dict, visible=False, wb=None):
                         f"excel location {param_sheet, param_index}"
                     )
             pass
+
         # Change value for silicon additive and separator coating thickness:
         # if param_dict['silicon_anode']['value'] > 0:
         neg_electrode_capacity(
             workbook_batpac=wb_batpac, silicon_pct=param_dict["silicon_anode"]["value"]
         )
-        # else:
-        #     wb_batpac.sheets['Chem'].range('D28').value = 'No'
+
         if param_dict["sep_coat_thickness"]["value"] is not None:
             if param_dict["sep_coat_thickness"]["value"] > 0:
                 update_separator_density(wb_batpac, param_dict)
                 update_separator_thickness(wb_batpac, param_dict)
 
         update_anode_binder(wb_batpac, param_dict)
+
         reset = wb_batpac.macro("Reset")  # Recalculate BatPaC, use BatPaC macro
         reset()
         dict_df_batpac = df_batpac_results(wb_batpac)
@@ -108,21 +110,13 @@ def add_default_param(wb_batpac, vehicle_type):
         wb_batpac (wb): open xlwings workbooks
         vehicle_type (str): electric vehicle type
     """
-    wb_batpac.sheets["Dashboard"].range("E28").value = vehicle_type
-    # Set all 'current value' to 'number of values' to assure the first table is chosen (see LIST sheet):
-    wb_batpac.sheets["Lists"].range("S57").value = (
-        wb_batpac.sheets["Lists"].range("T57").value
-    )
-    wb_batpac.sheets["Lists"].range("AB57").value = (
-        wb_batpac.sheets["Lists"].range("AC57").value
-    )
-    wb_batpac.sheets["Lists"].range("AK57").value = (
-        wb_batpac.sheets["Lists"].range("AL57").value
-    )
-    wb_batpac.sheets["Lists"].range("AT57").value = (
-        wb_batpac.sheets["Lists"].range("AU57").value
-    )
-    add_default_macro = wb_batpac.macro("Add_Default_Parameters")
+    range_vehicle = vehicle_type["column"] + str(vehicle_type["row"])
+    wb_batpac.sheets["Dashboard"].range(range_vehicle).value = vehicle_type["value"]
+    # Set all 'current iteration' to default value of 1:
+    wb_batpac.sheets["Default Vehicle Configurations"].range("G16").value = 0
+    # Call macro to append default values:
+
+    add_default_macro = wb_batpac.macro("copytorange")
     add_default_macro()
 
 
@@ -137,7 +131,7 @@ def df_batpac_results(wb_batpac):
     """
     design_sheet = (
         wb_batpac.sheets["Battery Design"]
-        .range("A1:M225")
+        .range("A1:M480")
         .options(pd.DataFrame, header=False, index=False)
         .value
     )
@@ -156,7 +150,7 @@ def df_batpac_results(wb_batpac):
         "L",
         "M",
     ]
-    design_sheet.index = list(range(1, 226))
+    design_sheet.index = list(range(1, 481))
     cost_sheet = (
         wb_batpac.sheets["Cost Breakdown"]
         .range("A1:M113")
@@ -181,8 +175,8 @@ def df_batpac_results(wb_batpac):
     cost_sheet.index = list(range(1, 114))
 
     manufacturing_cost_calculation = (
-        wb_batpac.sheets["Manufacturing Cost Calculations"]
-        .range("A1:M275")
+        wb_batpac.sheets["Manufacturing Costs"]
+        .range("A1:M510")
         .options(pd.DataFrame, header=False, index=False)
         .value
     )
@@ -201,7 +195,7 @@ def df_batpac_results(wb_batpac):
         "L",
         "M",
     ]
-    manufacturing_cost_calculation.index = list(range(1, 276))
+    manufacturing_cost_calculation.index = list(range(1, 511))
 
     sheets = [sheet.name for sheet in wb_batpac.sheets]
     if "Vehicle model" in sheets:
@@ -295,23 +289,11 @@ def pack_demand_parameter(batpac_workbook, parameter_dict):
             "Only one demand parameter can be assigned, remove one of the following:",
             param_value,
         )
-    if (
-        param_value["vehicle_range"] is not None
-        and vehicle_type == "HEV-HP"
-        or vehicle_type == "microHEV"
-    ):
-        raise ValueError(
-            f"Vehicle range is not a valid parameter for {vehicle_type}, please change to the demand"
-            f"parameter to either pack capacity or energy"
-        )
     batpac_workbook.sheets["Dashboard"].range(column + "42").value = param_value[
         "pack_capacity"
     ]
     batpac_workbook.sheets["Dashboard"].range(column + "43").value = param_value[
         "pack_energy"
-    ]
-    batpac_workbook.sheets["Dashboard"].range(column + "44").value = param_value[
-        "vehicle_range"
     ]
 
 
@@ -339,12 +321,11 @@ def neg_electrode_capacity(
         Updates negative active material capacity (Chem, E31) and material density (Chem, E39) in BatPaC
     """
     silicon_pct = silicon_pct / 100
-    # workbook_batpac.sheets['Chem'].range('D28').value = 'Yes'
-    workbook_batpac.sheets["Chem"].range("E31").value = graphite_capacity * (
+    workbook_batpac.sheets["Chem"].range("E37").value = graphite_capacity * (
         1 - silicon_pct
     ) + (silicon_capacity * silicon_pct)
-    graphite_density = workbook_batpac.sheets["Chem"].range("D39").value
-    workbook_batpac.sheets["Chem"].range("E39").value = (
+    graphite_density = workbook_batpac.sheets["Chem"].range("D46").value
+    workbook_batpac.sheets["Chem"].range("E46").value = (
         graphite_density * (1 - silicon_pct) + silicon_density * silicon_pct
     )
 
@@ -367,11 +348,11 @@ def update_separator_density(
     th_coating = param_dic["sep_coat_thickness"]["value"]
     th_foil = param_dic["sep_foil_thickness"]["value"]
     if void_fraction is None:
-        void_fraction = chem_sheet.range("C50").value / 100
+        void_fraction = chem_sheet.range("C62").value / 100
     sep_density = (
         (th_foil * rho_foil + th_coating * rho_coating) / (th_coating + th_foil)
     ) * void_fraction
-    chem_sheet.range("E51").value = sep_density
+    chem_sheet.range("E63").value = sep_density
 
 
 def update_separator_thickness(workbook_batpac, param_dic):
@@ -384,7 +365,7 @@ def update_separator_thickness(workbook_batpac, param_dic):
         param_dic["sep_foil_thickness"]["value"]
         + param_dic["sep_coat_thickness"]["value"]
     )
-    dashboard_sheet.range("E22").value = separator_thickness
+    dashboard_sheet.range("E26").value = separator_thickness
 
 
 def cmc_quantity(param_dict):
@@ -416,7 +397,7 @@ def update_anode_binder(workbook_batpac, param_dict, rho_cmc=1.6, rho_sbr=0.94):
     perc_dict = cmc_quantity(param_dict)
     chem_sheet = workbook_batpac.sheets["Chem"]
     density = (perc_dict["cmc"] * rho_cmc) + ((1 - perc_dict["sbr"]) * rho_sbr)
-    chem_sheet.range("E41").value = density
+    chem_sheet.range("E48").value = density
 
 
 def append_sheet_vehicle_model(
@@ -431,9 +412,9 @@ def append_sheet_vehicle_model(
         wb.sheets["Dashboard"].range(
             design_column + "33"
         ).value = "='Vehicle model'!B12"
-        wb.sheets["Dashboard"].range(
-            design_column + "40"
-        ).value = "=IF(D56=0, 250,'Vehicle model'!B24)"
+        wb.sheets["Vehicle Considerations"].range(
+            "B37"
+        ).value = "=IF(Restart__0_1=0, 250,'Vehicle model'!B24)"
         # Do nothing
         return
     # Add sheet and full model

@@ -1,6 +1,6 @@
-import xlwings as xw
 import pandas as pd
 from pathlib import Path
+import os
 
 
 class Battery_system:
@@ -11,7 +11,6 @@ class Battery_system:
             vehicle_type (str): type of vehicle ('EV', 'PHEV', 'HEV-HP', 'microHEV')
             electrode_pair (str): anode and cathode active material type
             silicon_anode (int): add silicon to graphite anode (1-20%)
-            sep_foil_thickness (int): Default is 9 to match the price data, only available for 9, 7, and 5 um thickness
             graphite_type (str): synthetic or natural graphite. Default is synthetic
             unique_name (str) : optional name for system
             **kwargs: additional parameters as defined in the parameter_linkage document
@@ -22,22 +21,21 @@ class Battery_system:
         self,
         vehicle_type,
         electrode_pair,
-        sep_foil_thickness=9,
         silicon_anode=None,
         graphite_type="synthetic",
+        calculate_fast_charge="No",
         parameter_file=None,
         **kwargs,
     ):
         self.parameter_file = parameter_file
         self.vehicle_type = vehicle_type
         self.electrode_pair = electrode_pair
+        self.calculate_fast_charge = calculate_fast_charge  # No fast charge by default
         self.silicon_anode = silicon_anode  # None by default
         self.graphite_type = graphite_type  # default is synthetic
         self.dict_df_batpac = (
             None  # dictionary of pd DataFrames containing updated BatPaC sheets
         )
-        self.coolant_type = "EG-W"  # Only liquid cooling is currently possible due to change in module wall material
-        self.sep_foil_thickness = sep_foil_thickness
         self.__dict__.update(kwargs)
 
     def parameter_dictionary(self):
@@ -49,9 +47,10 @@ class Battery_system:
         """
         parameter_dict = {}
         if self.parameter_file is None:
+
             rel_path = "data/battery_design_parameters.xlsx"
             parent = Path(__file__).parents[1]
-            parameter_file = parent / rel_path
+            parameter_file = (parent / rel_path).resolve()
         else:
             parameter_file = self.parameter_file
 

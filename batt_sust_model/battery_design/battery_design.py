@@ -37,7 +37,6 @@ def solve_batpac_battery_system(
 
     mc_pack = components_content_pack(parameter_dict, dict_df_batpac)
     general_param = get_parameter_general(parameter_dict, dict_df_batpac)
-    # design_parameters = output_as_bw_param(parameter_dict, dict_df_batpac)
     dict_all = {
         "material_content_pack": mc_pack,
         "general_battery_parameters": general_param,
@@ -164,7 +163,6 @@ def plot_circle_diagram(
         values, wedgeprops=dict(width=0.5), startangle=180, colors=inner_colors
     )
 
-    bbox_props = dict(boxstyle="square,pad=0.2", fc="w", ec="k", lw=0.72)
     kw = dict(arrowprops=dict(arrowstyle="-"), zorder=0, va="center")
 
     for i, p in enumerate(wedges):
@@ -213,7 +211,7 @@ def plot_bar_chart(result_dict, path_comp_type_linkage=None, save=True, name=Non
     """
     if path_comp_type_linkage is None:
         rel_path = "data/component_type_linkage.xlsx"
-        parent = Path(__file__).resolve().parent
+        parent = Path(__file__).parents[1]
         path_comp_type_linkage = parent / rel_path
         df_types = pd.read_excel(path_comp_type_linkage, index_col="component")
 
@@ -315,8 +313,8 @@ def export_to_excel(result_dict, design_name=None, overwrite=False, output_path=
 
     """
     if output_path is None:
-        output_path_mc = "/3_MC_battery_pack_material.xlsx"
-        output_path_par = "/3_PAR_battery_design_parameters.xlsx"
+        output_path_mc = "3_MC_battery_pack_material.xlsx"
+        output_path_par = "3_PAR_battery_design_parameters.xlsx"
     else:
         output_path_mc = output_path + "/3_MC_battery_pack_material.xlsx"
         output_path_par = output_path + "/3_PAR_battery_design_parameters.xlsx"

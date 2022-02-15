@@ -279,7 +279,7 @@ def components_content_pack(parameter_dict, dict_df_batpac):
         "anode active material (SiO)": cell["anode_am"] * silicon_anode,
         **current_collector_name(parameter_dict, dict_df_batpac, values=cell),
         **cathode_active_material(parameter_dict, value=cell["cathode_am"]),
-        **separator_name(param_dict, value=cell["separator"]),
+        **separator_name(param_dict, dict_df_batpac,value=cell["separator"]),
         **electrolyte_name(parameter_dict, value=cell["electrolyte"]),
     }
 
@@ -342,10 +342,10 @@ def cathode_active_material(param_dict, value):
     return return_dict
 
 
-def separator_name(param_dict, value):
+def separator_name(param_dict, dict_df_batpac, value):
     """Returns a dictionary of all separator types and values (zero for none)"""
     sep_film_thickness = param_dict["sep_film_thickness"]["value"]
-    sep_foil_range = [
+    sep_film_range = [
         int(x) for x in param_dict["sep_film_thickness"]["range"].split(",")
     ]
     sep_coat_thickness = param_dict["sep_coat_thickness"]["value"]
@@ -353,8 +353,10 @@ def separator_name(param_dict, value):
         int(x) for x in param_dict["sep_coat_thickness"]["range"].split(",")
     ][1:]
     return_dict = {}
+    if sep_film_thickness == None: #if separator thickness not defined as input parameter
+        sep_film_thickness = int(dict_df_batpac["df_design"].loc[64, "E"])
     # Separator types with coating:
-    for foil in sep_foil_range:
+    for foil in sep_film_range:
         for coat in sep_coat_range:
             if coat == 3 and foil != 9:  # 3 um coating only for foil with 9um
                 continue
@@ -368,7 +370,7 @@ def separator_name(param_dict, value):
             else:
                 return_dict[f"coated separator ({foil}um+{coat}um)"] = 0
     # Separator types without coating:
-    for foil in sep_foil_range:
+    for foil in sep_film_range:
         if sep_coat_thickness is None or sep_coat_thickness == 0:
             if foil == sep_film_thickness:
                 return_dict[f"separator ({foil}um)"] = value  #
@@ -407,37 +409,4 @@ def electrolyte_name(parameter_dict, value):
             f"{cath_am} does not match NCA, NMC, LFP or LMO chemistry. Check name again or add new electrolyte type"
         )
 
-        #
-        # def mc_to_excel(mc_dictionary, datapath=None, overwrite_all=False, overwrite_design=False):
-        # """ Returns Batpac generated values into ODYM material content (3_MC) excel sheet.
-        # If overwrite is True deletes all previous values"""
-        # if datapath is None:
-        #     path = r'\3_MC_component_product.xlsx'
-        # else:
-        #     path = datapath + '\3_MC_component_product.xlsx'
-        # name = list(mc_dictionary.keys())[0]
-        #
-        # try:
-        #     wb = openpyxl.load_workbook(path)
-        # except FileNotFoundError:  # make new xlsx file
-        #     wb = openpyxl.Workbook()
-        #     wb.save(path)
-        # if overwrite_all is True:
-        #     try:
-        #         sheet = wb['Data']
-        #         wb.remove(sheet)
-        #         wb.save(path)
-        #     except ValueError:
-        #         pass
-        # if 'Data' in wb.sheetnames:
-        #     df = pd.read_excel(path, sheet_name='Data', index_col=0)
-        #     if name in df.columns and overwrite_design is False:
-        #         raise ValueError(
-        #             f'{name} already present in 3_MC_component_product.xlsx, change design name or use overwrite_design=True to overwrite existing values')
-        #     for key in mc_dictionary[name].keys():
-        #         df.loc[key, name] = mc_dictionary[name][key]
-        # else:
-        #     df = pd.DataFrame.from_dict(mc_dictionary, orient='index')
-        #
-        # with pd.ExcelWriter(path, engine='openpyxl', mode='a') as writer:
-        #     df.to_excel(writer, sheet_name='Data')
+ 

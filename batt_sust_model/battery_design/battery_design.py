@@ -353,18 +353,19 @@ def export_to_excel(result_dict, design_name=None, overwrite=False, output_path=
             if "Data" in wb.sheetnames:
                 df = pd.read_excel(values[0], sheet_name="Data", index_col=0)
             else:
-                df = pd.DataFrame.from_dict(
-                    result_dict[0][values[1]], columns=[design_name], orient="index"
+                first_idx = list(result_dict.keys())[0]
+                df = pd.DataFrame(
+                    index=result_dict[first_idx][values[1]].keys(),
+                    columns=[str(x) for x in result_dict.keys()],
                 )
 
             for design in result_dict.keys():
-                design_name = design
-                if overwrite is False and design_name in df.columns:
+                if overwrite is False and design in df.columns:
                     raise ValueError(
-                        f"{design_name} already present in {values[0]}. Change name or use overwrite=True to overwrite existing values"
+                        f"{design} already present in {values[0]}. Change name or use overwrite=True to overwrite existing values"
                     )
                 else:
-                    df.loc[:, design_name] = result_dict[design][values[1]].values()
+                    df[str(design)] = list(result_dict[design][values[1]].values())
 
             with pd.ExcelWriter(values[0], engine="openpyxl", mode="w") as writer:
                 df.to_excel(writer, sheet_name="Data")

@@ -45,7 +45,7 @@ def append_sheet_vehicle_model(
             sh.range(column + str(row)).value = parameters[k]["default"]
 
     sh.range("A5").value = "Vehicle range (miles)"
-    sh.range("B5").value = parameters["vehicle_range"]["value"]
+    sh.range("B5").value = parameters["vehicle_range_miles"]["value"]
 
     # Change range from miles to km to match vehicle model:
     sh.range("A28").value = "Range (km)"

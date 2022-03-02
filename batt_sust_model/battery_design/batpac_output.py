@@ -137,7 +137,7 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
         "electrode_pair": parameter_dict["electrode_pair"]["value"],
         "cell_capacity_ah": df_D.loc[34, column],
         "module_capacity_ah": df_D.loc[35, column],
-        # "module_bms_capacity_total": df_D.loc[81, column] * df_D.loc[74, column],
+        # "module_bms_capacity_total": df_D.loc[81, column] * df_D.loc[74, column], ##CHECK!
         "cell_container_al_layer": cell["cell_container_Al"],
         "cell_container_pet_layer": cell["cell_container_PET"],
         "cell_container_pp_layer": cell["cell_container_PP"],
@@ -180,7 +180,6 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
         "system_volume": df_D.loc[438, column],
         "positive_electrode_thickness": df_D.loc[458, column],
         "battery_system_weight": df_D.loc[471, column],
-        "fast_charge": parameter_dict['calculate_fast_charge']['value'],
         "charge_time": df_D.loc[248, column]
     }
     # Include BatPaC input parameters:

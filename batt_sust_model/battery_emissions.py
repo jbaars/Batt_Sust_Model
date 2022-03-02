@@ -1,4 +1,3 @@
-from modules import *
 import hashlib
 import brightway2 as bw
 import pandas as pd
@@ -585,6 +584,39 @@ def calculate_lcia_module(
     q = impact_all[:, 2] * s
 
     return q
+
+
+def calc_project_formulas(param_dict):
+    """Calculates the project parameter formulas recursively.
+
+    Args:
+        param_dict (dict): parameter dictionary
+
+    Return:
+        dictionary with parameter name (key) and amount (value)
+    """
+    param_dict_2 = {a: b["amount"] for a, b in param_dict.items() if b["formula"] == 0}
+
+    for param in param_dict.keys():
+        if param_dict[param]["formula"] != 0:
+
+            def calc_amount_formula(param, param_dict_2):
+                """Calls itself if parameter name in formula is also based on formula"""
+                try:
+                    amount = eval(param_dict[param]["formula"], param_dict_2)
+                    return amount
+                except NameError as Argument:
+                    param_error = re.split("['']", str(Argument))[1]
+                    amount = calc_amount_formula(param_error, param_dict_2)
+                    param_dict_2[param_error] = amount
+                    amount = calc_amount_formula(param, param_dict_2)
+                    return amount
+
+            amount = calc_amount_formula(param, param_dict_2)
+            param_dict[param]["amount"] = amount
+            param_dict_2[param] = amount
+    param_dict_amount = {a: b["amount"] for a, b in param_dict.items()}
+    return param_dict_amount
 
 
 # Calculate and append parameters to dictionary (project parameters in Brightway):

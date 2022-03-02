@@ -25,13 +25,12 @@ def parameter_to_batpac(batpac_path, parameter_dict, visible=False, wb=None):
     wb_batpac.app.calculation = "manual"  # Suppress calculation after each value input
     sheets = [sheet.name for sheet in wb_batpac.sheets]
 
-
     if (
         parameter_dict["A_coefficient"]["value"] != None
         and parameter_dict["B_coefficient"]["value"] != None
         and parameter_dict["C_coefficient"]["value"] != None
         and parameter_dict["motor_power"]["value"] != None
-        and parameter_dict["vehicle_range"]["value"] != None
+        and parameter_dict["vehicle_range_miles"]["value"] != None
     ):
         vehicle_model.append_sheet_vehicle_model(
             parameter_dict, wb_batpac, design_column="H"

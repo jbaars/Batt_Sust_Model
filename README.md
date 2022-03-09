@@ -1,5 +1,5 @@
 # Battery Sustainability Model
-  ### *Still under development, updating to BatPaC V5*
+> **Under development. Updating to BatPaC V5. Final code will follow.**
 
 
 Framework to calculate electric vehicle battery material intensities, battery cost, life cycle emissions, technical performance and material criticality.  

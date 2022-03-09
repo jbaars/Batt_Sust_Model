@@ -5,7 +5,7 @@
 Framework to calculate electric vehicle battery material intensities, cost, life cycle emissions, technical performance and material criticality.  
 
 ## Background
-Model utilises the BatPaC (version 5)[https://www.anl.gov/cse/batpac-model-software] battery design model to automate the extraction of bill of materials (BOM) and performance parameters of user specific battery design parameters. The BOM is used as input to the battery cost (Python version of BatPaC cost model), LCA (Brightway2 model) and material criticality models. 
+Model utilises the [BatPaC version 5](https://www.anl.gov/cse/batpac-model-software) battery design model to automate the extraction of bill of materials (BOM) and performance parameters of user specific battery design parameters. The BOM is used as input to the battery cost (Python version of BatPaC cost model), LCA (Brightway2 model) and material criticality models. 
 
 
 

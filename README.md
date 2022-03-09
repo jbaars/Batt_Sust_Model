@@ -11,9 +11,8 @@ Model utilises the BatPaC (version 5) battery design model to automate the extra
 
 
 
+<img src="https://github.com/jbaars2/Batt_Sust_Model/blob/main/docs/battery_model_overview.jpg" width="100" height="100">
 
-
-![alt text](https://github.com/jbaars2/Batt_Sust_Model/blob/main/docs/battery_model_overview.jpg)
 
 
 

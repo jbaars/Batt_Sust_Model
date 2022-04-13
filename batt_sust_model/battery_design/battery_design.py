@@ -18,7 +18,7 @@ def solve_batpac_battery_system(
     Parameters
     ----------
     batpac_path : str
-        Local path to BatPaC version 4 Excel file
+        Local path to BatPaC version 5 Excel file
     parameter_dict : dict
         Parameter dictionary of battery system based on Battery_system class
     visible : bool, optional
@@ -53,7 +53,7 @@ def solve_batpac_battery_system_multiple(
     Parameters
     ----------
     batpac_path : str
-        Path to BatPaC version 4
+        Path to BatPaC version 5
     parameter_dict_all : dict
         Dictionary of all BatPaC user defined design parameters
     visible : bool, optional

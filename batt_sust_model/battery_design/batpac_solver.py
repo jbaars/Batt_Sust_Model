@@ -130,7 +130,7 @@ def df_batpac_results(wb_batpac):
     """
     design_sheet = (
         wb_batpac.sheets["Battery Design"]
-        .range("A1:M480")
+        .range("A1:M484")
         .options(pd.DataFrame, header=False, index=False)
         .value
     )
@@ -149,7 +149,7 @@ def df_batpac_results(wb_batpac):
         "L",
         "M",
     ]
-    design_sheet.index = list(range(1, 481))
+    design_sheet.index = list(range(1, 485))
     cost_sheet = (
         wb_batpac.sheets["Cost Breakdown"]
         .range("A1:M113")
@@ -345,7 +345,7 @@ def update_separator_density(
     """
     chem_sheet = workbook_batpac.sheets["Chem"]
     th_coating = param_dic["sep_coat_thickness"]["value"]
-    th_foil = param_dic["sep_foil_thickness"]["value"]
+    th_foil = param_dic["sep_film_thickness"]["value"]
     if void_fraction is None:
         void_fraction = chem_sheet.range("C62").value / 100
     sep_density = (
@@ -361,7 +361,7 @@ def update_separator_thickness(workbook_batpac, param_dic):
     """
     dashboard_sheet = workbook_batpac.sheets["Dashboard"]
     separator_thickness = (
-        param_dic["sep_foil_thickness"]["value"]
+        param_dic["sep_film_thickness"]["value"]
         + param_dic["sep_coat_thickness"]["value"]
     )
     dashboard_sheet.range("E26").value = separator_thickness

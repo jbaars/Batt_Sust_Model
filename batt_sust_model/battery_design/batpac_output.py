@@ -12,39 +12,39 @@ def get_inventory_cell(parameter_dict, dict_df_batpac):
     df_L = dict_df_batpac["df_list"]  # shortcut list sheet
     column = battery_design_column(parameter_dict["vehicle_type"]["value"])
     cell_container_volume = (
-        df_D.loc[303, column] + 2 * df_D.loc[80, column] + df_D.loc[74, column]
-    ) * (df_D.loc[304, column] - 2 * df_D.loc[86, column]) + (
-        df_D.loc[303, column] + df_D.loc[74, column]
+        df_D.loc[306, column] + 2 * df_D.loc[81, column] + df_D.loc[75, column]
+    ) * (df_D.loc[307, column] - 2 * df_D.loc[87, column]) + (
+        df_D.loc[306, column] + df_D.loc[75, column]
     ) * (
-        df_D.loc[304, column] - 2 * df_D.loc[86, column]
+        df_D.loc[307, column] - 2 * df_D.loc[87, column]
     )
     dict_cell_inventory = {
-        "cell": df_D.loc[76, column],
-        "separator": df_D.loc[64, column] * df_D.loc[64, "E"] * df_D.loc[64, "F"],
-        "electrolyte": df_D.loc[65, "F"] * df_D.loc[65, column] * 1000,
-        "cell_container": df_D.loc[75, column],
-        "cell_neg_terminal": df_D.loc[68, column],
-        "cell_pos_terminal": df_D.loc[67, column],
-        "cathode_foil": df_D.loc[62, "E"] * df_D.loc[62, "F"] * df_D.loc[62, column],
-        "cathode_coating": df_D.loc[47, column],
-        "cathode_am": df_D.loc[43, column],
-        "cathode_carbon": df_D.loc[44, column],
-        "cathode_binder": df_D.loc[45, column],
-        "anode_foil": df_D.loc[63, "E"] * df_D.loc[63, "F"] * df_D.loc[63, column],
-        "anode_coating": df_D.loc[54, column],
-        "anode_am": df_D.loc[50, column],
-        "anode_carbon": df_D.loc[51, column],
-        "anode_binder": df_D.loc[52, column],
+        "cell": df_D.loc[77, column],
+        "separator": df_D.loc[65, column] * df_D.loc[65, "E"] * df_D.loc[65, "F"],
+        "electrolyte": df_D.loc[66, "F"] * df_D.loc[66, column] * 1000,
+        "cell_container": df_D.loc[76, column],
+        "cell_neg_terminal": df_D.loc[69, column],
+        "cell_pos_terminal": df_D.loc[68, column],
+        "cathode_foil": df_D.loc[63, "E"] * df_D.loc[63, "F"] * df_D.loc[63, column],
+        "cathode_coating": df_D.loc[48, column],
+        "cathode_am": df_D.loc[44, column],
+        "cathode_carbon": df_D.loc[45, column],
+        "cathode_binder": df_D.loc[46, column],
+        "anode_foil": df_D.loc[64, "E"] * df_D.loc[64, "F"] * df_D.loc[64, column],
+        "anode_coating": df_D.loc[55, column],
+        "anode_am": df_D.loc[51, column],
+        "anode_carbon": df_D.loc[52, column],
+        "anode_binder": df_D.loc[53, column],
         "cell_container_PET": cell_container_volume
-        * df_D.loc[70, column]
+        * df_D.loc[71, column]
         * df_L.loc["Density of PET", "Value"]
         / 1000000,
         "cell_container_PP": cell_container_volume
-        * df_D.loc[71, column]
+        * df_D.loc[72, column]
         * df_L.loc["Density of PP", "Value"]
         / 1000000,
         "cell_container_Al": cell_container_volume
-        * df_D.loc[69, column]
+        * df_D.loc[70, column]
         * df_L.loc["Density of Al", "Value"]
         / 1000000,
     }
@@ -60,14 +60,15 @@ def get_inventory_module(parameter_dict, dict_df_batpac):
     df_D = dict_df_batpac["df_design"]
     column = battery_design_column(parameter_dict["vehicle_type"]["value"])
     dict_module_inventory = {
-        "cell_interconnect": df_D.loc[314, column] / 1000,
-        "module_polymer_panels": df_D.loc[320, column] / 1000,
-        "module_tabs": df_D.loc[324, column] / 1000,  # Cu
-        "module_terminal": df_D.loc[328, column] / 1000,
-        "module_conductors": df_D.loc[333, column] / 1000,
-        "module_spacers": df_D.loc[341, column] / 1000,
-        "module_enclosure": df_D.loc[340, column] / 1000,
-        "module_soc_regulator": df_D.loc[336, column] / 1000,
+        "cell_interconnect": df_D.loc[317, column] / 1000,
+        "module_polymer_panels": df_D.loc[323, column] / 1000,
+        "module_tabs": df_D.loc[327, column] / 1000,  # Cu
+        "module_terminal": df_D.loc[331, column] / 1000,
+        "module_conductors": df_D.loc[336, column] / 1000,
+        "module_spacers": df_D.loc[344, column] / 1000,
+        "module_enclosure": df_D.loc[343, column] / 1000,
+        "module_soc_regulator": df_D.loc[339, column] / 1000,
+        "module_total": df_D.loc[352, column]
     }
     return dict_module_inventory
 
@@ -81,30 +82,31 @@ def get_inventory_pack(parameter_dict, dict_df_batpac):
     df_D = dict_df_batpac["df_design"]  # shortcut design sheet
     column = battery_design_column(parameter_dict["vehicle_type"]["value"])
     dict_pack_inventory = {
-        "coolant": df_D.loc[397, column],
-        "pack_packaging_fe": df_D.loc[414, column],
-        "pack_packaging_al": df_D.loc[415, column]
-        + df_D.loc[422, column],  # includes base + top
+        "coolant": df_D.loc[401, column],
+        "pack_packaging_fe": df_D.loc[418, column],
+        "pack_packaging_al": df_D.loc[419, column]
+        + df_D.loc[426, column],  # includes base + top
         "pack_packaging_insulation": (
-            df_D.loc[406, column] * df_D.loc[416, column] * 0.032
+            df_D.loc[410, column] * df_D.loc[420, column] * 0.032
         )
         + (
-            df_D.loc[423, column] * df_D.loc[406, column] * 0.032
+            df_D.loc[427, column] * df_D.loc[410, column] * 0.032
         ),  # density insulation: 0.032
-        "pack_packaging_total": df_D.loc[417, column] + df_D.loc[424, column],
-        "module_row_rack": df_D.loc[382, column]
-        * df_D.loc[26, column],  # all Fe, new in V5
-        "module_interconnect_total": df_D.loc[430, column]
-        * (df_D.loc[28, column] + 1)  # Cu
+        
+        "pack_packaging_total": df_D.loc[421, column] + df_D.loc[428, column],
+        "module_row_rack": df_D.loc[386, column]
+        * df_D.loc[28, column],  # all steel, new in V5
+        "module_interconnect_total": df_D.loc[434, column]
+        * (df_D.loc[29, column] + 1)  # Cu
         / 1000,  # plus 1 module interconnect
-        "module_bus_bar": df_D.loc[431, column] / 1000,
-        "pack_terminals": df_D.loc[432, column] / 1000,  # 90% Cu, 10% seal material
-        "pack_heaters": df_D.loc[434, column],
-        "cooling_panels": df_D.loc[389, column],  # new in v5. Steel
-        "cooling_mains_fe": df_D.loc[394, column] / 1000,  # new in v5. stainless steel
-        "cooling_connectors": df_D.loc[395, column] / 1000,  # new in v5. steel
-        "BMS": df_D.loc[436, column],
-        "pack": df_D.loc[471, column],
+        "module_bus_bar": df_D.loc[435, column] / 1000,
+        "pack_terminals": df_D.loc[436, column] / 1000,  # 90% Cu, 10% seal material
+        "pack_heaters": df_D.loc[438, column],
+        "cooling_panels": df_D.loc[393, column],  # new in v5. Steel
+        "cooling_mains_fe": df_D.loc[398, column] / 1000,  # new in v5. stainless steel
+        "cooling_connectors": df_D.loc[399, column] / 1000,  # new in v5. steel
+        "BMS": df_D.loc[440, column],
+        "pack": df_D.loc[475, column],
     }
     return dict_pack_inventory
 
@@ -135,52 +137,52 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
 
     dict_performance = {
         "electrode_pair": parameter_dict["electrode_pair"]["value"],
-        "cell_capacity_ah": df_D.loc[34, column],
-        "module_capacity_ah": df_D.loc[35, column],
-        # "module_bms_capacity_total": df_D.loc[81, column] * df_D.loc[74, column], ##CHECK!
-        "cell_container_al_layer": cell["cell_container_Al"],
-        "cell_container_pet_layer": cell["cell_container_PET"],
-        "cell_container_pp_layer": cell["cell_container_PP"],
-        "pack_voltage": df_D.loc[356, column],
-        "pack_capacity_ah": df_D.loc[352, column],
-        "pack_power_kW": df_D.loc[357, column],
-        "pack_energy_kWh": df_D.loc[353, column],
-        "pack_usable_energy_kWh": df_D.loc[354, column],
-        "power_to_energy_kw/kWh": df_D.loc[469, column],
-        "specific_energy_cell_Wh/kg": df_D.loc[477, column],
-        "energy_density_cell_Wh/L": df_D.loc[478, column],
-        "specific_energy_pack_Wh/kg": df_D.loc[479, column],
-        "energy_density_pack_Wh/L": df_D.loc[480, column],
-        "battery_capacity": df_D.loc[353, column],
-        "Vehicle_range_km": df_D.loc[451, column] * 1.609344,
+        "cell_capacity_ah": df_D.loc[35, column],
+        "cell_nominal_voltage":(df_D.loc[359, column]/(df_D.loc[29, column]/df_D.loc[30, column]))/(df_D.loc[25, column]/df_D.loc[26, column]),
+        "module_capacity_ah": df_D.loc[36, column],
+        "module_nominal_voltage":df_D.loc[359, column]/(df_D.loc[29, column]/df_D.loc[30, column]),
+        "pack_capacity_ah": df_D.loc[355, column],
+        "pack_nominal_voltage": df_D.loc[359, column],
+        "pack_power_kW": df_D.loc[361, column],
+        "pack_energy_kWh": df_D.loc[356, column],
+        "pack_usable_energy_kWh": df_D.loc[357, column],
+        "power_to_energy_kw/kWh": df_D.loc[473, column],
+        "specific_energy_cell_Wh/kg": df_D.loc[481, column],
+        "energy_density_cell_Wh/L": df_D.loc[482, column],
+        "specific_energy_pack_Wh/kg": df_D.loc[483, column],
+        "energy_density_pack_Wh/L": df_D.loc[484, column],
+        "Vehicle_range_km": df_D.loc[455, column] * 1.609344,
         "cells_per_pack": df_D.loc[31, column],
-        "cells_per_module": df_D.loc[24, column],
-        "modules_per_pack": df_D.loc[28, column],
+        "cells_per_module": df_D.loc[25, column],
+        "modules_per_pack": df_D.loc[29, column],
         "total_packs_vehicle": df_D.loc[12, column],
-        "cell_volume": df_D.loc[305, column],
-        "cell_group_interconnect": df_D.loc[314, column] * df_D.loc[28, column] / 1000,
+        "cell_volume": df_D.loc[308, column],
+        "cell_group_interconnect": df_D.loc[317, column] * df_D.loc[29, column] / 1000,
         # "module_interconnect": df_D.loc[72, column]
         # + 1,  # see Manufacturing cost calculation row 99
         # "current_capacity_pack_terminal": round(
         #     df_D.loc[432, column], -2
         # ),  # Round, same as in BatPaC
-        "cost_pack_heating_thermal": df_C.loc[163, column]  # baseline thermal system
-        + df_C.loc[164, column],  # Heating system
-        "battery_management_system_cost": df_C.loc[166, column],
+        "cost_pack_heating_thermal": df_C.loc[164, column]  # baseline thermal system
+        + df_C.loc[165, column],  # Heating system
+        "battery_management_system_cost": df_C.loc[167, column],
         "total_bus_bars": total_busbars_packs(df_D, column),
-        "cell_length": df_D.loc[304, column],
-        "cell_width": df_D.loc[303, column],
-        "cell_thickness": df_D.loc[80, column],
-        "module_length": df_D.loc[345, column],
-        "module_width": df_D.loc[346, column],
-        "module_height": df_D.loc[347, column],
-        "pack_length": df_D.loc[401, column],
-        "pack_width": df_D.loc[402, column],
-        "pack_height": df_D.loc[403, column],
-        "system_volume": df_D.loc[438, column],
-        "positive_electrode_thickness": df_D.loc[458, column],
-        "battery_system_weight": df_D.loc[471, column],
-        "charge_time": df_D.loc[248, column]
+        "cell_length": df_D.loc[307, column],
+        "cell_width": df_D.loc[306, column],
+        "cell_thickness": df_D.loc[81, column],
+        "module_length": df_D.loc[348, column],
+        "module_width": df_D.loc[349, column],
+        "module_height": df_D.loc[350, column],
+        "pack_length": df_D.loc[405, column],
+        "pack_width": df_D.loc[406, column],
+        "pack_height": df_D.loc[407, column],
+        "system_volume": df_D.loc[442, column],
+        "positive_electrode_thickness": df_D.loc[462, column],
+        "battery_system_weight": df_D.loc[475, column],
+        "charge_time": df_D.loc[249, column],
+        "cell_container_al_layer": cell["cell_container_Al"],
+        "cell_container_pet_layer": cell["cell_container_PET"],
+        "cell_container_pp_layer": cell["cell_container_PP"],
     }
     # Include BatPaC input parameters:
     input_param = {}
@@ -198,8 +200,7 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
 def total_busbars_packs(design_sheet, column):
     """Returns total busbars required for module and pack interconnects"""
     df_D = design_sheet
-    busbar = 0
-    if df_D.loc[431, column] > 0:
+    if df_D.loc[435, column] > 0:
         return 1
     else:
         return 0
@@ -230,13 +231,14 @@ def components_content_pack(parameter_dict, dict_df_batpac):
     silicon_anode = param_dict["silicon_anode"]["value"] / 100
     dict_material_content_pack = {
         "battery pack": pack["pack"],
+        "cell": cell["cell"],
+        "modules":module['module_total'],
         "cathode binder (PVDF)": cell["cathode_binder"],
         "cathode carbon black": cell["cathode_carbon"],
         "anode binder additive (SBR)": cell["anode_binder"]
         * cmc_quantity(param_dict)["sbr"],
         "anode binder (CMC)": cell["anode_binder"] * cmc_quantity(param_dict)["cmc"],
         "anode carbon black": cell["anode_carbon"],
-        "cell": cell["cell"],
         "cell terminal anode": cell["cell_neg_terminal"],
         "cell terminal cathode": cell["cell_pos_terminal"],
         "cell container": cell["cell_container"],
@@ -290,13 +292,13 @@ def current_collector_name(param_dict, dict_df_batpac, values):
     cath_range = [
         int(x) for x in param_dict["positive_foil_thickness"]["range"].split(",")
     ]
-    cath_material = dict_df_batpac["df_design"].loc[62, "D"]
-    cath_thickness = int(dict_df_batpac["df_design"].loc[62, "E"])
+    cath_material = dict_df_batpac["df_design"].loc[63, "D"]
+    cath_thickness = int(dict_df_batpac["df_design"].loc[63, "E"])
     ano_range = [
         int(x) for x in param_dict["negative_foil_thickness"]["range"].split(",")
     ]
-    ano_material = dict_df_batpac["df_design"].loc[63, "D"]
-    ano_thickness = int(dict_df_batpac["df_design"].loc[63, "E"])
+    ano_material = dict_df_batpac["df_design"].loc[64, "D"]
+    ano_thickness = int(dict_df_batpac["df_design"].loc[64, "E"])
 
     def get_values(foil_range, material, thickness, electrode_type, value):
         temp_return_dict = {}
@@ -353,7 +355,7 @@ def separator_name(param_dict, dict_df_batpac, value):
     ][1:]
     return_dict = {}
     if sep_film_thickness == None: #if separator thickness not defined as input parameter
-        sep_film_thickness = int(dict_df_batpac["df_design"].loc[64, "E"])
+        sep_film_thickness = int(dict_df_batpac["df_design"].loc[65, "E"])
     # Separator types with coating:
     for foil in sep_film_range:
         for coat in sep_coat_range:

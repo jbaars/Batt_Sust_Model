@@ -160,8 +160,7 @@ def print_battery_parameters(parameter_file_path=None):
         rel_path = "data/battery_design_parameters.xlsx"
         parent = Path(__file__).parents[1]
         parameter_file_path = parent / rel_path
-    # else:
-    #     parameter_file_path = parameter_file_path
+        print (parameter_file_path)
 
     df_parameters = pd.concat(
         pd.read_excel(parameter_file_path, sheet_name=None), ignore_index=True

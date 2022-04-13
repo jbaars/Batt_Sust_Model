@@ -56,17 +56,16 @@ def append_sheet_vehicle_model(
 
     # Range not present anymore in V5. Include range calculation to capacity estimating and Capacity columns:
     for c in ["G", "H", "I", "J", "K", "L", "M"]:
-        old_454 = wb.sheets["Battery Design"].range(c + "454").formula
+        old_454 = wb.sheets["Battery Design"].range(c + "458").formula
         new_454 = old_454.strip("))") + (
-            f",'Vehicle model'!B28/1.609344*{c}449/{c}450*100/{c}30*{c}25*{c}29/{c}146))"
+            f",'Vehicle model'!B28/1.609344*{c}453/{c}31*{c}26*{c}30/{c}147))"
         )
-        wb.sheets["Battery Design"].range(c + "454").value = new_454
-        old_455 = wb.sheets["Battery Design"].range(c + "455").formula
+        wb.sheets["Battery Design"].range(c + "458").value = new_454
+        old_455 = wb.sheets["Battery Design"].range(c + "459").formula
         new_455 = old_455.strip("0)))") + (
-            f"IF({c}451='Vehicle model'!B28/1.609344,{c}456,{c}456-{c}455*({c}451-\
-                'Vehicle model'!B28/1.609344)/'Vehicle model'!B28/1.609344))))"
+            f"IF({c}455='Vehicle model'!B28/1.609344,{c}460,{c}460-{c}459*({c}455-'Vehicle model'!B28/1.609344)/'Vehicle model'!B28/1.609344))))"
         )  # km to miles
-        wb.sheets["Battery Design"].range(c + "455").value = new_455
+        wb.sheets["Battery Design"].range(c + "459").value = new_455
 
     # Add formulas:
     vehicle_weight = {
@@ -90,7 +89,7 @@ def append_sheet_vehicle_model(
     sh.range("A13").value = "Battery system energy intensity, kWh/kg"
     sh.range(
         "B13"
-    ).value = f"='Battery Design'!{battery_design_column(parameter_dictionary['vehicle_type']['value'])}479/1000"
+    ).value = f"='Battery Design'!{battery_design_column(parameter_dictionary['vehicle_type']['value'])}483/1000"
 
     sh.range("A21").value = "Plug consumption rate, MJ/km"
     sh.range("B21").value = "=B22/B38"
@@ -155,5 +154,8 @@ def append_sheet_vehicle_model(
     # Change target battery pack power parameter:
     wb.sheets["Dashboard"].range(design_column + "38").value = "='Vehicle model'!B12"
     wb.sheets["Battery Design"].range(
-        battery_design_column(parameter_dictionary["vehicle_type"]["value"]) + "448"
+        battery_design_column(parameter_dictionary["vehicle_type"]["value"]) + "452"
     ).value = "=IF(Restart__0_1=0, 250,'Vehicle model'!B24)"
+    wb.sheets["Battery Design"].range(battery_design_column(parameter_dictionary["vehicle_type"]["value"]) + "24").value = "='Vehicle model'!B27"
+    
+    wb.sheets["Dashboard"].range(design_column + "52").value = ""

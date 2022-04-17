@@ -8,6 +8,7 @@ import openpyxl as openpyxl
 import pickle
 import os
 from tqdm import tqdm
+import tempfile
 
 
 def solve_batpac_battery_system(
@@ -46,9 +47,9 @@ def solve_batpac_battery_system(
 
 
 def solve_batpac_battery_system_multiple(
-    batpac_path, parameter_dict_all, visible=False, save_temporary=False
+    batpac_path, parameter_dict_all, visible=False, save_iterations=50
 ):
-    """Solves multiple battery systems iteratively
+    """Solves multiple battery systems iteratively. Saves and restarts BatPaC by default every 50 iteration.
 
     Parameters
     ----------
@@ -58,32 +59,66 @@ def solve_batpac_battery_system_multiple(
         Dictionary of all BatPaC user defined design parameters
     visible : bool, optional
         If True BatPaC Excel is opened and runs in foreground, by default False
-    save_temporary : bool, optional
-        Saves dictionary every 100 iterations as pickle file in case iteration fails, by default False.
+    save_iterations : int, optional
+        Determines how often the dictionary is saved and BatPaC is restarted
 
     Returns
     -------
     Dict
         Nested dictionary of solved battery design parameters
     """
-
     wb_batpac = xw.App(visible=visible, add_book=False).books.open(batpac_path)
-    output_dictionary = {}
-    counter = 0
-    for name in tqdm(list(parameter_dict_all.keys())):
-        param_dic = parameter_dict_all[name]
-        calculated_system = solve_batpac_battery_system(
-            batpac_path, param_dic, visible=visible, open_workbook=wb_batpac
-        )
-        output_dictionary[name] = calculated_system
-        if save_temporary == True and counter == 100:
-            with open("battery_design_dump.pickle", "wb") as handle:
-                pickle.dump(output_dictionary, handle, protocol=pickle.HIGHEST_PROTOCOL)
-            counter = 0
-        counter += 1
+    # temporary directory:
+    with tempfile.TemporaryDirectory() as dirpath:
+        output_dictionary = {}
+        counter = 0
+        counter_old = 0
+        for name in tqdm(list(parameter_dict_all.keys())):
+            if counter - counter_old == save_iterations:
+                with open(dirpath + f"/temp_{counter}.pickle", "wb") as handle:
+                    pickle.dump(
+                        output_dictionary, handle, protocol=pickle.HIGHEST_PROTOCOL
+                    )
+                # kill batpac and restart:
+                wb_batpac.app.kill()
+                wb_batpac = xw.App(visible=visible, add_book=False).books.open(
+                    batpac_path
+                )
+                # reset output dictionary:
+                output_dictionary = {}
+                counter_old = counter
+            calculated_system = solve_batpac_battery_system(
+                batpac_path,
+                parameter_dict_all[name],
+                visible=False,
+                open_workbook=wb_batpac,
+            )
+            output_dictionary[name] = calculated_system
+            counter += 1
+        with open(dirpath + f"/temp_{counter}.pickle", "wb") as handle:
+            pickle.dump(output_dictionary, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            output_dictionary = {}
+        # append all temp saved pickles to one dictionary:
+        for file in os.listdir(dirpath):
+            filename = os.fsdecode(file)
+            if filename.endswith(".pickle"):
+                with open(dirpath + "/" + filename, "rb") as handle:
+                    output_dictionary.update(pickle.load(handle))
+
+            else:
+                continue
+        sorted_dict = {k: output_dictionary[k] for k in sorted(output_dictionary)}
+        with open(f"result_all.pickle", "wb") as handle:
+            pickle.dump(sorted_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
     if visible is False:
         wb_batpac.app.kill()
-    return output_dictionary
+
+    print(
+        f"Solved all {len(sorted_dict)} battery designs. Saved results as "
+        + str(os.getcwd())
+        + "\result_all.pickle"
+    )
+    return sorted_dict
 
 
 def get_parameter_table(parameter_file=None, tableformat=None):

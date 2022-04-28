@@ -94,7 +94,8 @@ def get_inventory_pack(parameter_dict, dict_df_batpac):
         ),  # density insulation: 0.032
         
         "pack_packaging_total": df_D.loc[421, column] + df_D.loc[428, column],
-        "module_row_rack": df_D.loc[386, column]
+        "module_elastomer_pads": df_D.loc[385, column]* df_D.loc[28, column],
+        "module_row_rack": (df_D.loc[386, column]-df_D.loc[385, column])
         * df_D.loc[28, column],  # all steel, new in V5
         "module_interconnect_total": df_D.loc[434, column]
         * (df_D.loc[29, column] + 1)  # Cu
@@ -157,7 +158,12 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
         "modules_per_pack": df_D.loc[29, column],
         "total_packs_vehicle": df_D.loc[12, column],
         "cell_volume": df_D.loc[308, column],
+        "positive_electrode_area": df_D.loc[288, column],
+        "negative_electrode_area": df_D.loc[289, column],
         "cell_group_interconnect": df_D.loc[317, column] * df_D.loc[29, column] / 1000,
+        "cells_in_parallel": df_D.loc[26, column],
+        "modules_in_parallel": df_D.loc[30, column],
+        "cell_series_in_module":df_D.loc[25, column]/df_D.loc[26, column],
         # "module_interconnect": df_D.loc[72, column]
         # + 1,  # see Manufacturing cost calculation row 99
         # "current_capacity_pack_terminal": round(
@@ -165,6 +171,8 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
         # ),  # Round, same as in BatPaC
         "cost_pack_heating_thermal": df_C.loc[164, column]  # baseline thermal system
         + df_C.loc[165, column],  # Heating system
+        "heat_generation_discharge":df_D.loc[446, column],
+        "addition_cost_ac_system":df_C.loc[170, column],
         "battery_management_system_cost": df_C.loc[167, column],
         "total_bus_bars": total_busbars_packs(df_D, column),
         "cell_length": df_D.loc[307, column],
@@ -183,6 +191,10 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
         "cell_container_al_layer": cell["cell_container_Al"],
         "cell_container_pet_layer": cell["cell_container_PET"],
         "cell_container_pp_layer": cell["cell_container_PP"],
+        "positive_am_per_cell":cell["cathode_am"],
+        "negative_am_per_cell":cell["anode_am"],
+        
+        
     }
     # Include BatPaC input parameters:
     input_param = {}
@@ -252,6 +264,7 @@ def components_content_pack(parameter_dict, dict_df_batpac):
         "gas release": module["module_spacers"],
         "cell group interconnect": module["cell_interconnect"],
         "module polymer panels": module["module_polymer_panels"],
+        "module elastomer pads": pack['module_elastomer_pads'],
         "module tabs": module["module_tabs"],
         "battery jacket": pack["pack_packaging_total"],
         "battery jacket Al": pack["pack_packaging_al"],
@@ -283,6 +296,7 @@ def components_content_pack(parameter_dict, dict_df_batpac):
         **separator_name(param_dict, dict_df_batpac,value=cell["separator"]),
         **electrolyte_name(parameter_dict, value=cell["electrolyte"]),
     }
+    
 
     return dict(sorted(dict_material_content_pack.items()))
 
@@ -323,22 +337,18 @@ def current_collector_name(param_dict, dict_df_batpac, values):
 
 def cathode_active_material(param_dict, value):
     """Returns the name and value of all cathode active material choices"""
-
-    range_am = param_dict["electrode_pair"]["range"].split(",")
+    range_am = set([x.split('-G')[0] for x in param_dict["electrode_pair"]["range"].split(",")])
+    cath_choice = param_dict["electrode_pair"]["value"].split('-G')[0]
     return_dict = {}
     for am in range_am:
-        if "Power" in am:
-            am = am.strip(" (Power)")
-            selected_am = param_dict["electrode_pair"]["value"].strip(" (Power)")
-        elif "Energy" in am:
-            am = am.strip(" (Energy)")
-            selected_am = param_dict["electrode_pair"]["value"].strip(" (Energy)")
-        if selected_am == am:
-            name = am.strip("-G")
+        if  am == '50%/50% NMC532/LMO - G':
+            name = am.split('G')[0]
+        else:
+            name = am.split ('-G')[0]
+        if am == cath_choice:
             return_dict[f"cathode active material ({name})"] = value
         else:
-
-            name = am.strip("-G")
+            name = am.split ('-G')[0]
             return_dict[f"cathode active material ({name})"] = 0
     return return_dict
 

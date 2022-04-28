@@ -281,7 +281,7 @@ def update_param_battery_bw(parameter_dict):
             continue
     for a in Group.select():
         try:
-            ActivityParameter.recalculate_exchanges(a.name)
+            ActivityParameter.recalculate(a.name)
         except:
             pass
     ProjectParameter.recalculate()

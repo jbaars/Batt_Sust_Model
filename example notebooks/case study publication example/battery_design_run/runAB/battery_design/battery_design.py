@@ -380,7 +380,7 @@ def export_to_excel(result_dict, design_name=None, overwrite=False, output_path=
                     result_dict[values[1]], columns=[design_name], orient="index"
                 )
             with pd.ExcelWriter(values[0], engine="openpyxl", mode="w") as writer:
-                df.to_excel(writer, sheet_name="Data")
+                df.T.to_excel(writer, sheet_name="Data")
     else:  # if several designs
         for wb, values in wb_dict.items():
             if "Data" in wb.sheetnames:
@@ -401,4 +401,4 @@ def export_to_excel(result_dict, design_name=None, overwrite=False, output_path=
                     df[str(design)] = list(result_dict[design][values[1]].values())
 
             with pd.ExcelWriter(values[0], engine="openpyxl", mode="w") as writer:
-                df.to_excel(writer, sheet_name="Data")
+                df.T.to_excel(writer, sheet_name="Data")

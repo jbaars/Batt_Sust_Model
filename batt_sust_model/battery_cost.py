@@ -186,11 +186,9 @@ def modelled_process_rates(design_param):
     total_cells = required_cells / design_param["py_cell_aging"]
 
     modelled_processing_rate_dict = {
-        "packs": pack_per_year,
         "energy": pack_per_year * design_param["pack_energy_kWh"],
         "required_cell": required_cells,
         "total_cell": total_cells,
-        "electrode_area": total_cells * design_param["cell_area"] / 10000,
         "positive_active_material": (
             design_param["positive_am_per_cell"] / 1000 * required_cells
         )
@@ -199,27 +197,116 @@ def modelled_process_rates(design_param):
         / 1000
         * required_cells
         / design_param["py_am_mixing_total"],
+        "positive_electrode_area": total_cells
+        * design_param["positive_electrode_area"]
+        / 10000,
+        "negative_electrode_area": total_cells
+        * design_param["negative_electrode_area"]
+        / 10000,
         "binder_solvent_recovery": pack_per_year
-        * design_param["binder_solvent_ratio"]
-        * (design_param["cathode_binder_pvdf"] / design_param["py_am_mixing_total"]),
-        "dry_room_area": 0,
+        * (
+            design_param["binder_solvent_ratio"]
+            * (design_param["cathode_binder_pvdf"] / design_param["py_am_mixing_total"])
+        ),
+        "total_cell": total_cells,
+        "total_modules": (design_param["modules_per_pack"] * pack_per_year),
+        "total_packs": pack_per_year,
     }
     return modelled_processing_rate_dict
 
 
-def factor_overhead_multiplier(
-    production_capacity,
-    land_overhead=1.5325,
-    labour_overhead=1.8665,
-    capital_overhead=3.8764,
+def labour_overhead_multiplier(
+    variable_overhead_labor=0.4,
+    GSA=0.25,
+    pack_profit=0.05,
+    investment_cost=0.10,
+    working_capital=0.15,
+    battery_warranty_costs=0.056,
 ):
-    """Returns the factor cost overhead multiplier. Capital is converted from
-    millions"""
-    baseline_production_capacity = 100000
+    """The factor cost overhead multiplier for direct labour. Function and parameters are based on BatPaC V5."""
+    a = (
+        1
+        + variable_overhead_labor
+        + GSA * (1 + variable_overhead_labor)
+        + pack_profit
+        * (
+            investment_cost * (1 + variable_overhead_labor)
+            + working_capital * (1 + variable_overhead_labor)
+        )
+    )
+    return a * (1 + battery_warranty_costs)
+
+
+def capital_overhead_multiplier(
+    variable_overhead_deprecation=0.2,  # f94
+    GSA_deprecation=0.25,  # 99
+    GSA_labour=0.25,  # 98
+    r_and_d=0.4,  # 100
+    deprecation_capital_equipment=0.1,  # 103
+    launch_cost_labor=0.10,  # 86
+    working_capital=0.15,  # 87
+    pack_profit=0.05,  # f109
+    battery_warranty_costs=0.056,  # f110
+):
+    """The factor cost overhead multiplier for capital equipment. Function and parameters are based on BatPaC V5."""
+    a = (
+        variable_overhead_deprecation
+        + GSA_deprecation
+        + GSA_labour * variable_overhead_deprecation
+        + r_and_d
+        + 1
+    )
+    b = (
+        1
+        + variable_overhead_deprecation
+        * (launch_cost_labor + working_capital)
+        * deprecation_capital_equipment
+    )
+    return (a * deprecation_capital_equipment + b * pack_profit) * (
+        1 + battery_warranty_costs
+    )
+
+
+def land_overhead_multiplier(
+    variable_overhead_deprecation=0.2,  # f94
+    GSA_deprecation=0.25,  # 99
+    GSA_labour=0.25,  # 98
+    r_and_d=0.4,  # 100
+    deprecation_building_investment=0.05,  # 104
+    launch_cost_labor=0.10,  # 86
+    working_capital=0.15,  # 87
+    pack_profit=0.05,  # f109
+    battery_warranty_costs=0.056,  # f110
+):
+    """The factor cost overhead multiplier for capital equipment. Function and parameters are based on BatPaC V5."""
+    a = (
+        variable_overhead_deprecation
+        + GSA_deprecation
+        + GSA_labour * variable_overhead_deprecation
+        + r_and_d
+        + 1
+    )
+    b = (
+        1
+        + variable_overhead_deprecation
+        * (launch_cost_labor + working_capital)
+        * deprecation_building_investment
+    )
+    return (a * deprecation_building_investment + b * pack_profit) * (
+        1 + battery_warranty_costs
+    )
+
+
+def factor_overhead_multiplier():
+    """Returns the factor cost overhead multiplier"""
+    land_overhead = land_overhead_multiplier()
+    labour_overhead = labour_overhead_multiplier()
+    capital_overhead = capital_overhead_multiplier()
     multiplier_dict = {}
-    multiplier_dict["land"] = land_overhead * baseline_production_capacity / 1000000
     multiplier_dict["labour"] = labour_overhead
-    multiplier_dict["capital"] = capital_overhead * baseline_production_capacity
+    multiplier_dict["capital"] = capital_overhead
+    multiplier_dict["land"] = land_overhead
+
     return multiplier_dict
 
 
@@ -235,7 +322,7 @@ def factors_battery_production(
 
     Manufacturing capacity must be within 20 to 500% of the BatPaC baseline
     rate, which is 100,000 packs per year. All calculations are based on BatPaC.
-    Factors in physical terms including including labor (hr/yr), capital
+    Factors in physical terms including including labour (hr/yr), capital
     (US$/yr) and land (m2/yr). Default baseline parameters based on BatPaC.
 
     Param: parameter_dict (dict): battery and supply chain design parameters
@@ -253,10 +340,10 @@ def factors_battery_production(
         xlsx_baseline = pd.ExcelFile(default_cost_data)
         p_values = pd.read_excel(
             xlsx_baseline, sheet_name="p_values_process", index_col=0
-        ).drop("unit", axis=1)
+        ).T
         base_factors = pd.read_excel(
             xlsx_baseline, sheet_name="baseline_factors", index_col=0
-        ).drop("unit", axis=1)
+        ).T.drop("unit", axis=1)
         base_process_rates = (
             pd.read_excel(
                 xlsx_baseline, sheet_name="default_manufacturing_rates", index_col=0
@@ -284,16 +371,6 @@ def factors_battery_production(
     if "battery_manufacturing_capacity" not in design_param.keys():
         raise ValueError("battery_manufacturing_capacity not in parameter dictionary")
 
-    if design_param["battery_manufacturing_capacity"] < 20000:
-        raise ValueError(
-            f"battery_manufacturing_capacity of {design_param['battery_manufacturing_capacity']} is to flow to provide a reasonable estimate. The minimum production capacity is 20,000. See also BatPaC Version 3 manual page 82"
-        )
-
-    elif design_param["battery_manufacturing_capacity"] > 500000:
-        raise ValueError(
-            f"battery_manufacturing_capacity of {design_param['battery_manufacturing_capacity']} is to high to provide a reasonable estimate. The maximum production capacity is 500,000. See also BatPaC Version 3 manual page 82"
-        )
-
     packs_per_year = (
         design_param["battery_manufacturing_capacity"]
         * design_param["total_packs_vehicle"]
@@ -301,21 +378,23 @@ def factors_battery_production(
 
     design_process_rates = modelled_process_rates(design_param)
     process_rates = {**base_process_rates, **design_process_rates}
+    # return base_factors, p_values
     volume_ratios = production_volume_ratio(
         volume_ratio_mapping, process_rates, design_param
     )
 
     # Factor requirement is based on baseline production factors, modelled volume
     # ratio and the p values
-    factor_requirement_df = base_factors * volume_ratios ** p_values
+    factor_requirement_df = base_factors * volume_ratios**p_values
 
-    # EXCEPTIONS: Capital equipment requirement electrode coating and drying
-    # dependent on solvent evaporated:
+    # EXCEPTIONS:
+
+    # Capital equipment requirement electrode coating and drying dependent on solvent evaporated:
     cathode_solvent_evaporated_m2 = (
         packs_per_year
         * design_param["binder_solvent_ratio"]
         * (design_param["cathode_binder_pvdf"] / design_param["py_am_mixing_total"])
-        / design_process_rates["electrode_area"]
+        / design_process_rates["positive_electrode_area"]
     )
 
     anode_solvent_evaporated_m2 = (
@@ -328,62 +407,39 @@ def factors_battery_production(
             )
             / design_param["py_am_mixing_total"]
         )
-        / design_process_rates["electrode_area"]
-    )
-    base_cath_solvent_evaporated = (
-        base_process_rates["baseline_positive_binder_evaporate_kg"]
-        / base_process_rates["baseline_electrode_area"]
-    )
-    base_ano_solvent_evaporated = (
-        base_process_rates["baseline_negative_binder_evaporate_kg"]
-        / base_process_rates["baseline_electrode_area"]
+        / design_process_rates["negative_electrode_area"]
     )
 
     factor_requirement_df.loc["capital", "cathode coating and drying"] *= (
-        cathode_solvent_evaporated_m2 / base_cath_solvent_evaporated
+        cathode_solvent_evaporated_m2
+        / base_process_rates["baseline_pos_solvent_evaporated_m2"]
     ) ** 0.2
     factor_requirement_df.loc["capital", "anode coating and drying"] *= (
-        anode_solvent_evaporated_m2 / base_ano_solvent_evaporated
+        anode_solvent_evaporated_m2
+        / base_process_rates["baseline_neg_solvent_evaporated_m2"]
     ) ** 0.2
-    # Dry room operating area based on area requiremented of dry room processes:
-    dry_room_processing_rate = (
-        factor_requirement_df.loc[
-            "land",
-            [
-                "electrolyte filling and sealing",
-                "cell stacking",
-                "terminal welding",
-                "jelly roll enclosing",
-            ],
-        ].sum()
-        + factor_requirement_df.loc["land", "material handling"] / 3
-    )
-    dry_room_volume_ratio = (
-        dry_room_processing_rate / base_process_rates["baseline_dry_room_area"]
+
+    # Cell stacking based on cell capacity (baseline 68Ah, p value of 0.95)
+    factor_requirement_df.loc[:, "cell stacking"] = (
+        base_factors["cell stacking"]
+        * (design_param["cell_capacity_ah"] / 68) ** 0.95
+        * volume_ratios["cell stacking"] ** p_values["cell stacking"]
     )
 
-    factor_requirement_df.loc[:, "dry room management"] = (
-        base_factors.loc[:, "dry room management"]
-        * dry_room_volume_ratio ** p_values["dry room management"]
-    )
+    # Capital requirement for formation is based on cell capacity (baseline 68 Ah, p value 0.3)
+    factor_requirement_df.loc[:, "cell formation"] *= (
+        design_param["cell_capacity_ah"] / 68
+    ) ** 0.3
 
-    # Capital requirement pack assembly based on modules per pack:
-    factor_requirement_df.loc["capital", "pack assembly"] = (
-        factor_requirement_df.loc["capital", "pack assembly"]
+    # if cell > 80Ah, capital is multiplied by 1.1:
+    if design_param["cell_capacity_ah"] > 80:
+        factor_requirement_df.loc["capital", "cell formation"] *= 1.1
+
+    # Labour and capital requirement pack assembly based on modules per pack, default modules per pack is 20, and p_value is 0.3:
+    factor_requirement_df.loc[["capital", "labour"], "pack assembly"] = (
+        factor_requirement_df.loc[["capital", "labour"], "pack assembly"]
         * (design_param["modules_per_pack"] / 20) ** 0.3
     )
-    # default modules per pack is 20, and p_value is 0.3
-    # Capital requirement for stacking, rack loading and formation cycling based
-    # on cell capacity (Ah) if > 80Ah multiply by 1.1:
-    if design_param["cell_capacity_ah"] > 80:
-        factor_requirement_df.loc[
-            "capital", ["cell stacking", "formation cycling", "rack loading"]
-        ] = (
-            factor_requirement_df.loc[
-                "capital", ["cell stacking", "formation cycling", "rack loading"]
-            ]
-            * 1.1
-        )
 
     if return_aggregated is True:
         factor_requirement_df.rename(columns=process_mapping, inplace=True)

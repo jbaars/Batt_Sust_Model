@@ -47,7 +47,7 @@ def solve_batpac_battery_system(
 
 
 def solve_batpac_battery_system_multiple(
-    batpac_path, parameter_dict_all, visible=False, save_iterations=50
+    batpac_path, parameter_dict_all, visible=False, save=False, save_iterations=50
 ):
     """Solves multiple battery systems iteratively. Saves and restarts BatPaC by default every 50 iteration.
 
@@ -108,16 +108,14 @@ def solve_batpac_battery_system_multiple(
             else:
                 continue
         sorted_dict = {k: output_dictionary[k] for k in sorted(output_dictionary)}
-        with open(f"result_all.pickle", "wb") as handle:
-            pickle.dump(sorted_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        if save == True:
+            with open(f"result_all.pickle", "wb") as handle:
+                pickle.dump(sorted_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            print("Saved results in local directory as \\result_all.pickle")
+
     if visible is False:
         wb_batpac.app.kill()
 
-    print(
-        f"Solved all {len(sorted_dict)} battery designs. Saved results as "
-        + str(os.getcwd())
-        + "\result_all.pickle"
-    )
     return sorted_dict
 
 

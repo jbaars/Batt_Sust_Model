@@ -161,14 +161,10 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
         "positive_electrode_area": df_D.loc[288, column],
         "negative_electrode_area": df_D.loc[289, column],
         "cell_group_interconnect": df_D.loc[317, column] * df_D.loc[29, column] / 1000,
+        "total_cell_interconnects": df_D.loc[316, column] * df_D.loc[29, column],
         "cells_in_parallel": df_D.loc[26, column],
         "modules_in_parallel": df_D.loc[30, column],
         "cell_series_in_module":df_D.loc[25, column]/df_D.loc[26, column],
-        # "module_interconnect": df_D.loc[72, column]
-        # + 1,  # see Manufacturing cost calculation row 99
-        # "current_capacity_pack_terminal": round(
-        #     df_D.loc[432, column], -2
-        # ),  # Round, same as in BatPaC
         "cost_pack_heating_thermal": df_C.loc[164, column]  # baseline thermal system
         + df_C.loc[165, column],  # Heating system
         "heat_generation_discharge":df_D.loc[446, column],
@@ -193,6 +189,10 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
         "cell_container_pp_layer": cell["cell_container_PP"],
         "positive_am_per_cell":cell["cathode_am"],
         "negative_am_per_cell":cell["anode_am"],
+        "modules_per_row": df_D.loc[27, column],
+        "rows_of_modules":df_D.loc[28, column],
+        "total_elastomer_pads": df_D.loc[28, column]*(df_D.loc[27, column]-1),
+        "module_interconnect_total": df_D.loc[29, column]+df_D.loc[28, column], #used for cost calculation
         
         
     }

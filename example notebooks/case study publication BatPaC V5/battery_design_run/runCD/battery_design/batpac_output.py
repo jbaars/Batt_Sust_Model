@@ -68,7 +68,7 @@ def get_inventory_module(parameter_dict, dict_df_batpac):
         "module_spacers": df_D.loc[344, column] / 1000,
         "module_enclosure": df_D.loc[343, column] / 1000,
         "module_soc_regulator": df_D.loc[339, column] / 1000,
-        "module_total": df_D.loc[352, column]
+        "module_total": df_D.loc[352, column],
     }
     return dict_module_inventory
 
@@ -92,10 +92,9 @@ def get_inventory_pack(parameter_dict, dict_df_batpac):
         + (
             df_D.loc[427, column] * df_D.loc[410, column] * 0.032
         ),  # density insulation: 0.032
-        
         "pack_packaging_total": df_D.loc[421, column] + df_D.loc[428, column],
-        "module_elastomer_pads": df_D.loc[385, column]* df_D.loc[28, column],
-        "module_row_rack": (df_D.loc[386, column]-df_D.loc[385, column])
+        "module_elastomer_pads": df_D.loc[385, column] * df_D.loc[28, column],
+        "module_row_rack": (df_D.loc[386, column] - df_D.loc[385, column])
         * df_D.loc[28, column],  # all steel, new in V5
         "module_interconnect_total": df_D.loc[434, column]
         * (df_D.loc[29, column] + 1)  # Cu
@@ -139,9 +138,13 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
     dict_performance = {
         "electrode_pair": parameter_dict["electrode_pair"]["value"],
         "cell_capacity_ah": df_D.loc[35, column],
-        "cell_nominal_voltage":(df_D.loc[359, column]/(df_D.loc[29, column]/df_D.loc[30, column]))/(df_D.loc[25, column]/df_D.loc[26, column]),
+        "cell_nominal_voltage": (
+            df_D.loc[359, column] / (df_D.loc[29, column] / df_D.loc[30, column])
+        )
+        / (df_D.loc[25, column] / df_D.loc[26, column]),
         "module_capacity_ah": df_D.loc[36, column],
-        "module_nominal_voltage":df_D.loc[359, column]/(df_D.loc[29, column]/df_D.loc[30, column]),
+        "module_nominal_voltage": df_D.loc[359, column]
+        / (df_D.loc[29, column] / df_D.loc[30, column]),
         "pack_capacity_ah": df_D.loc[355, column],
         "pack_nominal_voltage": df_D.loc[359, column],
         "pack_power_kW": df_D.loc[361, column],
@@ -156,23 +159,21 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
         "cells_per_pack": df_D.loc[31, column],
         "cells_per_module": df_D.loc[25, column],
         "modules_per_pack": df_D.loc[29, column],
+        "modules_per_row": df_D.loc[27, column],
+        "rows_of_modules": df_D.loc[28, column],
         "total_packs_vehicle": df_D.loc[12, column],
         "cell_volume": df_D.loc[308, column],
         "positive_electrode_area": df_D.loc[288, column],
         "negative_electrode_area": df_D.loc[289, column],
         "cell_group_interconnect": df_D.loc[317, column] * df_D.loc[29, column] / 1000,
+        "total_cell_interconnects": df_D.loc[316, column] * df_D.loc[29, column],
         "cells_in_parallel": df_D.loc[26, column],
         "modules_in_parallel": df_D.loc[30, column],
-        "cell_series_in_module":df_D.loc[25, column]/df_D.loc[26, column],
-        # "module_interconnect": df_D.loc[72, column]
-        # + 1,  # see Manufacturing cost calculation row 99
-        # "current_capacity_pack_terminal": round(
-        #     df_D.loc[432, column], -2
-        # ),  # Round, same as in BatPaC
+        "cell_series_in_module": df_D.loc[25, column] / df_D.loc[26, column],
         "cost_pack_heating_thermal": df_C.loc[164, column]  # baseline thermal system
         + df_C.loc[165, column],  # Heating system
-        "heat_generation_discharge":df_D.loc[446, column],
-        "addition_cost_ac_system":df_C.loc[170, column],
+        "heat_generation_discharge": df_D.loc[446, column],
+        "addition_cost_ac_system": df_C.loc[170, column],
         "battery_management_system_cost": df_C.loc[167, column],
         "total_bus_bars": total_busbars_packs(df_D, column),
         "cell_length": df_D.loc[307, column],
@@ -191,10 +192,11 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
         "cell_container_al_layer": cell["cell_container_Al"],
         "cell_container_pet_layer": cell["cell_container_PET"],
         "cell_container_pp_layer": cell["cell_container_PP"],
-        "positive_am_per_cell":cell["cathode_am"],
-        "negative_am_per_cell":cell["anode_am"],
-        
-        
+        "positive_am_per_cell": cell["cathode_am"],
+        "negative_am_per_cell": cell["anode_am"],
+        "total_elastomer_pads": df_D.loc[28, column] * (df_D.loc[27, column] - 1),
+        "module_interconnect_total": df_D.loc[29, column]
+        + df_D.loc[28, column],  # used for cost calculation
     }
     # Include BatPaC input parameters:
     input_param = {}
@@ -244,7 +246,7 @@ def components_content_pack(parameter_dict, dict_df_batpac):
     dict_material_content_pack = {
         "battery pack": pack["pack"],
         "cell": cell["cell"],
-        "modules":module['module_total'],
+        "modules": module["module_total"],
         "cathode binder (PVDF)": cell["cathode_binder"],
         "cathode carbon black": cell["cathode_carbon"],
         "anode binder additive (SBR)": cell["anode_binder"]
@@ -264,7 +266,7 @@ def components_content_pack(parameter_dict, dict_df_batpac):
         "gas release": module["module_spacers"],
         "cell group interconnect": module["cell_interconnect"],
         "module polymer panels": module["module_polymer_panels"],
-        "module elastomer pads": pack['module_elastomer_pads'],
+        "module elastomer pads": pack["module_elastomer_pads"],
         "module tabs": module["module_tabs"],
         "battery jacket": pack["pack_packaging_total"],
         "battery jacket Al": pack["pack_packaging_al"],
@@ -293,10 +295,9 @@ def components_content_pack(parameter_dict, dict_df_batpac):
         "anode active material (SiO)": cell["anode_am"] * silicon_anode,
         **current_collector_name(parameter_dict, dict_df_batpac, values=cell),
         **cathode_active_material(parameter_dict, value=cell["cathode_am"]),
-        **separator_name(param_dict, dict_df_batpac,value=cell["separator"]),
+        **separator_name(param_dict, dict_df_batpac, value=cell["separator"]),
         **electrolyte_name(parameter_dict, value=cell["electrolyte"]),
     }
-    
 
     return dict(sorted(dict_material_content_pack.items()))
 
@@ -337,18 +338,20 @@ def current_collector_name(param_dict, dict_df_batpac, values):
 
 def cathode_active_material(param_dict, value):
     """Returns the name and value of all cathode active material choices"""
-    range_am = set([x.split('-G')[0] for x in param_dict["electrode_pair"]["range"].split(",")])
-    cath_choice = param_dict["electrode_pair"]["value"].split('-G')[0]
+    range_am = set(
+        [x.split("-G")[0] for x in param_dict["electrode_pair"]["range"].split(",")]
+    )
+    cath_choice = param_dict["electrode_pair"]["value"].split("-G")[0]
     return_dict = {}
     for am in range_am:
+        if am == "50%/50% NMC532/LMO - G":
+            name = am.split("G")[0]
+        else:
+            name = am.split("-G")[0]
         if am == cath_choice:
-            if  am == '50%/50% NMC532/LMO - G':
-               name = am.split('G')[0]
-            else:
-                name = am.split ('-G')[0]
             return_dict[f"cathode active material ({name})"] = value
         else:
-            name = am.split ('-G')[0]
+            name = am.split("-G")[0]
             return_dict[f"cathode active material ({name})"] = 0
     return return_dict
 
@@ -364,7 +367,9 @@ def separator_name(param_dict, dict_df_batpac, value):
         int(x) for x in param_dict["sep_coat_thickness"]["range"].split(",")
     ][1:]
     return_dict = {}
-    if sep_film_thickness == None: #if separator thickness not defined as input parameter
+    if (
+        sep_film_thickness == None
+    ):  # if separator thickness not defined as input parameter
         sep_film_thickness = int(dict_df_batpac["df_design"].loc[65, "E"])
     # Separator types with coating:
     for foil in sep_film_range:
@@ -419,5 +424,3 @@ def electrolyte_name(parameter_dict, value):
         raise ValueError(
             f"{cath_am} does not match NCA, NMC, LFP or LMO chemistry. Check name again or add new electrolyte type"
         )
-
- 

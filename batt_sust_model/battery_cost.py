@@ -424,3 +424,89 @@ def production_volume_ratio(volume_ratio_mapping, process_rates, parameter_dict)
     for x in volume_ratio_mapping.keys():
         return_dict[x] = eval(volume_ratio_mapping[x], process_rates)
     return return_dict
+
+
+def mineral_cost(molar_mass_df, metal_prices):
+    """Process cost and profit margin estimation cathode active material
+    cathode active material price calculation - data: 22-10-2021"""
+
+    cathode_list = [
+        "cathode active material (LFP)",
+        "cathode active material (LMO)",
+        "cathode active material (NMC333)",
+        "cathode active material (NMC532)",
+        "cathode active material (NMC622)",
+        "cathode active material (NMC811)",
+        "cathode active material (NCA)",
+        "cathode active material (50%/50% NMC532/LMO - )",
+    ]
+    cost_element = {}
+    for cathode in cathode_list:
+        cost_element[cathode] = {}
+        for element in molar_mass_df.columns:
+            if element == "all":
+                continue
+            cost_element[cathode][element] = molar_mass_df.loc[cathode, element] * metal_prices[element]
+
+    return cost_element
+
+
+def total_metal_cost(cost_element):
+    total_dict = {}
+    for k, v in cost_element.items():
+        total_dict[k] = sum(v.values())
+    return total_dict
+
+
+def process_cost_profit_margin_cam(molar_mass_df, cam_prices, metal_prices, return_pcpm=False):
+    cost_elements = mineral_cost(molar_mass_df, metal_prices)
+    metal_cost = total_metal_cost(cost_elements)
+    df = pd.DataFrame(index=metal_cost.keys(), columns=["Unit", "Li", "Co", "Mn", "Ni", "Fe", "P", "Al"])
+    df["Unit"] = "$/kg"
+
+    for k in metal_cost.keys():
+        df.loc[k, "Metal cost"] = metal_cost[k]
+        for element, value in cost_elements[k].items():
+            df.loc[k, element] = value
+        if k not in cam_prices.keys():
+            continue
+        df.loc[k, "CAM price"] = cam_prices[k]
+        df.loc[k, "PCPM"] = cam_prices[k] - metal_cost[k]
+
+    if return_pcpm is True:
+        return df["PCPM"].to_dict()
+    return df.fillna(0)
+
+
+def cam_price(
+    metal_cost,
+    molar_mass,
+    pcpm_cam={
+        "cathode active material (LFP)": 5.30,
+        "cathode active material (LMO)": 3.11,
+        "cathode active material (NMC333)": 5.08,
+        "cathode active material (NMC532)": 5.08,
+        "cathode active material (NMC622)": 7.19,
+        "cathode active material (NMC811)": 11.46,
+        "cathode active material (NCA)": 7.19,
+        "cathode active material (50%/50% NMC532/LMO - )": 4.10,
+    },
+):
+    """Calculates the cathode active material price based on metal cost and process cost and profit margin
+
+    Parameters
+    ----------
+    metal_price : [type]
+        Metal price based on elemental value
+    pcpm_cam : [type]
+        process cost and profit margin for cathode active material. Calculated.
+    molar_mass :
+        Molar mass of elements in cathode active material
+    """
+
+    cost_elements = mineral_cost(molar_mass, metal_cost)
+    metal_cost = total_metal_cost(cost_elements)
+    cam_price_dict = {}
+    for k in pcpm_cam.keys():
+        cam_price_dict[k] = metal_cost[k] + pcpm_cam[k]
+    return cam_price_dict

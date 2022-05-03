@@ -279,12 +279,13 @@ def update_param_battery_bw(parameter_dict):
             select.save()
         else:
             continue
+    ProjectParameter.recalculate()
     for a in Group.select():
         try:
             ActivityParameter.recalculate(a.name)
         except:
             pass
-    ProjectParameter.recalculate()
+    
 
 
 def output_as_bw_param(parameter_dict):

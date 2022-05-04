@@ -192,9 +192,7 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
         "modules_per_row": df_D.loc[27, column],
         "rows_of_modules":df_D.loc[28, column],
         "total_elastomer_pads": df_D.loc[28, column]*(df_D.loc[27, column]-1),
-        "module_interconnect_total": df_D.loc[29, column]+df_D.loc[28, column], #used for cost calculation
-        
-        
+        "module_interconnect_total": df_D.loc[29, column]+df_D.loc[28, column], #used for cost calculation        
     }
     # Include BatPaC input parameters:
     input_param = {}
@@ -202,10 +200,9 @@ def get_parameter_general(parameter_dict, dict_df_batpac):
         if parameter_dict[param]["value"] is not None:
             input_param[param] = parameter_dict[param]["value"]
     # Include vehicle model results, if included:
-    veh_parameters = get_parameters_vehicle_model(dict_df_batpac)
-    if veh_parameters != None:
+    if check_vehicle_parameters  (parameter_dict) == True:
+        veh_parameters = get_parameters_vehicle_model(dict_df_batpac)
         dict_performance.update(veh_parameters)
-
     return {**dict_performance, **input_param}
 
 

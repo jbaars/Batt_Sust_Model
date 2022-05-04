@@ -3,6 +3,20 @@ import pandas as pd
 from . import vehicle_model
 
 
+def check_vehicle_parameters(parameter_dict):
+    """Check if vehicle parameters are define"""
+    if (
+        parameter_dict["A_coefficient"]["value"] != None
+        and parameter_dict["B_coefficient"]["value"] != None
+        and parameter_dict["C_coefficient"]["value"] != None
+        and parameter_dict["motor_power"]["value"] != None
+        and parameter_dict["vehicle_range_miles"]["value"] != None
+    ):
+        return True
+    else:
+        return False
+
+
 def parameter_to_batpac(batpac_path, parameter_dict, visible=False, wb=None):
     """Update BatPaC parameters in Excel based on user defined parameters.
 
@@ -17,38 +31,20 @@ def parameter_to_batpac(batpac_path, parameter_dict, visible=False, wb=None):
     """
     param_dict = parameter_dict
     if wb is None:
-        wb_batpac = xw.App(visible=visible, add_book=False).books.open(
-            batpac_path
-        )  # xlwings opens BatPaC workbook
+        wb_batpac = xw.App(visible=visible, add_book=False).books.open(batpac_path)  # xlwings opens BatPaC workbook
     else:
         wb_batpac = wb
     wb_batpac.app.calculation = "manual"  # Suppress calculation after each value input
     sheets = [sheet.name for sheet in wb_batpac.sheets]
+    if check_vehicle_parameters(parameter_dict) == True:
 
-    if (
-        parameter_dict["A_coefficient"]["value"] != None
-        and parameter_dict["B_coefficient"]["value"] != None
-        and parameter_dict["C_coefficient"]["value"] != None
-        and parameter_dict["motor_power"]["value"] != None
-        and parameter_dict["vehicle_range_miles"]["value"] != None
-    ):
-        vehicle_model.append_sheet_vehicle_model(
-            parameter_dict, wb_batpac, design_column="H"
-        )
+        vehicle_model.append_sheet_vehicle_model(parameter_dict, wb_batpac, design_column="H")
 
     try:
-        pack_demand_parameter(
-            wb_batpac, param_dict
-        )  # Check if only one of the demand value is assigned
-        for (
-            param_name
-        ) in (
-            param_dict.keys()
-        ):  # Add the user defined parameters to BatPaC using xlwings
+        pack_demand_parameter(wb_batpac, param_dict)  # Check if only one of the demand value is assigned
+        for param_name in param_dict.keys():  # Add the user defined parameters to BatPaC using xlwings
             param = param_dict[param_name]
-            if (
-                param["sheet"] == "None"
-            ):  # Skip parameters that are not in BatPaC (e.g. 'anode binder cmc')
+            if param["sheet"] == "None":  # Skip parameters that are not in BatPaC (e.g. 'anode binder cmc')
                 continue
             elif (
                 param["sheet"] == "Vehicle model" and "Vehicle model" not in sheets
@@ -72,9 +68,7 @@ def parameter_to_batpac(batpac_path, parameter_dict, visible=False, wb=None):
 
         # Change value for silicon additive and separator coating thickness:
         # if param_dict['silicon_anode']['value'] > 0:
-        neg_electrode_capacity(
-            workbook_batpac=wb_batpac, silicon_pct=param_dict["silicon_anode"]["value"]
-        )
+        neg_electrode_capacity(workbook_batpac=wb_batpac, silicon_pct=param_dict["silicon_anode"]["value"])
 
         if param_dict["sep_coat_thickness"]["value"] is not None:
             if param_dict["sep_coat_thickness"]["value"] > 0:
@@ -129,10 +123,7 @@ def df_batpac_results(wb_batpac):
         dict: dictionary with pd DataFrames of updated BatPaC sheets
     """
     design_sheet = (
-        wb_batpac.sheets["Battery Design"]
-        .range("A1:M484")
-        .options(pd.DataFrame, header=False, index=False)
-        .value
+        wb_batpac.sheets["Battery Design"].range("A1:M484").options(pd.DataFrame, header=False, index=False).value
     )
     design_sheet.columns = [
         "A",
@@ -151,10 +142,7 @@ def df_batpac_results(wb_batpac):
     ]
     design_sheet.index = list(range(1, 485))
     cost_sheet = (
-        wb_batpac.sheets["Cost Breakdown"]
-        .range("A1:M113")
-        .options(pd.DataFrame, header=False, index=False)
-        .value
+        wb_batpac.sheets["Cost Breakdown"].range("A1:M113").options(pd.DataFrame, header=False, index=False).value
     )
     cost_sheet.columns = [
         "A",
@@ -174,10 +162,7 @@ def df_batpac_results(wb_batpac):
     cost_sheet.index = list(range(1, 114))
 
     manufacturing_cost_calculation = (
-        wb_batpac.sheets["Manufacturing Costs"]
-        .range("A1:M510")
-        .options(pd.DataFrame, header=False, index=False)
-        .value
+        wb_batpac.sheets["Manufacturing Costs"].range("A1:M510").options(pd.DataFrame, header=False, index=False).value
     )
     manufacturing_cost_calculation.columns = [
         "A",
@@ -199,24 +184,15 @@ def df_batpac_results(wb_batpac):
     sheets = [sheet.name for sheet in wb_batpac.sheets]
     if "Vehicle model" in sheets:
         vehicle_model = (
-            wb_batpac.sheets["Vehicle model"]
-            .range("A7:F9")
-            .options(pd.DataFrame, header=True, index=False)
-            .value
+            wb_batpac.sheets["Vehicle model"].range("A7:F9").options(pd.DataFrame, header=True, index=False).value
         )
     else:
         vehicle_model = []
 
     dict_df_batpac = {
         "df_design": design_sheet,
-        "df_chem": wb_batpac.sheets["Chem"]
-        .range("B1:C106")
-        .options(pd.DataFrame, header=True, index=True)
-        .value,
-        "df_list": wb_batpac.sheets["Lists"]
-        .range("F17:I32")
-        .options(pd.DataFrame, header=True, index=True)
-        .value,
+        "df_chem": wb_batpac.sheets["Chem"].range("B1:C106").options(pd.DataFrame, header=True, index=True).value,
+        "df_list": wb_batpac.sheets["Lists"].range("F17:I32").options(pd.DataFrame, header=True, index=True).value,
         "df_dashboard": wb_batpac.sheets["Dashboard"]
         .range("A1:G225")
         .options(pd.DataFrame, header=False, index=False)
@@ -229,17 +205,13 @@ def df_batpac_results(wb_batpac):
 
 def battery_design_column(vehicle_type):
     """Returns the column of the BatPaC Designsheet based on vehicle type. EV = battery 5, rest is battery 1"""  ##INCORRECT.. REMOVE THIS !!!!!!!!!!!!!!!!!!!!!!
-    column = (
-        "K" if vehicle_type == "EV" else "G"
-    )  # Battery design column based on vehicle type
+    column = "K" if vehicle_type == "EV" else "G"  # Battery design column based on vehicle type
     return column
 
 
 def dashboard_design_column(vehicle_type):
     """Returns the column of the BatPaC dashboard based on vehicle type. EV = battery 5, rest is battery 1"""  ##INCORRECT.. REMOVE THIS !!!!!!!!!!!!!!!!!!!!!!
-    column = (
-        "H" if vehicle_type == "EV" else "D"
-    )  # Battery design column based on vehicle type
+    column = "H" if vehicle_type == "EV" else "D"  # Battery design column based on vehicle type
     return column
 
 
@@ -288,12 +260,8 @@ def pack_demand_parameter(batpac_workbook, parameter_dict):
             "Only one demand parameter can be assigned, remove one of the following:",
             param_value,
         )
-    batpac_workbook.sheets["Dashboard"].range(column + "42").value = param_value[
-        "pack_capacity"
-    ]
-    batpac_workbook.sheets["Dashboard"].range(column + "43").value = param_value[
-        "pack_energy"
-    ]
+    batpac_workbook.sheets["Dashboard"].range(column + "42").value = param_value["pack_capacity"]
+    batpac_workbook.sheets["Dashboard"].range(column + "43").value = param_value["pack_energy"]
 
 
 def neg_electrode_capacity(
@@ -320,18 +288,16 @@ def neg_electrode_capacity(
         Updates negative active material capacity (Chem, E31) and material density (Chem, E39) in BatPaC
     """
     silicon_pct = silicon_pct / 100
-    workbook_batpac.sheets["Chem"].range("E37").value = graphite_capacity * (
-        1 - silicon_pct
-    ) + (silicon_capacity * silicon_pct)
+    workbook_batpac.sheets["Chem"].range("E37").value = graphite_capacity * (1 - silicon_pct) + (
+        silicon_capacity * silicon_pct
+    )
     graphite_density = workbook_batpac.sheets["Chem"].range("D46").value
     workbook_batpac.sheets["Chem"].range("E46").value = (
         graphite_density * (1 - silicon_pct) + silicon_density * silicon_pct
     )
 
 
-def update_separator_density(
-    workbook_batpac, param_dic, rho_foil=0.9, rho_coating=1.996, void_fraction=None
-):
+def update_separator_density(workbook_batpac, param_dic, rho_foil=0.9, rho_coating=1.996, void_fraction=None):
     """Changes the separator density in BatPaC based on coating type and density
 
     The separator density is based on the thickness of the PE foil, the density of PE, the thickness of the coating layer and the density of the coating divided by the total thickness of the separator times the void or porosity of the separator.
@@ -348,9 +314,7 @@ def update_separator_density(
     th_foil = param_dic["sep_film_thickness"]["value"]
     if void_fraction is None:
         void_fraction = chem_sheet.range("C62").value / 100
-    sep_density = (
-        (th_foil * rho_foil + th_coating * rho_coating) / (th_coating + th_foil)
-    ) * void_fraction
+    sep_density = ((th_foil * rho_foil + th_coating * rho_coating) / (th_coating + th_foil)) * void_fraction
     chem_sheet.range("E63").value = sep_density
 
 
@@ -360,10 +324,7 @@ def update_separator_thickness(workbook_batpac, param_dic):
     workbook_batpac (workbook): open XLwings batpac workbook
     """
     dashboard_sheet = workbook_batpac.sheets["Dashboard"]
-    separator_thickness = (
-        param_dic["sep_film_thickness"]["value"]
-        + param_dic["sep_coat_thickness"]["value"]
-    )
+    separator_thickness = param_dic["sep_film_thickness"]["value"] + param_dic["sep_coat_thickness"]["value"]
     dashboard_sheet.range("E26").value = separator_thickness
 
 

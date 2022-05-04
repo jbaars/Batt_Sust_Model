@@ -1,0 +1,133 @@
+﻿process,code,database,location
+market for nickel sulfate,bfd40ce0de8e581e1100fbc9e2bf5baa,eidb 3.7,GLO
+"market for wastewater, average",ff1c8e1f34a25cccba366c1a2c8c47c4,eidb 3.7,Europe without Switzerland
+"market for steel, low-alloyed",d98d23d7d3583d1497b2aef6f7ede9eb,eidb 3.7,GLO
+"market for transport, freight, sea, container ship",e1e88d15018316431457dc849d8cf30b,eidb 3.7,GLO
+market for manganese dioxide,585b0c03d77aba6ad7b36569b4dbbf06,eidb 3.7,GLO
+"extrusion, plastic film",173f794e673e7092ba56ea0344532db0,eidb 3.7,RER
+"sheet rolling, aluminium",f2fe690245c8beb9705a414a1810c332,eidb 3.7,RER
+market for lithium carbonate,bd1f0a7eb28eb351f6ffa5ca03a2384d,eidb 3.7,GLO
+market for cobalt hydroxide,5cad610e0b2e1dd49b175b832c148e0a,eidb 3.7,GLO
+market for lithium hydroxide,a401e77452444c784b47d3dc83a2f2e0,eidb 3.7,GLO
+"market group for transport, freight, inland waterways, barge",c2b0b2a0aa59d0fb4ad18c68d9cf65ca,eidb 3.7,GLO
+"market group for transport, freight train",a35c3caecc1d8d403f98d757e0eb534e,eidb 3.7,RER
+"market for copper, cathode",d708983c1a28df8fcb362898cb196b3e,eidb 3.7,GLO
+"market group for heat, district or industrial, natural gas",02fe192c5259d8be7c67e08848436f13_copy2,energy_production,RER
+"market for polypropylene, granulate",c4ee598fe7c2e20fe86f502ebf38ed2f,eidb 3.7,GLO
+"sheet rolling, steel",6ff673fc980833afeb85aed4b403dd92,eidb 3.7,RER
+"market for polyethylene terephthalate, granulate, amorphous",f6a4dc4540c7780876b6976e25a1838c,eidb 3.7,GLO
+"market for aluminium, wrought alloy",42f066ac8cdafccd972e22f42683f113,eidb 3.7,GLO
+"market group for transport, freight, lorry, unspecified",a43a52a1a502836621eaa82ad408b17d,eidb 3.7,GLO
+market for carbon black,deaf7bf931a14c45a2cc046659e27bb6_copy1,cathode_material,GLO
+market for manganese sulfate,7071bbb23950aba44b67edee0bdd74aa,eidb 3.7,GLO
+carbon black production,deaf7bf931a14c45a2cc046659e27bb6_copy1,anode_material,GLO
+"impact extrusion of aluminium, 1 stroke",11042b4953c0b15c5fe935b04c291c84,eidb 3.7,RER
+"deep drawing, steel, 10000 kN press, single stroke",39451b3e3a5e3c92872a8e4c55b8fd4e,eidb 3.7,RER
+anode binder additive (SBR) production,d13b6ea693164b93ad7f7d095e5c4da7_copy1,anode_material,RER
+binder solvent (deionised water) market,c6b9b6924ff14b7c8fc8ae73287546c4_copy1,anode_material,RER
+anode active material (natural graphite) import,f137782bc0fd40908b6a1885764697b8,anode_material,CN
+anode active material (SiO) import,f05b3a0b9b7444ca894e6b386c9126f1,anode_material,GLO
+anode active material (synthetic graphite) import,3cf6ae2f74ba46288cadbf7532dfeb57,anode_material,CN
+anode binder (CMC) production,1a920f6dd9614cfdb36ce4cc8e03a411_copy1,anode_material,GLO
+cathode binder solvent (NMP) production,bdf304f2b966439a912463f14cea728c_copy1,cathode_material,GLO
+NMC333 precursor production,a46257a89e6942dcaae348303dd5e6cb_copy5,cathode_material,CN
+cathode active material (NMC333) import,a46257a89e6942dcaae348303dd5e6cb_copy4,cathode_material,CN
+cathode active material (NCA) import,a46257a89e6942dcaae348303dd5e6cb_copy11,cathode_material,CN
+cathode active material (LMO) import,58217f9727294e9ebf8cde66852aa799_copy1,cathode_material,CN
+cathode active material (NMC622) import,a46257a89e6942dcaae348303dd5e6cb_copy9,cathode_material,CN
+cathode active material (LFP) import,4e0340aa5d8246fe9f3412f20adb47a1,cathode_material,CN
+cathode binder (PVDF) production,5b9dd55921144fc9b4e52841f5903a6c_copy1,cathode_material,GLO
+cathode active material (NMC532/50%/LMO) import,a46257a89e6942dcaae348303dd5e6cb_copy12,cathode_material,CN
+cathode active material (NMC811) import,a46257a89e6942dcaae348303dd5e6cb_copy10,cathode_material,CN
+NMC811 precursor production,a46257a89e6942dcaae348303dd5e6cb_copy7,cathode_material,CN
+NCA precursor production,09b4215e941b4a1d9734045385a3531a,cathode_material,CN
+NMC622 precursor production,a46257a89e6942dcaae348303dd5e6cb_copy6,cathode_material,CN
+Cobalt sulfate production,72c83412ac334c6abbb8273b70efba9b_copy1,cathode_material,CN
+NMC532 precursor production,a46257a89e6942dcaae348303dd5e6cb_copy3,cathode_material,CN
+cathode active material (NMC532) import,a46257a89e6942dcaae348303dd5e6cb_copy8,cathode_material,CN
+cell container production,19db94912920426392e631d13622ca7b,cell_other,RER
+cell terminal cathode production,19db94912920426392e631d13622ca7b_copy1,cell_other,RER
+cell terminal anode production,19db94912920426392e631d13622ca7b_copy2,cell_other,RER
+coated separator (5um+2um) production,a84b2522f20c64ea3ffe0c0a77bf8d7e_copy1,separator,RER
+separator (9um) production,a5e5df1a39314badb1ea5cac6704ba72_copy2,separator,RER
+separator (5um) production,a5e5df1a39314badb1ea5cac6704ba72,separator,RER
+separator (11um) production,a5e5df1a39314badb1ea5cac6704ba72_copy3,separator,RER
+separator (13um) production,a5e5df1a39314badb1ea5cac6704ba72_copy4,separator,RER
+separator (15um) production,a5e5df1a39314badb1ea5cac6704ba72_copy5,separator,RER
+separator (17um) production,a5e5df1a39314badb1ea5cac6704ba72_copy6,separator,RER
+separator (19um) production,a5e5df1a39314badb1ea5cac6704ba72_copy7,separator,RER
+coated separator (7um+2um) production,a84b2522f20c64ea3ffe0c0a77bf8d7e_copy2,separator,RER
+separator (7um) production,a5e5df1a39314badb1ea5cac6704ba72_copy1,separator,RER
+coated separator (9um+3um) production,a84b2522f20c64ea3ffe0c0a77bf8d7e_copy3,separator,RER
+anode calendering,08449b8533c64e49b43001efc2c534a3,battery_production,RER
+final electrode drying,025dcd4c91fc4eeda276f5fff9ad198e_copy3,battery_production,RER
+anode coating and drying,025dcd4c91fc4eeda276f5fff9ad198e_copy2,battery_production,RER
+module and pack assembly,025dcd4c91fc4eeda276f5fff9ad198e_copy5,battery_production,RER
+cathode slitting,08449b8533c64e49b43001efc2c534a3_copy2,battery_production,RER
+cathode binder solvent waste recovery,6a48215d7e32423ca9ee4d337a550be8_copy1,waste,RER
+mixing anode materials,1290bc53b304420fbda6adeb519dbd8c,battery_production,RER
+cell formation,a50429d77bff434da321312aeea671b7,battery_production,RER
+cathode calendering,08449b8533c64e49b43001efc2c534a3_copy1,battery_production,RER
+jelly roll enclosing,08449b8533c64e49b43001efc2c534a3_copy9,battery_production,RER
+terminal welding,1290bc53b304420fbda6adeb519dbd8c_copy2,battery_production,RER
+anode slitting,08449b8533c64e49b43001efc2c534a3_copy10,battery_production,RER
+cathode coating and drying,025dcd4c91fc4eeda276f5fff9ad198e_copy1,battery_production,RER
+cell stacking,08449b8533c64e49b43001efc2c534a3_copy8,battery_production,RER
+building and supporting systems,46835cfe41e0411eb0f54e7873e22948,battery_production,RER
+electrolyte filling and sealing,025dcd4c91fc4eeda276f5fff9ad198e_copy4,battery_production,RER
+mixing cathode materials,1290bc53b304420fbda6adeb519dbd8c_copy1,battery_production,RER
+electrolyte (LFP) production,38ffcd531c16441fb6a6901d292f15d0_copy1,electrolyte,CN
+electrolyte (NMC/NCA) production,38ffcd531c16441fb6a6901d292f15d0,electrolyte,CN
+electrolyte (LMO) production,38ffcd531c16441fb6a6901d292f15d0_copy2,electrolyte,CN
+module thermal conductor production,b09195ee082f4fcc9b27ba5dfa0ef65a_copy1,module,RER
+spacer for gas release production,b09195ee082f4fcc9b27ba5dfa0ef65a_copy2,module,RER
+module electronics production,2f01affeaecc47a09593668616cce24b,module,GLO
+module terminal production,d9d3efdb052946a696f68600abe7fa2f,module,RER
+cell group interconnect production,19db94912920426392e631d13622ca7b_copy1,module,RER
+module container production,b09195ee082f4fcc9b27ba5dfa0ef65a,module,RER
+cathode current collector Al (17um) production,2567338efe9749e48271a34f7f2e7ddd_copy1,current_collectors,RER
+cathode current collector Al (12um) production,dca32d288fa0480e8928b9099bab38e2,current_collectors,RER
+anode current collector Cu (13um) production,f692828309284ab09dc9cadf1f59c75a_copy1,current_collectors,RER
+cathode current collector Al (14um) production,0f11e27a770b4df9b8d40e934c9393c6,current_collectors,RER
+anode current collector Cu (6um) production,f2b05e6f7b794163ad56c5c95220e52c_copy1,current_collectors,RER
+cathode current collector Al (15um) production,2054cb67818f41f3a518fdef661f94d5,current_collectors,RER
+cathode current collector Al (10um) production,75173d9eddb2438f858a395027b78fdc_copy1,current_collectors,RER
+anode current collector Cu (14um) production,f692828309284ab09dc9cadf1f59c75a_copy3,current_collectors,RER
+anode current collector Cu (11um) production,52a04d231b3f45bb8429deabf7887520,current_collectors,RER
+anode current collector Cu (8um) production,1b6438d86df742ca8796032afa1ed49c,current_collectors,RER
+cathode current collector Al (16um) production,2567338efe9749e48271a34f7f2e7ddd,current_collectors,RER
+anode current collector Cu (12um) production,f2b05e6f7b794163ad56c5c95220e52c,current_collectors,RER
+cathode current collector Al (18um) production,2567338efe9749e48271a34f7f2e7ddd_copy2,current_collectors,RER
+anode current collector Cu (10um) production,f692828309284ab09dc9cadf1f59c75a,current_collectors,RER
+anode current collector Cu (7um) production,3145341df5fa4a16a9694fb3060db5be,current_collectors,RER
+anode current collector Cu (9um) production,34ebbe302a5945ffa6d1c968812c5c6e,current_collectors,RER
+cathode current collector Al (13um) production,ed39753a070a4d83bb4ecaa85728fb4d,current_collectors,RER
+cathode current collector Al (11um) production,75173d9eddb2438f858a395027b78fdc,current_collectors,RER
+cooling connectors production,8a6b2607b16342d19da9508c3b996d20,pack,RER
+battery management system production,1dd1bf4e44ad43b5bd5ecf693751b441_copy6,pack,RER
+coolant production,82c4d4e3752343e9aa97a77486284d97,pack,GLO
+cooling mains Fe production,aaa06257c5d74892b222a1d5c1fbfa91,pack,RER
+pack terminals production,1dd1bf4e44ad43b5bd5ecf693751b441_copy3,pack,RER
+battery jacket production,1dd1bf4e44ad43b5bd5ecf693751b441,pack,RER
+pack heater production,1dd1bf4e44ad43b5bd5ecf693751b441_copy4,pack,RER
+cooling panels production,88ff04d1f5e2474fa65ea897709907e6,pack,RER
+busbar production,1dd1bf4e44ad43b5bd5ecf693751b441_copy5,pack,RER
+module interconnects production,1dd1bf4e44ad43b5bd5ecf693751b441_copy1,pack,RER
+electrolyte scrap handling,bcb3ecff773b4deab3b5feeaa7682b28_copy3,waste,RER
+cathode binder solvent waste handling,6a48215d7e32423ca9ee4d337a550be8,waste,RER
+anode electrode scrap handling,bcb3ecff773b4deab3b5feeaa7682b28,waste,RER
+waste anode slurry handling,609d93e678b447b497f9a3712a802075,waste,RER
+waste cathode slurry handling,609d93e678b447b497f9a3712a802075_copy1,waste,RER
+waste cathode current collector Al handling,43649811a16d4b64a7dddfb335b0c702_copy1,waste,RER
+waste anode current collector Cu handling,43649811a16d4b64a7dddfb335b0c702,waste,RER
+cell scrap handling,43649811a16d4b64a7dddfb335b0c702_copy2,waste,RER
+separator scrap handling,bcb3ecff773b4deab3b5feeaa7682b28_copy2,waste,RER
+cathode electrode scrap handling,bcb3ecff773b4deab3b5feeaa7682b28_copy1,waste,RER
+"market group for electricity battery production, medium voltage",60d81c7db92e925d5cbd662c4063d9d3_copy1,energy_production,RER
+module tabs production,19db94912920426392e631d13622ca7b_copy2,module,RER
+module interconnect panels production,458a17bec3ae45a0943380c9652c580c,module,GLO
+battery jacket steel,0eb604062ce54cc58402135e2570dbdf,pack,GLO
+battery jacket aluminium,4f65f316bc694e36b511130330d28926,pack,GLO
+market for module elastomer pads,c958894bac5bd5fb29a0240d984d476a_copy1,pack,GLO
+battery jacket insulation,e89e6c94d3f341e992c2013e7a90244f,pack,GLO
+module row rack production,bd60779bc159428eb522d32c7efd469c_copy7,pack,RER

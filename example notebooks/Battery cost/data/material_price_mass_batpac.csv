@@ -1,0 +1,73 @@
+﻿Goods,Value,Unit,Note
+anode active material (natural graphite),10,$/kg,
+anode active material (synthetic graphite),10,$/kg,
+anode active material (SiO),0,$/kg,
+cathode active material (LMO),9,$/kg,
+cathode active material (LFP),10,$/kg,
+cathode active material (NCA),26,$/kg,
+cathode active material (NMC333),25.5,$/kg,
+cathode active material (NMC532),24,$/kg,
+cathode active material (NMC622),25,$/kg,
+cathode active material (NMC811),26,$/kg,
+cathode active material (50%/50% NMC532/LMO - ),16.5,$/kg,
+cathode binder (PVDF),15,$/kg,
+anode binder (CMC),10,$/kg,
+anode binder additive (SBR),10,$/kg,
+cathode carbon black,7,$/kg,
+anode carbon black,7,$/kg,
+binder solvent (NMP),2.7,$/kg,
+binder solvent (deionised water),0,$/kg,
+cathode current collector Al (10um),5.29,$/kg,"Based on a value of 0.2 $/m2 , BatPaC default foil thickness of 15 um for energy optimised CAM and 2.7 Al g/cm3 density"
+cathode current collector Al (11um),5.29,$/kg,"Based on a value of 0.2 $/m2 , BatPaC default foil thickness of 15 um for energy optimised CAM and 2.7 Al g/cm3 density"
+cathode current collector Al (12um),5.29,$/kg,"Based on a value of 0.2 $/m2 , BatPaC default foil thickness of 15 um for energy optimised CAM and 2.7 Al g/cm3 density"
+cathode current collector Al (13um),5.29,$/kg,"Based on a value of 0.2 $/m2 , BatPaC default foil thickness of 15 um for energy optimised CAM and 2.7 Al g/cm3 density"
+cathode current collector Al (14um),5.29,$/kg,"Based on a value of 0.2 $/m2 , BatPaC default foil thickness of 15 um for energy optimised CAM and 2.7 Al g/cm3 density"
+cathode current collector Al (15um),5.29,$/kg,"Based on a value of 0.2 $/m2 , BatPaC default foil thickness of 15 um for energy optimised CAM and 2.7 Al g/cm3 density"
+cathode current collector Al (16um),5.29,$/kg,"Based on a value of 0.2 $/m2 , BatPaC default foil thickness of 15 um for energy optimised CAM and 2.7 Al g/cm3 density"
+cathode current collector Al (17um),5.29,$/kg,"Based on a value of 0.2 $/m2 , BatPaC default foil thickness of 15 um for energy optimised CAM and 2.7 Al g/cm3 density"
+cathode current collector Al (18um),5.29,$/kg,"Based on a value of 0.2 $/m2 , BatPaC default foil thickness of 15 um for energy optimised CAM and 2.7 Al g/cm3 density"
+anode current collector Cu (6um),11.16,$/kg,Based on a value of 1.2 $/m2 and the BatPaC default foil thickness of 10 um for energy optimised CAM and 8.96 g/cm3 Cu density
+anode current collector Cu (7um),11.16,$/kg,Based on a value of 1.2 $/m2 and the BatPaC default foil thickness of 10 um for energy optimised CAM and 8.96 g/cm3 Cu density
+anode current collector Cu (8um),11.16,$/kg,Based on a value of 1.2 $/m2 and the BatPaC default foil thickness of 10 um for energy optimised CAM and 8.96 g/cm3 Cu density
+anode current collector Cu (9um),11.16,$/kg,Based on a value of 1.2 $/m2 and the BatPaC default foil thickness of 10 um for energy optimised CAM and 8.96 g/cm3 Cu density
+anode current collector Cu (10um),11.16,$/kg,Based on a value of 1.2 $/m2 and the BatPaC default foil thickness of 10 um for energy optimised CAM and 8.96 g/cm3 Cu density
+anode current collector Cu (11um),11.16,$/kg,Based on a value of 1.2 $/m2 and the BatPaC default foil thickness of 10 um for energy optimised CAM and 8.96 g/cm3 Cu density
+anode current collector Cu (12um),11.16,$/kg,Based on a value of 1.2 $/m2 and the BatPaC default foil thickness of 10 um for energy optimised CAM and 8.96 g/cm3 Cu density
+anode current collector Cu (13um),11.16,$/kg,Based on a value of 1.2 $/m2 and the BatPaC default foil thickness of 10 um for energy optimised CAM and 8.96 g/cm3 Cu density
+anode current collector Cu (14um),11.16,$/kg,Based on a value of 1.2 $/m2 and the BatPaC default foil thickness of 10 um for energy optimised CAM and 8.96 g/cm3 Cu density
+electrolyte (NMC/NCA),8.3,$/kg,Based on a value of 10 $/L and a density of 1.2 kg/l
+electrolyte (LFP),8.3,$/kg,Based on a value of 10 $/L and a density of 1.2 kg/l
+electrolyte (LMO),8.3,$/kg,Based on a value of 10 $/L and a density of 1.2 kg/l
+separator (5um),105.7,$/kg,Based on a value of 0.9 $/m2 and a density of 0.47 g/cm3
+separator (7um),105.7,$/kg,Based on a value of 0.9 $/m2 and a density of 0.47 g/cm3
+separator (9um),105.7,$/kg,Based on a value of 0.9 $/m2 and a density of 0.47 g/cm3
+separator (11um),105.7,$/kg,Based on a value of 0.9 $/m2 and a density of 0.47 g/cm3
+separator (13um),105.7,$/kg,Based on a value of 0.9 $/m2 and a density of 0.47 g/cm3
+separator (15um),105.7,$/kg,Based on a value of 0.9 $/m2 and a density of 0.47 g/cm3
+separator (17um),105.7,$/kg,Based on a value of 0.9 $/m2 and a density of 0.47 g/cm3
+separator (19um),105.7,$/kg,Based on a value of 0.9 $/m2 and a density of 0.47 g/cm3
+coated separator (5um+2um),105.7,$/kg,Based on a value of 0.9 $/m2 and a density of 0.47 g/cm3
+coated separator (7um+2um),105.7,$/kg,Based on a value of 0.9 $/m2 and a density of 0.47 g/cm3
+coated separator (9um+3um),105.7,$/kg,Based on a value of 0.9 $/m2 and a density of 0.47 g/cm3
+cell terminal cathode,2.41,$/kg,
+cell terminal anode,8.64,$/kg,
+cell container,3,$/kg,
+module electronics,0,$/kg,Only unit prices
+cell group interconnect,8.72,$/kg,
+module polymer panels,2.3,$/kg,
+module terminal,8.64,$/kg,
+module container,2.4,$/kg,
+module row rack,1.33,$/kg,
+module elastomer pads,1,$/kg,
+module thermal conductor,2.41,$/kg,heat conductor in BP V5
+module interconnects,8.84,$/kg,
+cooling panels,2.8,$/kg,
+cooling mains Fe,8,$/kg,Coolant manifolds in BP V5
+cooling connectors,8,$/kg,Coolant manifolds in BP V5
+pack terminals,8.88,$/kg,
+battery jacket Fe,1.4,$/kg,
+battery jacket Al,2.81,$/kg,
+battery jacket insulation,9.38,$/kg,Calculated from m2 (3 $/m2) based on a density of 0.32 g/cm3 as stated in BatPaC
+busbar,8.68,$/kg,
+gas release,0,$/kg,Only unit prices
+pack heater,0,$/kg,Only unit prices

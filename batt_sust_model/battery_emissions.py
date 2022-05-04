@@ -9,6 +9,14 @@ import bw2data
 import re
 
 
+# defined cut-off modules:
+parent = Path(__file__).parents[0]
+df_cut_off_modules = pd.read_csv(parent / "data/cut_off_modules.csv").set_index("process")
+
+# Process formula:
+process_formula = pd.read_csv(parent / "data/process_formulas.csv", index_col=[1, 2]).T.to_dict()
+
+
 def import_db_brightway(data_path=None):
     """Imports required Brightway databases in BW2package format
 
@@ -92,7 +100,7 @@ def output_excel_activity_browser(scenario_name, dict_output_bw_format, path=Non
     if path is None:
         df.to_excel("battery_design_output.xlsx")
     else:
-        df.to_excel(fr"{path}\battery_design_output.xlsx")
+        df.to_excel(rf"{path}\battery_design_output.xlsx")
 
 
 def import_project_parameters(path_parameter_file=None):
@@ -110,9 +118,7 @@ def import_project_parameters(path_parameter_file=None):
     else:
         bw_db = path_parameter_file
     df = pd.read_excel(bw_db).fillna(0)
-    ProjectParameter.drop_table(
-        safe=True, drop_sequences=True
-    )  # delete all project parameters
+    ProjectParameter.drop_table(safe=True, drop_sequences=True)  # delete all project parameters
     ProjectParameter.create_table()  # create a new empty table of project parameters
     output = []
     for ix in df.index:
@@ -285,7 +291,6 @@ def update_param_battery_bw(parameter_dict):
             ActivityParameter.recalculate(a.name)
         except:
             pass
-    
 
 
 def output_as_bw_param(parameter_dict):
@@ -355,14 +360,10 @@ def update_formulas(project_parameters):
     return output_dict
 
 
-def emissions_per_module(
-    technology_matrix_default, pre_calculated_modules, battery_design_dictionary
-):
+def emissions_per_module(technology_matrix_default, pre_calculated_modules, battery_design_dictionary):
     updated_act = update_formulas(battery_design_dictionary)
     battery_weight = battery_design_dictionary["design_parameters"]["battery_pack"]
-    A_matrix = technology_matrix_default.copy(
-        deep=True
-    )  # To make sure the default A dataframe is not modified
+    A_matrix = technology_matrix_default.copy(deep=True)  # To make sure the default A dataframe is not modified
     h = pre_calculated_modules
     bat_product_act = [act["name"] for act in bw.Database("battery_production")]
 
@@ -411,18 +412,14 @@ def modules_with_cuts(cut_off_database):
         process = act["name"]
         product = act["reference product"]
         act_cuts = {}
-        act_output = [
-            exc["amount"] for exc in act.exchanges() if exc["type"] == "production"
-        ][0]
+        act_output = [exc["amount"] for exc in act.exchanges() if exc["type"] == "production"][0]
         for exc in act.exchanges():
             key = exc["input"]
             parent_act = bw.get_activity(key)
             if (
                 key[0] == cut_off_database and act != parent_act
             ):  # if input is present in cut-off database and not the reference product:
-                if (
-                    exc["amount"] > 0
-                ):  # If exchange is not waste (negative in Brightway):
+                if exc["amount"] > 0:  # If exchange is not waste (negative in Brightway):
                     act_cuts[parent_act.key] = [
                         parent_act["reference product"],
                         -exc["amount"],
@@ -459,18 +456,14 @@ def modular_technology_matrix(modules_dict):
     df = pd.DataFrame(index=product_rows, columns=process_cols).fillna(0)
 
     for process in modules_dict.keys():
-        df.loc[modules_dict[process]["output"], process] = modules_dict[process][
-            "amount"
-        ]
+        df.loc[modules_dict[process]["output"], process] = modules_dict[process]["amount"]
         for product in modules_dict[process]["cuts"].values():
             df.loc[product[0], process] = product[1]
     return df
 
 
 def inverse_technology_matrix(pd_matrix):
-    df_inv = pd.DataFrame(
-        np.linalg.pinv(pd_matrix.values), pd_matrix.columns, pd_matrix.index
-    )
+    df_inv = pd.DataFrame(np.linalg.pinv(pd_matrix.values), pd_matrix.columns, pd_matrix.index)
     return df_inv
 
 
@@ -481,11 +474,7 @@ def cut_modules_to_zero(modules_dict):
     for module in modules_dict.keys():
         if modules_dict[module]["cuts"]:
             act = bw.get_activity(modules_dict[module]["key"])
-            cut_exchanges = [
-                exc
-                for exc in act.exchanges()
-                if exc["input"] in modules_dict[module]["cuts"].keys()
-            ]
+            cut_exchanges = [exc for exc in act.exchanges() if exc["input"] in modules_dict[module]["cuts"].keys()]
             for cut_exc in cut_exchanges:
                 try:  # Exchanges with formulas
                     if cut_exc["formula"] is not None:
@@ -512,10 +501,7 @@ def lcia_modules(modules_dict, impact_category):
     """
     if not isinstance(impact_category, list):
         impact_category = [impact_category]
-    list_fu = [
-        {bw.get_activity(modules_dict[act]["key"]): modules_dict[act]["amount"]}
-        for act in modules_dict.keys()
-    ]
+    list_fu = [{bw.get_activity(modules_dict[act]["key"]): modules_dict[act]["amount"]} for act in modules_dict.keys()]
     bw.calculation_setups["multi_lca"] = {"inv": list_fu, "ia": impact_category}
     MultiLCA = bw.MultiLCA("multi_lca")
     return MultiLCA.results
@@ -561,14 +547,10 @@ def update_formulas(battery_design_dictionary):
     return output_dict
 
 
-def calculate_lcia_module(
-    technology_matrix, pre_calculated_modules, battery_design_dictionary
-):
+def calculate_lcia_module(technology_matrix, pre_calculated_modules, battery_design_dictionary):
     updated_act = update_formulas(battery_design_dictionary)
     battery_weight = battery_design_dictionary["battery_pack"]
-    A_matrix = technology_matrix.copy(
-        deep=True
-    )  # To make sure the default A dataframe is not modified
+    A_matrix = technology_matrix.copy(deep=True)  # To make sure the default A dataframe is not modified
     h = pre_calculated_modules
     bat_product_act = [act["name"] for act in bw.Database("battery_production")]
 
@@ -654,20 +636,14 @@ def update_project_parameter_formulas(project_parameters_formulas):
     Return:
         dictionary with parameter name (key) and amount (value)
     """
-    param_dict_2 = {
-        a: b["amount"]
-        for a, b in project_parameters_formulas.items()
-        if b["formula"] == 0
-    }
+    param_dict_2 = {a: b["amount"] for a, b in project_parameters_formulas.items() if b["formula"] == 0}
     for param in project_parameters_formulas.keys():
         if project_parameters_formulas[param]["formula"] != 0:
 
             def calc_amount_formula(param, param_dict_2):
                 """Recursive function, calls itself if parameter name in project formula is based on a different formula"""
                 try:
-                    amount = eval(
-                        project_parameters_formulas[param]["formula"], param_dict_2
-                    )
+                    amount = eval(project_parameters_formulas[param]["formula"], param_dict_2)
                     return amount
                 except NameError as Argument:
                     param_error = re.split("['']", str(Argument))[1]
@@ -700,16 +676,11 @@ def get_project_parameters_dict(design_dict, project_param_dict=None):
     """
 
     if project_param_dict is None:
-        project_param_dict = project_parameters_brightway()  #
-    else:
-        project_param_dict = project_param_dict
+        project_param_dict = project_parameters_brightway()
     # update 'amount' in project parameter based on design dictionary:
-    project_param_dict_update = update_project_parameter_amount(
-        project_param_dict, design_dict
-    )
+    project_param_dict_update = update_project_parameter_amount(project_param_dict, design_dict)
     # Update project parameters with formulas:
     parameter_dictionary = update_project_parameter_formulas(project_param_dict_update)
-
     return parameter_dictionary
 
 
@@ -739,9 +710,7 @@ def update_module_formulas(design_dict, activity_functions):
     return output_dict
 
 
-def update_parameterised_modules(
-    technology_matrix_base, battery_design_dict, activity_functions_dict
-):
+def update_parameterised_modules(technology_matrix_base, battery_design_dict, activity_functions_dict):
     """Updates modules based on functions with design specific parameters
 
     Args:
@@ -754,9 +723,7 @@ def update_parameterised_modules(
     """
     updated_act = update_module_formulas(battery_design_dict, activity_functions_dict)
     battery_weight = battery_design_dict["battery_pack"]
-    A_matrix = technology_matrix_base.copy(
-        deep=True
-    )  # To make sure the default A dataframe is not modified
+    A_matrix = technology_matrix_base.copy(deep=True)  # To make sure the default A dataframe is not modified
     bat_product_act = [act["name"] for act in bw.Database("battery_production")]
 
     for idx in A_matrix.index:
@@ -772,8 +739,6 @@ def update_parameterised_modules(
 def calculate_modular_A(
     technology_matrix_default,
     battery_design_dictionary,
-    process_formula=None,
-    project_parameter_formula=None,
 ):
     """Calculates the parameterised activities based on BW project parameters
     Parameters
@@ -782,21 +747,13 @@ def calculate_modular_A(
         Default A matrix
     battery_design_dictionary : Dict
         All design parameters, match the Brightway ProjectParameters. Project formulas must be solved already!
-    process_formulas : Dict
-        Dictionary with process formulas, Default is None and local data file is obtained
 
     Returns
     -------
     Numpy array
         Technology matrix of specific battery design
     """
-    if process_formula is None:
-        rel_path = "data/process_formulas.xlsx"
-        parent = Path(__file__).parents[0]
-        process_formula = parent / rel_path
-        process_formula = pd.read_excel(
-            process_formula, sheet_name="activity_functions", index_col=[1, 2]
-        ).T.to_dict()
+
     A_default = technology_matrix_default
     updated_act = update_module_formulas(battery_design_dictionary, process_formula)
     A_new = technology_matrix_default.values
@@ -810,9 +767,7 @@ def calculate_modular_A(
     return A_new
 
 
-def get_emissions_modular_matrix(
-    A_base, A_matrix_design, modular_emissions, return_vector=False
-):
+def get_emissions_modular_matrix(A_base, A_matrix_design, modular_emissions, return_vector=False):
     """Emissions of modular numpy matrix
 
     Parameters

@@ -125,9 +125,7 @@ def material_cost_matrix(
         # Material unit costs are attributed to the receiving battery production process:
         materials = unit_material_to_process_mapping.keys()
         processes = list(set(unit_material_to_process_mapping.values()))
-        # return monetary_matrix.loc[materials, processes], ((abs(technology_matrix_temp.loc[materials, processes])).T * (
-        #     pd.Series(unit_cost_dict)
-        # )).T
+
 
         monetary_matrix.loc[materials, processes] = (
             (abs(technology_matrix_temp.loc[materials, processes])).T * (pd.Series(unit_cost_dict))
@@ -336,9 +334,7 @@ def material_overhead_multiplier():
 
 
 def factors_battery_production(
-    system_design_parameters,
-    run_multiple=False,
-    return_aggregated=True,
+    system_design_parameters, run_multiple=False, return_aggregated=True, return_index=["labour", "capital", "land"]
 ):
     """Calculates the total production factor requirement (matrix F) for all production processes as in BatPaC adjusted
     for the manufacturing capacity.
@@ -358,7 +354,7 @@ def factors_battery_production(
     Returns
     -------
     DataFrame if run_multiple = False, nested Numpy array if run_multiple = True.
-        Factor requirements. Factors order: labour, capital, land
+        Factor requirements.
 
     Raises
     ------
@@ -377,7 +373,7 @@ def factors_battery_production(
             p = set(process_mapping.values())
         nested_F_matrix = np.zeros((len(sd_param.keys()), len(p_values_process.index), len(p)))
         disable_tqdm = False
-
+    return_index = [list(base_factors.index).index(x) for x in return_index]
     for idx, design in tqdm(enumerate(sd_param.values()), total=len(sd_param), disable=disable_tqdm):
         if "battery_manufacturing_capacity" not in design.keys():
             raise ValueError("battery_manufacturing_capacity not in parameter dictionary")
@@ -389,7 +385,7 @@ def factors_battery_production(
         volume_ratios = production_volume_ratio(volume_ratio_mapping, process_rates, design)
 
         # Factor requirement is based on baseline production factors, modelled volume ratio and the p values
-        factor_requirement_df = base_factors * volume_ratios**p_values_process
+        factor_requirement_df = base_factors * volume_ratios ** p_values_process
 
         # EXCEPTIONS:
         # Capital equipment requirement electrode coating and drying dependent on solvent evaporated:
@@ -436,9 +432,10 @@ def factors_battery_production(
             factor_requirement_df.rename(columns=process_mapping, inplace=True)
             factor_requirement_df = factor_requirement_df.groupby(factor_requirement_df.columns, axis=1).sum()
         if run_multiple == False:
-            return factor_requirement_df
+            return factor_requirement_df.iloc[return_index]
         else:
-            nested_F_matrix[idx] = factor_requirement_df
+            
+            nested_F_matrix[idx] = factor_requirement_df.iloc[return_index]
 
     return nested_F_matrix
 

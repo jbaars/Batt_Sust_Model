@@ -1,175 +1,175 @@
 ﻿database,activity,exchange,material_group,formula
-cut_off_materials,cell container production,"extrusion, plastic film",technosphere,(cell_container_pp_layer+cell_container_pp_layer)/cell_container
-cut_off_materials,cell container production,"aluminium, wrought alloy",technosphere,cell_container_al_layer/cell_container
-cut_off_materials,cell container production,"sheet rolling, aluminium",technosphere,cell_container_al_layer/cell_container
-cut_off_materials,cell container production,"polyethylene terephthalate, granulate, amorphous",technosphere,cell_container_pet_layer/cell_container
-cut_off_materials,cell container production,"polypropylene, granulate",technosphere,cell_container_pp_layer/cell_container
-cut_off_materials,cell container production,cell container,reference product,cell_container/cell_container
-cut_off_materials,battery jacket production,"impact extrusion of aluminium, 1 stroke",technosphere,battery_jacket_al/battery_jacket
-cut_off_materials,battery jacket production,battery jacket Al,technosphere,battery_jacket_al/battery_jacket
-cut_off_materials,battery jacket production,battery jacket insulation,technosphere,battery_jacket_insulation/battery_jacket
-cut_off_materials,battery jacket production,battery jacket Fe,technosphere,battery_jacket_fe/battery_jacket
-cut_off_materials,battery jacket production,"sheet rolling, steel",technosphere,battery_jacket_fe/battery_jacket
-cut_off_materials,battery jacket production,"deep drawing, steel, 10000 kN press, single stroke",technosphere,battery_jacket_fe/battery_jacket
-cut_off_materials,battery jacket production,battery jacket,reference product,battery_jacket/battery_jacket
-cut_off_materials,mixing anode materials,anode active material (natural graphite),technosphere,anode_active_material_natural_graphite/py_am_mixing_total
-cut_off_materials,mixing anode materials,anode active material (SiO),technosphere,anode_active_material_sio/py_am_mixing_total
-cut_off_materials,mixing anode materials,anode active material (synthetic graphite),technosphere,anode_active_material_synthetic_graphite/py_am_mixing_total
-cut_off_materials,mixing anode materials,anode binder (CMC),technosphere,anode_binder_cmc/py_am_mixing_total
-cut_off_materials,mixing anode materials,anode binder additive (SBR),technosphere,anode_binder_additive_sbr/py_am_mixing_total
-cut_off_materials,mixing anode materials,binder solvent (deionised water),technosphere,binder_solvent_dionised_water/py_am_mixing_total
-cut_off_materials,mixing anode materials,anode carbon black,technosphere,anode_carbon_black/py_am_mixing_total
-cut_off_materials,mixing anode materials,anode slurry,reference product,anode_slurry
-cut_off_materials,mixing anode materials,"electricity for battery production, medium voltage",technosphere,(anode_mixing_ratio_electricity*cell*electricity_consumption_mixing)/py_cell_aging
-cut_off_materials,mixing anode materials,waste anode slurry,waste,anode_slurry*-(1-py_am_mixing)
-cut_off_materials,mixing cathode materials,binder solvent (NMP),technosphere,(binder_solvent_nmp/py_am_mixing_total)-binder_solvent_recovered
-cut_off_materials,mixing cathode materials,binder solvent recycled (NMP),technosphere,binder_solvent_recovered
-cut_off_materials,mixing cathode materials,cathode active material (LFP),technosphere,cathode_active_material_lfp/py_am_mixing_total
-cut_off_materials,mixing cathode materials,cathode active material (LMO),technosphere,cathode_active_material_lmo/py_am_mixing_total
-cut_off_materials,mixing cathode materials,cathode active material (NCA),technosphere,cathode_active_material_nca/py_am_mixing_total
-cut_off_materials,mixing cathode materials,cathode active material (NMC333),technosphere,cathode_active_material_nmc333/py_am_mixing_total
-cut_off_materials,mixing cathode materials,cathode active material (NMC532),technosphere,cathode_active_material_nmc532/py_am_mixing_total
-cut_off_materials,mixing cathode materials,cathode active material (NMC622),technosphere,cathode_active_material_nmc622/py_am_mixing_total
-cut_off_materials,mixing cathode materials,cathode active material (NMC811),technosphere,cathode_active_material_nmc811/py_am_mixing_total
-cut_off_materials,mixing cathode materials,cathode active material (50%/50% NMC532/LMO - ),technosphere,cathode_active_material_50_50_nmc532_lmo/py_am_mixing_total
-cut_off_materials,mixing cathode materials,cathode binder (PVDF),technosphere,cathode_binder_pvdf/py_am_mixing_total
-cut_off_materials,mixing cathode materials,cathode carbon black,technosphere,cathode_carbon_black/py_am_mixing_total
-cut_off_materials,mixing cathode materials,waste cathode slurry,waste,cathode_slurry*-(1-py_am_mixing)
-cut_off_materials,mixing cathode materials,cathode slurry,reference product,cathode_slurry
-cut_off_materials,mixing cathode materials,"electricity for battery production, medium voltage",technosphere,(cathode_mixing_ratio_electricity*cell*electricity_consumption_mixing)/py_cell_aging
-cut_off_materials,anode coating and drying,anode current collector Cu (6um),technosphere,anode_current_collector_cu_6um/py_foil_coating_total
-cut_off_materials,anode coating and drying,anode current collector Cu (7um),technosphere,anode_current_collector_cu_7um/py_foil_coating_total
-cut_off_materials,anode coating and drying,anode current collector Cu (8um),technosphere,anode_current_collector_cu_9um/py_foil_coating_total
-cut_off_materials,anode coating and drying,anode current collector Cu (9um),technosphere,anode_current_collector_cu_8um/py_foil_coating_total
-cut_off_materials,anode coating and drying,anode current collector Cu (10um),technosphere,anode_current_collector_cu_10um/py_foil_coating_total
-cut_off_materials,anode coating and drying,anode current collector Cu (11um),technosphere,anode_current_collector_cu_11um/py_foil_coating_total
-cut_off_materials,anode coating and drying,anode current collector Cu (12um),technosphere,anode_current_collector_cu_12um/py_foil_coating_total
-cut_off_materials,anode coating and drying,anode current collector Cu (13um),technosphere,anode_current_collector_cu_13um/py_foil_coating_total
-cut_off_materials,anode coating and drying,anode current collector Cu (14um),technosphere,anode_current_collector_cu_14um/py_foil_coating_total
-cut_off_materials,anode coating and drying,anode slurry,technosphere,anode_slurry
-cut_off_materials,anode coating and drying,"wastewater, average",waste,(binder_solvent_dionised_water-(binder_solvent_dionised_water*(1-py_am_mixing)))/-py_am_mixing_total
-cut_off_materials,anode coating and drying,"electricity for battery production, medium voltage",technosphere,anode_coating_drying_mixing_ratio*cell*electricity_consumption_coating_drying/py_cell_aging
-cut_off_materials,anode coating and drying,"heat, district or industrial, natural gas for battery production",technosphere,anode_coating_drying_mixing_ratio*cell*heat_consumption_coating_drying/py_cell_aging
-cut_off_materials,anode coating and drying,waste anode current collector Cu,waste,(anode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)
-cut_off_materials,anode coating and drying,waste anode slurry,waste,anode_dry_material*-(1-py_slurry_coating)
-cut_off_materials,anode coating and drying,coated anode,reference product,coated_anode
-cut_off_materials,cathode coating and drying,cathode current collector Al (10um),technosphere,cathode_current_collector_al_10um/py_foil_coating_total
-cut_off_materials,cathode coating and drying,cathode current collector Al (11um),technosphere,cathode_current_collector_al_11um/py_foil_coating_total
-cut_off_materials,cathode coating and drying,cathode current collector Al (12um),technosphere,cathode_current_collector_al_12um/py_foil_coating_total
-cut_off_materials,cathode coating and drying,cathode current collector Al (13um),technosphere,cathode_current_collector_al_13um/py_foil_coating_total
-cut_off_materials,cathode coating and drying,cathode current collector Al (14um),technosphere,cathode_current_collector_al_14um/py_foil_coating_total
-cut_off_materials,cathode coating and drying,cathode current collector Al (15um),technosphere,cathode_current_collector_al_15um/py_foil_coating_total
-cut_off_materials,cathode coating and drying,cathode current collector Al (16um),technosphere,cathode_current_collector_al_16um/py_foil_coating_total
-cut_off_materials,cathode coating and drying,cathode current collector Al (17um),technosphere,cathode_current_collector_al_17um/py_foil_coating_total
-cut_off_materials,cathode coating and drying,cathode current collector Al (18um),technosphere,cathode_current_collector_al_18um/py_foil_coating_total
-cut_off_materials,cathode coating and drying,cathode slurry,technosphere,cathode_slurry
-cut_off_materials,cathode coating and drying,"electricity for battery production, medium voltage",technosphere,cathode_coating_drying_mixing_ratio*cell*electricity_consumption_coating_drying/py_cell_aging
-cut_off_materials,cathode coating and drying,"heat, district or industrial, natural gas for battery production",technosphere,cathode_coating_drying_mixing_ratio*cell*heat_consumption_coating_drying/py_cell_aging
-cut_off_materials,cathode coating and drying,cathode binder solvent waste,waste,(-((binder_solvent_nmp/py_am_mixing_total)-((binder_solvent_nmp/py_am_mixing_total)*(1-py_am_mixing))))
-cut_off_materials,cathode coating and drying,coated cathode,reference product,coated_cathode
-cut_off_materials,cathode coating and drying,waste cathode current collector Al,waste,(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)
-cut_off_materials,cathode coating and drying,waste cathode slurry,waste,cathode_dry_material*-(1-py_slurry_coating)
-cut_off_materials,anode calendering,coated anode,technosphere,coated_anode
-cut_off_materials,anode calendering,"electricity for battery production, medium voltage",technosphere,(cell*electricity_consumption_calendering*(1-cathode_calendering_ratio))/py_cell_aging
-cut_off_materials,anode calendering,calendered anode rolls,reference product,coated_anode
-cut_off_materials,cathode calendering,coated cathode,technosphere,coated_cathode
-cut_off_materials,cathode calendering,"electricity for battery production, medium voltage",technosphere,(cell*electricity_consumption_calendering*(cathode_calendering_ratio))/py_cell_aging
-cut_off_materials,cathode calendering,calendered cathode rolls,reference product,coated_cathode
-cut_off_materials,anode slitting,calendered anode rolls,technosphere,coated_anode
-cut_off_materials,anode slitting,"electricity for battery production, medium voltage",technosphere,cell*(1-cathode_slitting_ratio)*electricity_consumption_slitting*py_cell_aging
-cut_off_materials,anode slitting,waste anode slurry,waste,anode_dry_material*-(1-py_slurry_slitting)
-cut_off_materials,anode slitting,waste anode current collector Cu,waste,(anode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)
-cut_off_materials,anode slitting,slitted anode,reference product,slitted_anode
-cut_off_materials,cathode slitting,calendered cathode rolls,technosphere,coated_cathode
-cut_off_materials,cathode slitting,slitted cathode,reference product,slitted_cathode
-cut_off_materials,cathode slitting,"electricity for battery production, medium voltage",technosphere,cell*(cathode_slitting_ratio)*electricity_consumption_slitting*py_cell_aging
-cut_off_materials,cathode slitting,waste cathode slurry,waste,cathode_dry_material*-(1-py_slurry_slitting)
-cut_off_materials,cathode slitting,waste cathode current collector Al,waste,(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)
-cut_off_materials,final electrode drying,slitted anode,technosphere,slitted_anode
-cut_off_materials,final electrode drying,slitted cathode,technosphere,slitted_cathode
-cut_off_materials,final electrode drying,"electricity for battery production, medium voltage",technosphere,electricity_consumption_final_drying*cell/py_cell_aging
-cut_off_materials,final electrode drying,"heat, district or industrial, natural gas for battery production",technosphere,heat_consumption_final_drying*cell/py_cell_aging
-cut_off_materials,final electrode drying,dried electrodes,reference product,dried_electrodes
-cut_off_materials,cell stacking,separator (5um),technosphere,separator_5um/(py_cell_aging*py_separator_stacking)
-cut_off_materials,cell stacking,separator (7um),technosphere,separator_7um/(py_cell_aging*py_separator_stacking)
-cut_off_materials,cell stacking,separator (9um),technosphere,separator_9um/(py_cell_aging*py_separator_stacking)
-cut_off_materials,cell stacking,separator (11um),technosphere,separator_11um/(py_cell_aging*py_separator_stacking)
-cut_off_materials,cell stacking,separator (13um),technosphere,separator_13um/(py_cell_aging*py_separator_stacking)
-cut_off_materials,cell stacking,separator (15um),technosphere,separator_15um/(py_cell_aging*py_separator_stacking)
-cut_off_materials,cell stacking,separator (17um),technosphere,separator_17um/(py_cell_aging*py_separator_stacking)
-cut_off_materials,cell stacking,separator (19um),technosphere,separator_19um/(py_cell_aging*py_separator_stacking)
-cut_off_materials,cell stacking,coated separator (5um+2um),technosphere,coated_separator_5um_2um/(py_cell_aging*py_separator_stacking)
-cut_off_materials,cell stacking,coated separator (7um+2um),technosphere,coated_separator_7um_2um/(py_cell_aging*py_separator_stacking)
-cut_off_materials,cell stacking,coated separator (9um+3um),technosphere,coated_separator_9um_3um/(py_cell_aging*py_separator_stacking)
-cut_off_materials,cell stacking,dried electrodes,technosphere,dried_electrodes
-cut_off_materials,cell stacking,"electricity for battery production, medium voltage",technosphere,electricity_consumption_stacking*cell/py_cell_aging
-cut_off_materials,cell stacking,anode electrode scrap,waste,slitted_anode*-(1-py_electrode_stacking)
-cut_off_materials,cell stacking,cathode electrode scrap,waste,slitted_cathode*-(1-py_electrode_stacking)
-cut_off_materials,cell stacking,separator scrap,waste,(-separator_waste)
-cut_off_materials,cell stacking,jelly roll,reference product,jelly_roll
-cut_off_materials,terminal welding,cell terminal anode,technosphere,cell_terminal_anode/py_cell_aging
-cut_off_materials,terminal welding,cell terminal cathode,technosphere,cell_terminal_cathode/py_cell_aging
-cut_off_materials,terminal welding,jelly roll,technosphere,jelly_roll
-cut_off_materials,terminal welding,welded jelly roll,reference product,jelly_roll+((cell_terminal_cathode+cell_terminal_anode)/py_cell_aging)
-cut_off_materials,jelly roll enclosing,cell container,technosphere,cell_container/py_cell_aging
-cut_off_materials,jelly roll enclosing,welded jelly roll,technosphere,jelly_roll+((cell_terminal_cathode+cell_terminal_anode)/py_cell_aging)
-cut_off_materials,jelly roll enclosing,enclosed cell,reference product,enclosed_cell
-cut_off_materials,electrolyte filling and sealing,electrolyte (LFP),technosphere,electrolyte_lfp/(py_cell_aging*py_electrolyte_filling)
-cut_off_materials,electrolyte filling and sealing,electrolyte (LMO),technosphere,electrolyte_lmo/(py_cell_aging*py_electrolyte_filling)
-cut_off_materials,electrolyte filling and sealing,electrolyte (NMC/NCA),technosphere,electrolyte_nmc_nca/(py_cell_aging*py_electrolyte_filling)
-cut_off_materials,electrolyte filling and sealing,"electricity for battery production, medium voltage",technosphere,(cell*electricity_consumption_cell_assembly/py_cell_aging)+electricity_consumption_dryroom*cell*py_cell_aging
-cut_off_materials,electrolyte filling and sealing,"heat, district or industrial, natural gas for battery production",technosphere,heat_consumption_dryroom*cell/py_cell_aging
-cut_off_materials,electrolyte filling and sealing,enclosed cell,technosphere,enclosed_cell
-cut_off_materials,electrolyte filling and sealing,electrolyte scrap,waste,((electrolyte_lfp+electrolyte_lmo+electrolyte_nmc_nca)/py_cell_aging)*-(1-py_electrolyte_filling)
-cut_off_materials,electrolyte filling and sealing,unformated cell,reference product,unformated_cell
-cut_off_materials,cell formation,"electricity for battery production, medium voltage",technosphere,electricity_consumption_formation*battery_capacity/py_cell_aging
-cut_off_materials,cell formation,"heat, district or industrial, natural gas for battery production",technosphere,heat_consumption_formation*cell/py_cell_aging
-cut_off_materials,cell formation,unformated cell,technosphere,unformated_cell
-cut_off_materials,cell formation,cell scrap,waste,unformated_cell*-(1-py_cell_aging)
-cut_off_materials,cell formation,cell,reference product,cell
-cut_off_materials,module and pack assembly,"electricity for battery production, medium voltage",technosphere,electricity_consumption_assembly*battery_pack+(electricity_consumption_material_handling*battery_pack)
-cut_off_materials,module and pack assembly,cell,technosphere,cell
-cut_off_materials,module and pack assembly,cell group interconnect,technosphere,cell_group_interconnect
-cut_off_materials,module and pack assembly,module terminal,technosphere,module_terminal
-cut_off_materials,module and pack assembly,module thermal conductor,technosphere,module_thermal_conductor
-cut_off_materials,module and pack assembly,gas release,technosphere,gas_release
-cut_off_materials,module and pack assembly,module container,technosphere,module_container
-cut_off_materials,module and pack assembly,module electronics,technosphere,module_electronics
-cut_off_materials,module and pack assembly,battery jacket,technosphere,battery_jacket
-cut_off_materials,module and pack assembly,battery management system,technosphere,battery_management_system
-cut_off_materials,module and pack assembly,busbar,technosphere,busbar
-cut_off_materials,module and pack assembly,pack heater,technosphere,pack_heater
-cut_off_materials,module and pack assembly,pack terminals,technosphere,pack_terminals
-cut_off_materials,module and pack assembly,coolant,technosphere,coolant
-cut_off_materials,module and pack assembly,module interconnects,technosphere,module_interconnects
-cut_off_materials,module and pack assembly,module polymer panels,technosphere,module_polymer_panels
-cut_off_materials,module and pack assembly,module tabs,technosphere,module_tabs
-cut_off_materials,module and pack assembly,module row rack,technosphere,module_row_rack
-cut_off_materials,module and pack assembly,module elastomer pads,technosphere,module_elastomer_pads
-cut_off_materials,module and pack assembly,cooling connectors,technosphere,cooling_connectors
-cut_off_materials,module and pack assembly,cooling mains Fe,technosphere,cooling_mains_fe
-cut_off_materials,module and pack assembly,cooling panels,technosphere,cooling_panels
-cut_off_materials,module and pack assembly,battery pack,reference product,battery_pack
-cut_off_materials,cathode binder solvent waste recovery,cathode binder solvent waste,technosphere,binder_solvent_recovered
-cut_off_materials,cathode binder solvent waste recovery,binder solvent recycled (NMP),reference product,binder_solvent_recovered
-cut_off_materials,cathode binder solvent waste handling,cathode binder solvent waste,waste,((binder_solvent_nmp/py_am_mixing_total)*py_am_mixing)*(1-py_nmp_recovery)
-cut_off_materials,cathode binder solvent waste handling,battery production scrap,waste,((binder_solvent_nmp/py_am_mixing_total)*py_am_mixing)*-(1-py_nmp_recovery)
-cut_off_materials,anode electrode scrap handling,anode electrode scrap,waste,slitted_anode*(1-py_electrode_stacking)
-cut_off_materials,anode electrode scrap handling,battery production scrap,waste,slitted_anode*-(1-py_electrode_stacking)
-cut_off_materials,cathode electrode scrap handling,cathode electrode scrap,waste,slitted_cathode*(1-py_electrode_stacking)
-cut_off_materials,cathode electrode scrap handling,battery production scrap,waste,slitted_cathode*-(1-py_electrode_stacking)
-cut_off_materials,cell scrap handling,cell scrap,waste,unformated_cell*(1-py_cell_aging)
-cut_off_materials,cell scrap handling,battery production scrap,waste,unformated_cell*-(1-py_cell_aging)
-cut_off_materials,electrolyte scrap handling,electrolyte scrap,waste,((electrolyte_lfp+electrolyte_lmo+electrolyte_nmc_nca)/py_cell_aging)*(1-py_electrolyte_filling)
-cut_off_materials,electrolyte scrap handling,battery production scrap,waste,((electrolyte_lfp+electrolyte_lmo+electrolyte_nmc_nca)/py_cell_aging)*-(1-py_electrolyte_filling)
-cut_off_materials,separator scrap handling,separator scrap,waste,separator_waste
-cut_off_materials,separator scrap handling,battery production scrap,waste,(-separator_waste)
-cut_off_materials,waste anode current collector Cu handling,waste anode current collector Cu,waste,(anode_current_collector/py_foil_coating_total)*(1-py_foil_coating)+(anode_current_collector/py_foil_coating_total)*(1-py_foil_slitting)
-cut_off_materials,waste anode current collector Cu handling,battery production scrap,waste,(anode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)+(anode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)
-cut_off_materials,waste anode slurry handling,waste anode slurry,waste,anode_slurry*(1-py_am_mixing)+anode_dry_material*(1-py_slurry_coating)+anode_dry_material*(1-py_slurry_slitting)
-cut_off_materials,waste anode slurry handling,battery production scrap,waste,anode_slurry*-(1-py_am_mixing)+anode_dry_material*-(1-py_slurry_coating)+anode_dry_material*-(1-py_slurry_slitting)
-cut_off_materials,waste cathode current collector Al handling,waste cathode current collector Al,waste,(cathode_current_collector/py_foil_coating_total)*(1-py_foil_coating)+(cathode_current_collector/py_foil_coating_total)*(1-py_foil_slitting)
-cut_off_materials,waste cathode current collector Al handling,battery production scrap,waste,(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)+(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)
-cut_off_materials,waste cathode slurry handling,waste cathode slurry,waste,cathode_slurry*(1-py_am_mixing)+cathode_dry_material*(1-py_slurry_coating)+cathode_dry_material*(1-py_slurry_slitting)
-cut_off_materials,waste cathode slurry handling,battery production scrap,waste,cathode_slurry*-(1-py_am_mixing)+cathode_dry_material*-(1-py_slurry_coating)+cathode_dry_material*-(1-py_slurry_slitting)
-cut_off_materials,building and supporting systems,battery production scrap,waste,(-(anode_slurry*-(1-py_am_mixing)+cathode_slurry*-(1-py_am_mixing)+(anode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)+anode_dry_material*-(1-py_slurry_coating)+(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)+cathode_dry_material*-(1-py_slurry_coating)+anode_dry_material*-(1-py_slurry_slitting)+(anode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)+cathode_dry_material*-(1-py_slurry_slitting)+(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)+slitted_anode*-(1-py_electrode_stacking)+slitted_cathode*-(1-py_electrode_stacking)+(-separator_waste)+((electrolyte_lfp+electrolyte_lmo+electrolyte_nmc_nca)/py_cell_aging)*-(1-py_electrolyte_filling)+unformated_cell*-(1-py_cell_aging)))
+cut_off,cell container production,"extrusion, plastic film",technosphere,(cell_container_pp_layer+cell_container_pp_layer)/cell_container
+cut_off,cell container production,"aluminium, wrought alloy",technosphere,cell_container_al_layer/cell_container
+cut_off,cell container production,"sheet rolling, aluminium",technosphere,cell_container_al_layer/cell_container
+cut_off,cell container production,"polyethylene terephthalate, granulate, amorphous",technosphere,cell_container_pet_layer/cell_container
+cut_off,cell container production,"polypropylene, granulate",technosphere,cell_container_pp_layer/cell_container
+cut_off,cell container production,cell container,reference product,cell_container/cell_container
+cut_off,battery jacket production,"impact extrusion of aluminium, 1 stroke",technosphere,battery_jacket_al/battery_jacket
+cut_off,battery jacket production,battery jacket Al,technosphere,battery_jacket_al/battery_jacket
+cut_off,battery jacket production,battery jacket insulation,technosphere,battery_jacket_insulation/battery_jacket
+cut_off,battery jacket production,battery jacket Fe,technosphere,battery_jacket_fe/battery_jacket
+cut_off,battery jacket production,"sheet rolling, steel",technosphere,battery_jacket_fe/battery_jacket
+cut_off,battery jacket production,"deep drawing, steel, 10000 kN press, single stroke",technosphere,battery_jacket_fe/battery_jacket
+cut_off,battery jacket production,battery jacket,reference product,battery_jacket/battery_jacket
+cut_off,mixing anode materials,anode active material (natural graphite),technosphere,anode_active_material_natural_graphite/py_am_mixing_total
+cut_off,mixing anode materials,anode active material (SiO),technosphere,anode_active_material_sio/py_am_mixing_total
+cut_off,mixing anode materials,anode active material (synthetic graphite),technosphere,anode_active_material_synthetic_graphite/py_am_mixing_total
+cut_off,mixing anode materials,anode binder (CMC),technosphere,anode_binder_cmc/py_am_mixing_total
+cut_off,mixing anode materials,anode binder additive (SBR),technosphere,anode_binder_additive_sbr/py_am_mixing_total
+cut_off,mixing anode materials,binder solvent (deionised water),technosphere,binder_solvent_dionised_water/py_am_mixing_total
+cut_off,mixing anode materials,anode carbon black,technosphere,anode_carbon_black/py_am_mixing_total
+cut_off,mixing anode materials,anode slurry,reference product,anode_slurry
+cut_off,mixing anode materials,"electricity for battery production, medium voltage",technosphere,(anode_mixing_ratio_electricity*cell*electricity_consumption_mixing)/py_cell_aging
+cut_off,mixing anode materials,waste anode slurry,waste,anode_slurry*-(1-py_am_mixing)
+cut_off,mixing cathode materials,binder solvent (NMP),technosphere,(binder_solvent_nmp/py_am_mixing_total)-binder_solvent_recovered
+cut_off,mixing cathode materials,binder solvent recycled (NMP),technosphere,binder_solvent_recovered
+cut_off,mixing cathode materials,cathode active material (LFP),technosphere,cathode_active_material_lfp/py_am_mixing_total
+cut_off,mixing cathode materials,cathode active material (LMO),technosphere,cathode_active_material_lmo/py_am_mixing_total
+cut_off,mixing cathode materials,cathode active material (NCA),technosphere,cathode_active_material_nca/py_am_mixing_total
+cut_off,mixing cathode materials,cathode active material (NMC333),technosphere,cathode_active_material_nmc333/py_am_mixing_total
+cut_off,mixing cathode materials,cathode active material (NMC532),technosphere,cathode_active_material_nmc532/py_am_mixing_total
+cut_off,mixing cathode materials,cathode active material (NMC622),technosphere,cathode_active_material_nmc622/py_am_mixing_total
+cut_off,mixing cathode materials,cathode active material (NMC811),technosphere,cathode_active_material_nmc811/py_am_mixing_total
+cut_off,mixing cathode materials,cathode active material (50%/50% NMC532/LMO - ),technosphere,cathode_active_material_50_50_nmc532_lmo/py_am_mixing_total
+cut_off,mixing cathode materials,cathode binder (PVDF),technosphere,cathode_binder_pvdf/py_am_mixing_total
+cut_off,mixing cathode materials,cathode carbon black,technosphere,cathode_carbon_black/py_am_mixing_total
+cut_off,mixing cathode materials,waste cathode slurry,waste,cathode_slurry*-(1-py_am_mixing)
+cut_off,mixing cathode materials,cathode slurry,reference product,cathode_slurry
+cut_off,mixing cathode materials,"electricity for battery production, medium voltage",technosphere,(cathode_mixing_ratio_electricity*cell*electricity_consumption_mixing)/py_cell_aging
+cut_off,anode coating and drying,anode current collector Cu (6um),technosphere,anode_current_collector_cu_6um/py_foil_coating_total
+cut_off,anode coating and drying,anode current collector Cu (7um),technosphere,anode_current_collector_cu_7um/py_foil_coating_total
+cut_off,anode coating and drying,anode current collector Cu (8um),technosphere,anode_current_collector_cu_9um/py_foil_coating_total
+cut_off,anode coating and drying,anode current collector Cu (9um),technosphere,anode_current_collector_cu_8um/py_foil_coating_total
+cut_off,anode coating and drying,anode current collector Cu (10um),technosphere,anode_current_collector_cu_10um/py_foil_coating_total
+cut_off,anode coating and drying,anode current collector Cu (11um),technosphere,anode_current_collector_cu_11um/py_foil_coating_total
+cut_off,anode coating and drying,anode current collector Cu (12um),technosphere,anode_current_collector_cu_12um/py_foil_coating_total
+cut_off,anode coating and drying,anode current collector Cu (13um),technosphere,anode_current_collector_cu_13um/py_foil_coating_total
+cut_off,anode coating and drying,anode current collector Cu (14um),technosphere,anode_current_collector_cu_14um/py_foil_coating_total
+cut_off,anode coating and drying,anode slurry,technosphere,anode_slurry
+cut_off,anode coating and drying,"wastewater, average",waste,(binder_solvent_dionised_water-(binder_solvent_dionised_water*(1-py_am_mixing)))/-py_am_mixing_total
+cut_off,anode coating and drying,"electricity for battery production, medium voltage",technosphere,anode_coating_drying_mixing_ratio*cell*electricity_consumption_coating_drying/py_cell_aging
+cut_off,anode coating and drying,"heat, district or industrial, natural gas for battery production",technosphere,anode_coating_drying_mixing_ratio*cell*heat_consumption_coating_drying/py_cell_aging
+cut_off,anode coating and drying,waste anode current collector Cu,waste,(anode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)
+cut_off,anode coating and drying,waste anode slurry,waste,anode_dry_material*-(1-py_slurry_coating)
+cut_off,anode coating and drying,coated anode,reference product,coated_anode
+cut_off,cathode coating and drying,cathode current collector Al (10um),technosphere,cathode_current_collector_al_10um/py_foil_coating_total
+cut_off,cathode coating and drying,cathode current collector Al (11um),technosphere,cathode_current_collector_al_11um/py_foil_coating_total
+cut_off,cathode coating and drying,cathode current collector Al (12um),technosphere,cathode_current_collector_al_12um/py_foil_coating_total
+cut_off,cathode coating and drying,cathode current collector Al (13um),technosphere,cathode_current_collector_al_13um/py_foil_coating_total
+cut_off,cathode coating and drying,cathode current collector Al (14um),technosphere,cathode_current_collector_al_14um/py_foil_coating_total
+cut_off,cathode coating and drying,cathode current collector Al (15um),technosphere,cathode_current_collector_al_15um/py_foil_coating_total
+cut_off,cathode coating and drying,cathode current collector Al (16um),technosphere,cathode_current_collector_al_16um/py_foil_coating_total
+cut_off,cathode coating and drying,cathode current collector Al (17um),technosphere,cathode_current_collector_al_17um/py_foil_coating_total
+cut_off,cathode coating and drying,cathode current collector Al (18um),technosphere,cathode_current_collector_al_18um/py_foil_coating_total
+cut_off,cathode coating and drying,cathode slurry,technosphere,cathode_slurry
+cut_off,cathode coating and drying,"electricity for battery production, medium voltage",technosphere,cathode_coating_drying_mixing_ratio*cell*electricity_consumption_coating_drying/py_cell_aging
+cut_off,cathode coating and drying,"heat, district or industrial, natural gas for battery production",technosphere,cathode_coating_drying_mixing_ratio*cell*heat_consumption_coating_drying/py_cell_aging
+cut_off,cathode coating and drying,cathode binder solvent waste,waste,(-((binder_solvent_nmp/py_am_mixing_total)-((binder_solvent_nmp/py_am_mixing_total)*(1-py_am_mixing))))
+cut_off,cathode coating and drying,coated cathode,reference product,coated_cathode
+cut_off,cathode coating and drying,waste cathode current collector Al,waste,(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)
+cut_off,cathode coating and drying,waste cathode slurry,waste,cathode_dry_material*-(1-py_slurry_coating)
+cut_off,anode calendering,coated anode,technosphere,coated_anode
+cut_off,anode calendering,"electricity for battery production, medium voltage",technosphere,(cell*electricity_consumption_calendering*(1-cathode_calendering_ratio))/py_cell_aging
+cut_off,anode calendering,calendered anode rolls,reference product,coated_anode
+cut_off,cathode calendering,coated cathode,technosphere,coated_cathode
+cut_off,cathode calendering,"electricity for battery production, medium voltage",technosphere,(cell*electricity_consumption_calendering*(cathode_calendering_ratio))/py_cell_aging
+cut_off,cathode calendering,calendered cathode rolls,reference product,coated_cathode
+cut_off,anode slitting,calendered anode rolls,technosphere,coated_anode
+cut_off,anode slitting,"electricity for battery production, medium voltage",technosphere,cell*(1-cathode_slitting_ratio)*electricity_consumption_slitting*py_cell_aging
+cut_off,anode slitting,waste anode slurry,waste,anode_dry_material*-(1-py_slurry_slitting)
+cut_off,anode slitting,waste anode current collector Cu,waste,(anode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)
+cut_off,anode slitting,slitted anode,reference product,slitted_anode
+cut_off,cathode slitting,calendered cathode rolls,technosphere,coated_cathode
+cut_off,cathode slitting,slitted cathode,reference product,slitted_cathode
+cut_off,cathode slitting,"electricity for battery production, medium voltage",technosphere,cell*(cathode_slitting_ratio)*electricity_consumption_slitting*py_cell_aging
+cut_off,cathode slitting,waste cathode slurry,waste,cathode_dry_material*-(1-py_slurry_slitting)
+cut_off,cathode slitting,waste cathode current collector Al,waste,(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)
+cut_off,final electrode drying,slitted anode,technosphere,slitted_anode
+cut_off,final electrode drying,slitted cathode,technosphere,slitted_cathode
+cut_off,final electrode drying,"electricity for battery production, medium voltage",technosphere,electricity_consumption_final_drying*cell/py_cell_aging
+cut_off,final electrode drying,"heat, district or industrial, natural gas for battery production",technosphere,heat_consumption_final_drying*cell/py_cell_aging
+cut_off,final electrode drying,dried electrodes,reference product,dried_electrodes
+cut_off,cell stacking,separator (5um),technosphere,separator_5um/(py_cell_aging*py_separator_stacking)
+cut_off,cell stacking,separator (7um),technosphere,separator_7um/(py_cell_aging*py_separator_stacking)
+cut_off,cell stacking,separator (9um),technosphere,separator_9um/(py_cell_aging*py_separator_stacking)
+cut_off,cell stacking,separator (11um),technosphere,separator_11um/(py_cell_aging*py_separator_stacking)
+cut_off,cell stacking,separator (13um),technosphere,separator_13um/(py_cell_aging*py_separator_stacking)
+cut_off,cell stacking,separator (15um),technosphere,separator_15um/(py_cell_aging*py_separator_stacking)
+cut_off,cell stacking,separator (17um),technosphere,separator_17um/(py_cell_aging*py_separator_stacking)
+cut_off,cell stacking,separator (19um),technosphere,separator_19um/(py_cell_aging*py_separator_stacking)
+cut_off,cell stacking,coated separator (5um+2um),technosphere,coated_separator_5um_2um/(py_cell_aging*py_separator_stacking)
+cut_off,cell stacking,coated separator (7um+2um),technosphere,coated_separator_7um_2um/(py_cell_aging*py_separator_stacking)
+cut_off,cell stacking,coated separator (9um+3um),technosphere,coated_separator_9um_3um/(py_cell_aging*py_separator_stacking)
+cut_off,cell stacking,dried electrodes,technosphere,dried_electrodes
+cut_off,cell stacking,"electricity for battery production, medium voltage",technosphere,electricity_consumption_stacking*cell/py_cell_aging
+cut_off,cell stacking,anode electrode scrap,waste,slitted_anode*-(1-py_electrode_stacking)
+cut_off,cell stacking,cathode electrode scrap,waste,slitted_cathode*-(1-py_electrode_stacking)
+cut_off,cell stacking,separator scrap,waste,(-separator_waste)
+cut_off,cell stacking,jelly roll,reference product,jelly_roll
+cut_off,terminal welding,cell terminal anode,technosphere,cell_terminal_anode/py_cell_aging
+cut_off,terminal welding,cell terminal cathode,technosphere,cell_terminal_cathode/py_cell_aging
+cut_off,terminal welding,jelly roll,technosphere,jelly_roll
+cut_off,terminal welding,welded jelly roll,reference product,jelly_roll+((cell_terminal_cathode+cell_terminal_anode)/py_cell_aging)
+cut_off,jelly roll enclosing,cell container,technosphere,cell_container/py_cell_aging
+cut_off,jelly roll enclosing,welded jelly roll,technosphere,jelly_roll+((cell_terminal_cathode+cell_terminal_anode)/py_cell_aging)
+cut_off,jelly roll enclosing,enclosed cell,reference product,enclosed_cell
+cut_off,electrolyte filling and sealing,electrolyte (LFP),technosphere,electrolyte_lfp/(py_cell_aging*py_electrolyte_filling)
+cut_off,electrolyte filling and sealing,electrolyte (LMO),technosphere,electrolyte_lmo/(py_cell_aging*py_electrolyte_filling)
+cut_off,electrolyte filling and sealing,electrolyte (NMC/NCA),technosphere,electrolyte_nmc_nca/(py_cell_aging*py_electrolyte_filling)
+cut_off,electrolyte filling and sealing,"electricity for battery production, medium voltage",technosphere,(cell*electricity_consumption_cell_assembly/py_cell_aging)+electricity_consumption_dryroom*cell*py_cell_aging
+cut_off,electrolyte filling and sealing,"heat, district or industrial, natural gas for battery production",technosphere,heat_consumption_dryroom*cell/py_cell_aging
+cut_off,electrolyte filling and sealing,enclosed cell,technosphere,enclosed_cell
+cut_off,electrolyte filling and sealing,electrolyte scrap,waste,((electrolyte_lfp+electrolyte_lmo+electrolyte_nmc_nca)/py_cell_aging)*-(1-py_electrolyte_filling)
+cut_off,electrolyte filling and sealing,unformated cell,reference product,unformated_cell
+cut_off,cell formation,"electricity for battery production, medium voltage",technosphere,electricity_consumption_formation*battery_capacity/py_cell_aging
+cut_off,cell formation,"heat, district or industrial, natural gas for battery production",technosphere,heat_consumption_formation*cell/py_cell_aging
+cut_off,cell formation,unformated cell,technosphere,unformated_cell
+cut_off,cell formation,cell scrap,waste,unformated_cell*-(1-py_cell_aging)
+cut_off,cell formation,cell,reference product,cell
+cut_off,module and pack assembly,"electricity for battery production, medium voltage",technosphere,electricity_consumption_assembly*battery_pack+(electricity_consumption_material_handling*battery_pack)
+cut_off,module and pack assembly,cell,technosphere,cell
+cut_off,module and pack assembly,cell group interconnect,technosphere,cell_group_interconnect
+cut_off,module and pack assembly,module terminal,technosphere,module_terminal
+cut_off,module and pack assembly,module thermal conductor,technosphere,module_thermal_conductor
+cut_off,module and pack assembly,gas release,technosphere,gas_release
+cut_off,module and pack assembly,module container,technosphere,module_container
+cut_off,module and pack assembly,module electronics,technosphere,module_electronics
+cut_off,module and pack assembly,battery jacket,technosphere,battery_jacket
+cut_off,module and pack assembly,battery management system,technosphere,battery_management_system
+cut_off,module and pack assembly,busbar,technosphere,busbar
+cut_off,module and pack assembly,pack heater,technosphere,pack_heater
+cut_off,module and pack assembly,pack terminals,technosphere,pack_terminals
+cut_off,module and pack assembly,coolant,technosphere,coolant
+cut_off,module and pack assembly,module interconnects,technosphere,module_interconnects
+cut_off,module and pack assembly,module polymer panels,technosphere,module_polymer_panels
+cut_off,module and pack assembly,module tabs,technosphere,module_tabs
+cut_off,module and pack assembly,module row rack,technosphere,module_row_rack
+cut_off,module and pack assembly,module elastomer pads,technosphere,module_elastomer_pads
+cut_off,module and pack assembly,cooling connectors,technosphere,cooling_connectors
+cut_off,module and pack assembly,cooling mains Fe,technosphere,cooling_mains_fe
+cut_off,module and pack assembly,cooling panels,technosphere,cooling_panels
+cut_off,module and pack assembly,battery pack,reference product,battery_pack
+cut_off,cathode binder solvent waste recovery,cathode binder solvent waste,technosphere,binder_solvent_recovered
+cut_off,cathode binder solvent waste recovery,binder solvent recycled (NMP),reference product,binder_solvent_recovered
+cut_off,cathode binder solvent waste handling,cathode binder solvent waste,waste,((binder_solvent_nmp/py_am_mixing_total)*py_am_mixing)*(1-py_nmp_recovery)
+cut_off,cathode binder solvent waste handling,battery production scrap,waste,((binder_solvent_nmp/py_am_mixing_total)*py_am_mixing)*-(1-py_nmp_recovery)
+cut_off,anode electrode scrap handling,anode electrode scrap,waste,slitted_anode*(1-py_electrode_stacking)
+cut_off,anode electrode scrap handling,battery production scrap,waste,slitted_anode*-(1-py_electrode_stacking)
+cut_off,cathode electrode scrap handling,cathode electrode scrap,waste,slitted_cathode*(1-py_electrode_stacking)
+cut_off,cathode electrode scrap handling,battery production scrap,waste,slitted_cathode*-(1-py_electrode_stacking)
+cut_off,cell scrap handling,cell scrap,waste,unformated_cell*(1-py_cell_aging)
+cut_off,cell scrap handling,battery production scrap,waste,unformated_cell*-(1-py_cell_aging)
+cut_off,electrolyte scrap handling,electrolyte scrap,waste,((electrolyte_lfp+electrolyte_lmo+electrolyte_nmc_nca)/py_cell_aging)*(1-py_electrolyte_filling)
+cut_off,electrolyte scrap handling,battery production scrap,waste,((electrolyte_lfp+electrolyte_lmo+electrolyte_nmc_nca)/py_cell_aging)*-(1-py_electrolyte_filling)
+cut_off,separator scrap handling,separator scrap,waste,separator_waste
+cut_off,separator scrap handling,battery production scrap,waste,(-separator_waste)
+cut_off,waste anode current collector Cu handling,waste anode current collector Cu,waste,(anode_current_collector/py_foil_coating_total)*(1-py_foil_coating)+(anode_current_collector/py_foil_coating_total)*(1-py_foil_slitting)
+cut_off,waste anode current collector Cu handling,battery production scrap,waste,(anode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)+(anode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)
+cut_off,waste anode slurry handling,waste anode slurry,waste,anode_slurry*(1-py_am_mixing)+anode_dry_material*(1-py_slurry_coating)+anode_dry_material*(1-py_slurry_slitting)
+cut_off,waste anode slurry handling,battery production scrap,waste,anode_slurry*-(1-py_am_mixing)+anode_dry_material*-(1-py_slurry_coating)+anode_dry_material*-(1-py_slurry_slitting)
+cut_off,waste cathode current collector Al handling,waste cathode current collector Al,waste,(cathode_current_collector/py_foil_coating_total)*(1-py_foil_coating)+(cathode_current_collector/py_foil_coating_total)*(1-py_foil_slitting)
+cut_off,waste cathode current collector Al handling,battery production scrap,waste,(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)+(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)
+cut_off,waste cathode slurry handling,waste cathode slurry,waste,cathode_slurry*(1-py_am_mixing)+cathode_dry_material*(1-py_slurry_coating)+cathode_dry_material*(1-py_slurry_slitting)
+cut_off,waste cathode slurry handling,battery production scrap,waste,cathode_slurry*-(1-py_am_mixing)+cathode_dry_material*-(1-py_slurry_coating)+cathode_dry_material*-(1-py_slurry_slitting)
+cut_off,building and supporting systems,battery production scrap,waste,(-(anode_slurry*-(1-py_am_mixing)+cathode_slurry*-(1-py_am_mixing)+(anode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)+anode_dry_material*-(1-py_slurry_coating)+(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_coating)+cathode_dry_material*-(1-py_slurry_coating)+anode_dry_material*-(1-py_slurry_slitting)+(anode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)+cathode_dry_material*-(1-py_slurry_slitting)+(cathode_current_collector/py_foil_coating_total)*-(1-py_foil_slitting)+slitted_anode*-(1-py_electrode_stacking)+slitted_cathode*-(1-py_electrode_stacking)+(-separator_waste)+((electrolyte_lfp+electrolyte_lmo+electrolyte_nmc_nca)/py_cell_aging)*-(1-py_electrolyte_filling)+unformated_cell*-(1-py_cell_aging)))

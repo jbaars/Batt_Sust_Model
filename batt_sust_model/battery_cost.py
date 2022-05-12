@@ -14,9 +14,7 @@ p_values_process = pd.read_excel(workbook, sheet_name="p_values_process", index_
 manuf_rate_base = pd.read_excel(workbook, sheet_name="default_manufacturing_rates", index_col=0).iloc[:, 0].to_dict()
 base_factors = pd.read_excel(workbook, sheet_name="baseline_factors", index_col=0).T.drop("unit", axis=1)
 volume_ratio_mapping = pd.read_excel(workbook, sheet_name="volume_ratio_mapping", index_col=0).iloc[:, 0].to_dict()
-process_mapping = (
-    pd.read_excel(workbook, sheet_name="process_mapping", index_col=0).loc[:, "foreground process"].to_dict()
-)
+process_mapping = pd.read_excel(workbook, sheet_name="process_mapping", index_col=0).loc[:, "foreground process"].to_dict()
 cost_rates = pd.read_excel(workbook, sheet_name="cost_rates", index_col=0).loc[:, "value"].to_dict()
 variable_overhead_labor = cost_rates["variable_overhead_labor"]
 GSA_labour = cost_rates["GSA_labour"]
@@ -125,7 +123,6 @@ def material_cost_matrix(
         # Material unit costs are attributed to the receiving battery production process:
         materials = unit_material_to_process_mapping.keys()
         processes = list(set(unit_material_to_process_mapping.values()))
-
 
         monetary_matrix.loc[materials, processes] = (
             (abs(technology_matrix_temp.loc[materials, processes])).T * (pd.Series(unit_cost_dict))
@@ -260,19 +257,12 @@ def modelled_process_rates(design_param):
         "energy": pack_per_year * design_param["pack_energy_kWh"],
         "required_cell": required_cells,
         "total_cell": total_cells,
-        "positive_active_material": (design_param["positive_am_per_cell"] / 1000 * required_cells)
-        / design_param["py_am_mixing_total"],
-        "negative_active_material": design_param["negative_am_per_cell"]
-        / 1000
-        * required_cells
-        / design_param["py_am_mixing_total"],
+        "positive_active_material": (design_param["positive_am_per_cell"] / 1000 * required_cells) / design_param["py_am_mixing_total"],
+        "negative_active_material": design_param["negative_am_per_cell"] / 1000 * required_cells / design_param["py_am_mixing_total"],
         "positive_electrode_area": total_cells * design_param["positive_electrode_area"] / 10000,
         "negative_electrode_area": total_cells * design_param["negative_electrode_area"] / 10000,
         "binder_solvent_recovery": pack_per_year
-        * (
-            design_param["binder_solvent_ratio"]
-            * (design_param["cathode_binder_pvdf"] / design_param["py_am_mixing_total"])
-        ),
+        * (design_param["binder_solvent_ratio"] * (design_param["cathode_binder_pvdf"] / design_param["py_am_mixing_total"])),
         "total_cell": total_cells,
         "total_modules": (design_param["modules_per_pack"] * pack_per_year),
         "total_packs": pack_per_year,
@@ -291,8 +281,7 @@ def labour_overhead_multiplier():
         1
         + variable_overhead_labor
         + GSA_labour * (1 + variable_overhead_labor)
-        + pack_profit
-        * (launch_cost_labor * (1 + variable_overhead_labor) + working_capital * (1 + variable_overhead_labor))
+        + pack_profit * (launch_cost_labor * (1 + variable_overhead_labor) + working_capital * (1 + variable_overhead_labor))
     )
     return a * (1 + battery_warranty_costs)
 
@@ -314,7 +303,7 @@ def land_overhead_multiplier():
     return (a * deprecation_building_investment + b * pack_profit) * (1 + battery_warranty_costs)
 
 
-def factor_overhead_multiplier():
+def factor_overhead_multiplier(return_index=["labour", "capital", "land"]):
     """Returns the factor cost overhead multiplier"""
     land_overhead = land_overhead_multiplier()
     labour_overhead = labour_overhead_multiplier()
@@ -323,7 +312,8 @@ def factor_overhead_multiplier():
     multiplier_dict["labour"] = labour_overhead
     multiplier_dict["capital"] = capital_overhead
     multiplier_dict["land"] = land_overhead
-    return multiplier_dict
+    return_dictionary = {k: multiplier_dict[k] for k in return_index}
+    return return_dictionary
 
 
 def material_overhead_multiplier():
@@ -334,7 +324,7 @@ def material_overhead_multiplier():
 
 
 def factors_battery_production(
-    system_design_parameters, run_multiple=False, return_aggregated=True, return_index=["labour", "capital", "land"]
+    system_design_parameters, run_multiple=False, return_aggregated=True, return_index=["labour", "capital", "land"], return_columns=None
 ):
     """Calculates the total production factor requirement (matrix F) for all production processes as in BatPaC adjusted
     for the manufacturing capacity.
@@ -361,6 +351,7 @@ def factors_battery_production(
     ValueError
         Error if battery manufacturing capacity is not defined
     """
+    global process_mapping
     if run_multiple == False:
         sd_param = {}
         sd_param[0] = system_design_parameters
@@ -373,7 +364,21 @@ def factors_battery_production(
             p = set(process_mapping.values())
         nested_F_matrix = np.zeros((len(sd_param.keys()), len(p_values_process.index), len(p)))
         disable_tqdm = False
-    return_index = [list(base_factors.index).index(x) for x in return_index]
+    if return_columns != None:
+        if all(process in return_columns for process in process_mapping.values()) == False:
+            false_list = []
+            for process in process_mapping.values():
+                if process not in return_columns:
+                    false_list.append(process)
+            raise ValueError("The following processes are not defined: ", false_list)
+        process_maping_new = {}
+        for process in return_columns:
+            if process not in process_mapping.values():
+                continue
+            else:
+                new_mapping = {k: v for k, v in process_mapping.items() if v == process}
+                process_maping_new.update(new_mapping)
+        process_mapping = process_maping_new
     for idx, design in tqdm(enumerate(sd_param.values()), total=len(sd_param), disable=disable_tqdm):
         if "battery_manufacturing_capacity" not in design.keys():
             raise ValueError("battery_manufacturing_capacity not in parameter dictionary")
@@ -385,7 +390,7 @@ def factors_battery_production(
         volume_ratios = production_volume_ratio(volume_ratio_mapping, process_rates, design)
 
         # Factor requirement is based on baseline production factors, modelled volume ratio and the p values
-        factor_requirement_df = base_factors * volume_ratios ** p_values_process
+        factor_requirement_df = base_factors * volume_ratios**p_values_process
 
         # EXCEPTIONS:
         # Capital equipment requirement electrode coating and drying dependent on solvent evaporated:
@@ -431,11 +436,14 @@ def factors_battery_production(
         if return_aggregated is True:
             factor_requirement_df.rename(columns=process_mapping, inplace=True)
             factor_requirement_df = factor_requirement_df.groupby(factor_requirement_df.columns, axis=1).sum()
+            if return_columns != None:
+                column_index = list(set(process_mapping.values()))
+                factor_requirement_df = factor_requirement_df[column_index]
         if run_multiple == False:
-            return factor_requirement_df.iloc[return_index]
+            return factor_requirement_df.loc[return_index]
         else:
-            
-            nested_F_matrix[idx] = factor_requirement_df.iloc[return_index]
+
+            nested_F_matrix[idx] = factor_requirement_df.loc[return_index]
 
     return nested_F_matrix
 

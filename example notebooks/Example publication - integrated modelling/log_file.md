@@ -188,3 +188,19 @@ Reading parameter 3_PAR_battery_parameters
 
 3_PAR_battery_parameters includes strings
 
+A total of 1617408 values was read from file for parameter 3_PAR_battery_parameters.
+
+1617408.0 of 1638144 values for parameter 3_PAR_battery_parameters were assigned.
+
+_
+
+Reading parameter 4_PY_battery_manufacturing
+
+A total of 20 values was read from file for parameter 4_PY_battery_manufacturing.
+
+20.0 of 60 values for parameter 4_PY_battery_manufacturing were assigned.
+
+_
+
+Reading parameter 4_UPI_foreground_base
+

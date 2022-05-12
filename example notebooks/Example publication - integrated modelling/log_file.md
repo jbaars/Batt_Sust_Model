@@ -170,3 +170,21 @@ _
 
 Reading parameter 3_MC_materials_pack_design
 
+A total of 2115072 values was read from file for parameter 3_MC_materials_pack_design.
+
+1534464.0 of 2737152 values for parameter 3_MC_materials_pack_design were assigned.
+
+_
+
+Reading parameter 3_MC_element_goods
+
+A total of 70 values was read from file for parameter 3_MC_element_goods.
+
+70.0 of 1452 values for parameter 3_MC_element_goods were assigned.
+
+_
+
+Reading parameter 3_PAR_battery_parameters
+
+3_PAR_battery_parameters includes strings
+

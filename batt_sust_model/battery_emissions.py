@@ -172,9 +172,7 @@ def add_activity_parameters(database_name):
     """
     db = bw.Database(database_name)
     for act in db:
-        exc_list = [
-            exc for exc in act.exchanges() if "formula" in list(exc)
-        ]  # Check if one of the exchanges has formula
+        exc_list = [exc for exc in act.exchanges() if "formula" in list(exc)]  # Check if one of the exchanges has formula
         if exc_list:
             parameterise_exchanges(act.key)
         continue
@@ -416,9 +414,7 @@ def modules_with_cuts(cut_off_database):
         for exc in act.exchanges():
             key = exc["input"]
             parent_act = bw.get_activity(key)
-            if (
-                key[0] == cut_off_database and act != parent_act
-            ):  # if input is present in cut-off database and not the reference product:
+            if key[0] == cut_off_database and act != parent_act:  # if input is present in cut-off database and not the reference product:
                 if exc["amount"] > 0:  # If exchange is not waste (negative in Brightway):
                     act_cuts[parent_act.key] = [
                         parent_act["reference product"],
@@ -842,9 +838,7 @@ def parameter_dictionary(
     return_dic["design_parameters"].update(process_parameters)
     return_dic["design_parameters"].update(battery_parameters)
     # Calculate project parameters:
-    return_dic["project_param"] = get_project_parameters_dict(
-        return_dic["design_parameters"], project_param_dict=project_formulas
-    )
+    return_dic["project_param"] = get_project_parameters_dict(return_dic["design_parameters"], project_param_dict=project_formulas)
 
     return_dic_all = {
         **return_dic["design_parameters"],

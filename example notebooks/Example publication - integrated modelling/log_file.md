@@ -204,3 +204,43 @@ _
 
 Reading parameter 4_UPI_foreground_base
 
+A total of 17907 values was read from file for parameter 4_UPI_foreground_base.
+
+17907.0 of 19272 values for parameter 4_UPI_foreground_base were assigned.
+
+_
+
+Reading parameter 4_PE_modules_base
+
+A total of 2628 values was read from file for parameter 4_PE_modules_base.
+
+2482.0 of 2482 values for parameter 4_PE_modules_base were assigned.
+
+_
+
+Reading parameter 4_PE_sensitivity_materials
+
+A total of 22 values was read from file for parameter 4_PE_sensitivity_materials.
+
+22.0 of 438 values for parameter 4_PE_sensitivity_materials were assigned.
+
+_
+
+Reading parameter 4_PAR_energy_consumption
+
+A total of 80 values was read from file for parameter 4_PAR_energy_consumption.
+
+57.0 of 90 values for parameter 4_PAR_energy_consumption were assigned.
+
+_
+
+Reading parameter 6_CR_ESSENZ_CF_elements
+
+A total of 10 values was read from file for parameter 6_CR_ESSENZ_CF_elements.
+
+10.0 of 11 values for parameter 6_CR_ESSENZ_CF_elements were assigned.
+
+_
+
+Reading of parameters finished.
+

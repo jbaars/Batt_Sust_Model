@@ -122,9 +122,7 @@ def df_batpac_results(wb_batpac):
     Return:
         dict: dictionary with pd DataFrames of updated BatPaC sheets
     """
-    design_sheet = (
-        wb_batpac.sheets["Battery Design"].range("A1:M484").options(pd.DataFrame, header=False, index=False).value
-    )
+    design_sheet = wb_batpac.sheets["Battery Design"].range("A1:M484").options(pd.DataFrame, header=False, index=False).value
     design_sheet.columns = [
         "A",
         "B",
@@ -141,9 +139,7 @@ def df_batpac_results(wb_batpac):
         "M",
     ]
     design_sheet.index = list(range(1, 485))
-    cost_sheet = (
-        wb_batpac.sheets["Cost Breakdown"].range("A1:M113").options(pd.DataFrame, header=False, index=False).value
-    )
+    cost_sheet = wb_batpac.sheets["Cost Breakdown"].range("A1:M113").options(pd.DataFrame, header=False, index=False).value
     cost_sheet.columns = [
         "A",
         "B",
@@ -183,9 +179,7 @@ def df_batpac_results(wb_batpac):
 
     sheets = [sheet.name for sheet in wb_batpac.sheets]
     if "Vehicle model" in sheets:
-        vehicle_model = (
-            wb_batpac.sheets["Vehicle model"].range("A7:F9").options(pd.DataFrame, header=True, index=False).value
-        )
+        vehicle_model = wb_batpac.sheets["Vehicle model"].range("A7:F9").options(pd.DataFrame, header=True, index=False).value
     else:
         vehicle_model = []
 
@@ -193,10 +187,7 @@ def df_batpac_results(wb_batpac):
         "df_design": design_sheet,
         "df_chem": wb_batpac.sheets["Chem"].range("B1:C106").options(pd.DataFrame, header=True, index=True).value,
         "df_list": wb_batpac.sheets["Lists"].range("F17:I32").options(pd.DataFrame, header=True, index=True).value,
-        "df_dashboard": wb_batpac.sheets["Dashboard"]
-        .range("A1:G225")
-        .options(pd.DataFrame, header=False, index=False)
-        .value,
+        "df_dashboard": wb_batpac.sheets["Dashboard"].range("A1:G225").options(pd.DataFrame, header=False, index=False).value,
         "df_manufacturing_cost": manufacturing_cost_calculation,
         "df_veh_model": vehicle_model,
     }
@@ -238,11 +229,7 @@ def pack_demand_parameter(batpac_workbook, parameter_dict):
     vehicle_type = parameter_dict["vehicle_type"]["value"]
     column = dashboard_design_column(vehicle_type)
     param_value = {}
-    demand_parameter = [
-        param
-        for param in parameter_dict.keys()
-        if parameter_dict[param]["parameter family"] == "pack_demand_parameters"
-    ]
+    demand_parameter = [param for param in parameter_dict.keys() if parameter_dict[param]["parameter family"] == "pack_demand_parameters"]
     for param in demand_parameter:
         if parameter_dict[param]["value"] is not None:
             if parameter_dict[param]["value"] != 0:
@@ -288,13 +275,9 @@ def neg_electrode_capacity(
         Updates negative active material capacity (Chem, E31) and material density (Chem, E39) in BatPaC
     """
     silicon_pct = silicon_pct / 100
-    workbook_batpac.sheets["Chem"].range("E37").value = graphite_capacity * (1 - silicon_pct) + (
-        silicon_capacity * silicon_pct
-    )
+    workbook_batpac.sheets["Chem"].range("E37").value = graphite_capacity * (1 - silicon_pct) + (silicon_capacity * silicon_pct)
     graphite_density = workbook_batpac.sheets["Chem"].range("D46").value
-    workbook_batpac.sheets["Chem"].range("E46").value = (
-        graphite_density * (1 - silicon_pct) + silicon_density * silicon_pct
-    )
+    workbook_batpac.sheets["Chem"].range("E46").value = graphite_density * (1 - silicon_pct) + silicon_density * silicon_pct
 
 
 def update_separator_density(workbook_batpac, param_dic, rho_foil=0.9, rho_coating=1.996, void_fraction=None):

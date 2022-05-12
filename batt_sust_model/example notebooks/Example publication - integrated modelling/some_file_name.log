@@ -1,0 +1,51 @@
+Solver command line: ['C:\\Program Files\\IBM\\ILOG\\CPLEX_Studio1210\\cplex\\bin\\x64_win64\\cplex.exe']
+
+
+Welcome to IBM(R) ILOG(R) CPLEX(R) Interactive Optimizer 12.10.0.0
+  with Simplex, Mixed Integer & Barrier Optimizers
+5725-A06 5725-A29 5724-Y48 5724-Y49 5724-Y54 5724-Y55 5655-Y21
+Copyright IBM Corp. 1988, 2019.  All Rights Reserved.
+
+Type 'help' for a list of available commands.
+Type 'help' followed by a command name for more
+information on commands.
+
+CPLEX> Logfile 'cplex.log' closed.
+Logfile 'some_file_name.log' open.
+CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmp52zhcftt.pyomo.lp' read.
+Read time = 0.00 sec. (0.01 ticks)
+CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmp52zhcftt.pyomo.lp
+Objective sense      : Minimize
+Variables            :     111  [Nneg: 102,  Free: 4,  General Integer: 5]
+Objective nonzeros   :       1
+Linear constraints   :     122  [Less: 15,  Greater: 1,  Equal: 106]
+  Nonzeros           :     496
+  RHS nonzeros       :      17
+
+Variables            : Min LB: 0.000000         Max UB: all infinite   
+Objective nonzeros   : Min   : 1.000000         Max   : 1.000000       
+Linear constraints   :
+  Nonzeros           : Min   : 0.01000000       Max   : 2.483661e+11   
+  RHS nonzeros       : Min   : 1.000000         Max   : 1250.000       
+CPLEX> Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
+Infeasibility row 'c_e_x148_':  0  = 1.
+Presolve time = 0.00 sec. (0.03 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Parallel b&c, 8 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+
+
+MIP - Integer infeasible.
+Current MIP best bound is infinite.
+Solution time =    0.02 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 0.05 ticks  (3.09 ticks/sec)
+
+CPLEX> CPLEX Error  1217: No solution exists.
+No file written.
+CPLEX> 

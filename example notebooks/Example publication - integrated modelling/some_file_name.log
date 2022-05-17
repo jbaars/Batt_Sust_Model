@@ -12,39 +12,39 @@ information on commands.
 
 CPLEX> Logfile 'cplex.log' closed.
 Logfile 'some_file_name.log' open.
-CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmp52zhcftt.pyomo.lp' read.
-Read time = 0.00 sec. (0.01 ticks)
-CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmp52zhcftt.pyomo.lp
-Objective sense      : Minimize
-Variables            :     111  [Nneg: 102,  Free: 4,  General Integer: 5]
+CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmpd4uaf8mc.pyomo.lp' read.
+Read time = 0.16 sec. (6.60 ticks)
+CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmpd4uaf8mc.pyomo.lp
+Objective sense      : Maximize
+Variables            :   10477  [Nneg: 106,  Free: 3,  General Integer: 10368]
 Objective nonzeros   :       1
-Linear constraints   :     122  [Less: 15,  Greater: 1,  Equal: 106]
-  Nonzeros           :     496
-  RHS nonzeros       :      17
+Linear constraints   :     111  [Greater: 107,  Equal: 4]
+  Nonzeros           :  478196
+  RHS nonzeros       :       2
 
 Variables            : Min LB: 0.000000         Max UB: all infinite   
 Objective nonzeros   : Min   : 1.000000         Max   : 1.000000       
 Linear constraints   :
-  Nonzeros           : Min   : 0.01000000       Max   : 2.483661e+11   
-  RHS nonzeros       : Min   : 1.000000         Max   : 1250.000       
+  Nonzeros           : Min   : 2.775558e-17     Max   : 5728.322       
+  RHS nonzeros       : Min   : 1.000000         Max   : 1.000000       
 CPLEX> Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
-Infeasibility row 'c_e_x148_':  0  = 1.
-Presolve time = 0.00 sec. (0.03 ticks)
+Dual infeasible due to empty column 'x5207'.
+Presolve time = 0.05 sec. (43.31 ticks)
 
 Root node processing (before b&c):
-  Real time             =    0.00 sec. (0.05 ticks)
+  Real time             =    0.05 sec. (50.93 ticks)
 Parallel b&c, 8 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+Total (root+branch&cut) =    0.05 sec. (50.93 ticks)
 
 
-MIP - Integer infeasible.
+MIP - Integer infeasible or unbounded.
 Current MIP best bound is infinite.
-Solution time =    0.02 sec.  Iterations = 0  Nodes = 0
-Deterministic time = 0.05 ticks  (3.09 ticks/sec)
+Solution time =    0.06 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 50.96 ticks  (821.89 ticks/sec)
 
 CPLEX> CPLEX Error  1217: No solution exists.
 No file written.

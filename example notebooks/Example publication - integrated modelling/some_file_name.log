@@ -12,40 +12,66 @@ information on commands.
 
 CPLEX> Logfile 'cplex.log' closed.
 Logfile 'some_file_name.log' open.
-CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmpd4uaf8mc.pyomo.lp' read.
-Read time = 0.16 sec. (6.60 ticks)
-CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmpd4uaf8mc.pyomo.lp
+CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmpp_bzttqh.pyomo.lp' read.
+Read time = 0.22 sec. (6.29 ticks)
+CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmpp_bzttqh.pyomo.lp
 Objective sense      : Maximize
 Variables            :   10477  [Nneg: 106,  Free: 3,  General Integer: 10368]
 Objective nonzeros   :       1
-Linear constraints   :     111  [Greater: 107,  Equal: 4]
-  Nonzeros           :  478196
-  RHS nonzeros       :       2
+Linear constraints   :     107  [Less: 1,  Greater: 1,  Equal: 105]
+  Nonzeros           :  454463
+  RHS nonzeros       :       3
 
 Variables            : Min LB: 0.000000         Max UB: all infinite   
 Objective nonzeros   : Min   : 1.000000         Max   : 1.000000       
 Linear constraints   :
-  Nonzeros           : Min   : 2.775558e-17     Max   : 5728.322       
-  RHS nonzeros       : Min   : 1.000000         Max   : 1.000000       
+  Nonzeros           : Min   : 0.0002400000     Max   : 5728.322       
+  RHS nonzeros       : Min   : 1.000000         Max   : 18937.00       
 CPLEX> Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
-Dual infeasible due to empty column 'x5207'.
-Presolve time = 0.05 sec. (43.31 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 88 rows and 55 columns.
+MIP Presolve added 2 rows and 2 columns.
+MIP Presolve modified 509462 coefficients.
+Aggregator did 3 substitutions.
+Reduced MIP has 18 rows, 10384 columns, and 47122 nonzeros.
+Reduced MIP has 10370 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.58 sec. (360.05 ticks)
+Found incumbent of value 167.164766 after 0.67 sec. (380.38 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 2 rows and 2 columns.
+MIP Presolve added 2 rows and 2 columns.
+Reduced MIP has 18 rows, 10384 columns, and 47122 nonzeros.
+Reduced MIP has 10370 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.06 sec. (25.43 ticks)
+Probing time = 0.05 sec. (22.87 ticks)
+Clique table members: 158.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 8 threads.
+Root relaxation solution time = 0.03 sec. (11.22 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          167.1648  1726490.9507              --- 
+*     0     0      integral     0      213.7206      213.7206        0    0.00%
+Elapsed time = 0.98 sec. (486.27 ticks, tree = 0.00 MB, solutions = 2)
 
 Root node processing (before b&c):
-  Real time             =    0.05 sec. (50.93 ticks)
+  Real time             =    0.98 sec. (486.85 ticks)
 Parallel b&c, 8 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    0.05 sec. (50.93 ticks)
+Total (root+branch&cut) =    0.98 sec. (486.85 ticks)
 
+Solution pool: 2 solutions saved.
 
-MIP - Integer infeasible or unbounded.
-Current MIP best bound is infinite.
-Solution time =    0.06 sec.  Iterations = 0  Nodes = 0
-Deterministic time = 50.96 ticks  (821.89 ticks/sec)
+MIP - Integer optimal solution:  Objective =  2.1372063680e+02
+Solution time =    0.98 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 486.88 ticks  (494.79 ticks/sec)
 
-CPLEX> CPLEX Error  1217: No solution exists.
-No file written.
+CPLEX> Incumbent solution written to file 'C:\Users\Joris\AppData\Local\Temp\tmp301j42is.cplex.sol'.
 CPLEX> 

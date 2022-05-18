@@ -821,3 +821,31 @@ No value for uninitialized NumericValue object criticality
 Constructing component 'material_balance' from data=None failed:
 KeyboardInterrupt: 
 
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+

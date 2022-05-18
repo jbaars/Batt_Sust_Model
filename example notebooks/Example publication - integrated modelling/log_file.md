@@ -849,3 +849,31 @@ Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.ba
 This is usually indicative of a modelling error.
 To avoid this warning, use block.del_component() and block.add_component().
 
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute material_balance_waste (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+
+Implicitly replacing the Component attribute material_balance_waste (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>).
+This is usually indicative of a modelling error.
+To avoid this warning, use block.del_component() and block.add_component().
+

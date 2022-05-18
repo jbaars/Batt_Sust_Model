@@ -12,9 +12,9 @@ information on commands.
 
 CPLEX> Logfile 'cplex.log' closed.
 Logfile 'pyomo_log.log' open.
-CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmp92a6qq5n.pyomo.lp' read.
+CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmp5udxnpfg.pyomo.lp' read.
 Read time = 0.00 sec. (0.01 ticks)
-CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmp92a6qq5n.pyomo.lp
+CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmp5udxnpfg.pyomo.lp
 Objective sense      : Maximize
 Variables            :     114  [Nneg: 106,  Free: 3,  General Integer: 5]
 Objective nonzeros   :       1
@@ -48,5 +48,5 @@ MIP - Integer optimal solution:  Objective =  1.4626102541e+02
 Solution time =    0.00 sec.  Iterations = 0  Nodes = 0
 Deterministic time = 0.13 ticks  (127.65 ticks/sec)
 
-CPLEX> Incumbent solution written to file 'C:\Users\Joris\AppData\Local\Temp\tmppzznd_t_.cplex.sol'.
+CPLEX> Incumbent solution written to file 'C:\Users\Joris\AppData\Local\Temp\tmphgvej386.cplex.sol'.
 CPLEX> 

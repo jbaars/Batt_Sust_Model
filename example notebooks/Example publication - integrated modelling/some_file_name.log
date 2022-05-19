@@ -12,24 +12,24 @@ information on commands.
 
 CPLEX> Logfile 'cplex.log' closed.
 Logfile 'some_file_name.log' open.
-CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmp3j9teoym.pyomo.lp' read.
-Read time = 0.02 sec. (0.01 ticks)
-CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmp3j9teoym.pyomo.lp
+CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmpxmewc0wg.pyomo.lp' read.
+Read time = 0.00 sec. (0.01 ticks)
+CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmpxmewc0wg.pyomo.lp
 Objective sense      : Maximize
-Variables            :     112  [Nneg: 104,  Free: 3,  General Integer: 5]
+Variables            :     107  [Nneg: 99,  Free: 3,  General Integer: 5]
 Objective nonzeros   :       1
 Linear constraints   :     107  [Greater: 1,  Equal: 106]
-  Nonzeros           :     692
+  Nonzeros           :     685
   RHS nonzeros       :       2
 
 Variables            : Min LB: 0.000000         Max UB: all infinite   
 Objective nonzeros   : Min   : 1.000000         Max   : 1.000000       
 Linear constraints   :
-  Nonzeros           : Min   : 1.387779e-17     Max   : 2460.074       
+  Nonzeros           : Min   : 1.387779e-17     Max   : 2337.859       
   RHS nonzeros       : Min   : 1.000000         Max   : 1.000000       
 CPLEX> Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
 Tried aggregator 1 time.
-MIP Presolve eliminated 107 rows and 112 columns.
+MIP Presolve eliminated 107 rows and 107 columns.
 MIP Presolve modified 11 coefficients.
 All rows and columns eliminated.
 Presolve time = 0.00 sec. (0.11 ticks)
@@ -46,8 +46,8 @@ Total (root+branch&cut) =    0.00 sec. (0.13 ticks)
 Solution pool: 1 solution saved.
 
 MIP - Integer optimal solution:  Objective =  1.4626102541e+02
-Solution time =    0.00 sec.  Iterations = 0  Nodes = 0
-Deterministic time = 0.13 ticks  (133.17 ticks/sec)
+Solution time =    0.02 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 0.13 ticks  (8.24 ticks/sec)
 
-CPLEX> Incumbent solution written to file 'C:\Users\Joris\AppData\Local\Temp\tmpj2fnb1qm.cplex.sol'.
+CPLEX> Incumbent solution written to file 'C:\Users\Joris\AppData\Local\Temp\tmpl3m242nm.cplex.sol'.
 CPLEX> 

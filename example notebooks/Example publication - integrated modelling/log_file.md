@@ -126,98 +126,7 @@ _
 
 Reading of parameters finished.
 
-Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Reassigning the non-component attribute epsilon
-on block (model).battery_design_model with a new Component
-with type <class 'pyomo.core.base.param.ScalarParam'>.
-This is usually indicative of a modelling error.
-To avoid this warning, explicitly delete the attribute:
-    del battery_design_model.epsilon
-
-Implicitly replacing the Component attribute epsilon (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute delta (type=<class 'pyomo.core.base.param.ScalarParam'>) on block unknown with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute s (type=<class 'pyomo.core.base.var.ScalarVar'>) on block unknown with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute delta (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute s (type=<class 'pyomo.core.base.var.ScalarVar'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute O_f1 (type=<class 'pyomo.core.base.objective.ScalarObjective'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.objective.ScalarObjective'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute e (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute delta (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute s (type=<class 'pyomo.core.base.var.ScalarVar'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute O_f1 (type=<class 'pyomo.core.base.objective.ScalarObjective'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.objective.ScalarObjective'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute C_e (type=<class 'pyomo.core.base.constraint.ScalarConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.AbstractScalarConstraint'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute e (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute delta (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute s (type=<class 'pyomo.core.base.var.ScalarVar'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute O_f1 (type=<class 'pyomo.core.base.objective.ScalarObjective'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.objective.ScalarObjective'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute C_e (type=<class 'pyomo.core.base.constraint.ScalarConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.AbstractScalarConstraint'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute e (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute delta (type=<class 'pyomo.core.base.param.ScalarParam'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.param.ScalarParam'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute s (type=<class 'pyomo.core.base.var.ScalarVar'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute O_f1 (type=<class 'pyomo.core.base.objective.ScalarObjective'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.objective.ScalarObjective'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute C_e (type=<class 'pyomo.core.base.constraint.ScalarConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.AbstractScalarConstraint'>).
+Implicitly replacing the Component attribute material_balance_waste (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>).
 This is usually indicative of a modelling error.
 To avoid this warning, use block.del_component() and block.add_component().
 
@@ -225,87 +134,33 @@ Implicitly replacing the Component attribute material_balance_waste (type=<class
 This is usually indicative of a modelling error.
 To avoid this warning, use block.del_component() and block.add_component().
 
-Implicitly replacing the Component attribute gwp (type=<class 'pyomo.core.base.var.ScalarVar'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
+Implicitly replacing the Component attribute material_balance_waste (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>).
 This is usually indicative of a modelling error.
 To avoid this warning, use block.del_component() and block.add_component().
 
-Implicitly replacing the Component attribute cost (type=<class 'pyomo.core.base.var.ScalarVar'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
+Implicitly replacing the Component attribute material_balance_waste (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>).
 This is usually indicative of a modelling error.
 To avoid this warning, use block.del_component() and block.add_component().
 
-Implicitly replacing the Component attribute performance (type=<class 'pyomo.core.base.var.ScalarVar'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
+Implicitly replacing the Component attribute material_balance (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>).
 This is usually indicative of a modelling error.
 To avoid this warning, use block.del_component() and block.add_component().
 
-Implicitly replacing the Component attribute C_cost (type=<class 'pyomo.core.base.constraint.ScalarConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.AbstractScalarConstraint'>).
+Implicitly replacing the Component attribute material_balance_waste (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.IndexedConstraint'>).
 This is usually indicative of a modelling error.
 To avoid this warning, use block.del_component() and block.add_component().
 
-Implicitly replacing the Component attribute C_gwp (type=<class 'pyomo.core.base.constraint.ScalarConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.AbstractScalarConstraint'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
+No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 
-Implicitly replacing the Component attribute C_performance (type=<class 'pyomo.core.base.constraint.ScalarConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.AbstractScalarConstraint'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
+No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 
-Implicitly replacing the Component attribute O_gwp (type=<class 'pyomo.core.base.objective.ScalarObjective'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.objective.ScalarObjective'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
+No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 
-Implicitly replacing the Component attribute O_cost (type=<class 'pyomo.core.base.objective.ScalarObjective'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.objective.ScalarObjective'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
+No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 
-Implicitly replacing the Component attribute O_performance (type=<class 'pyomo.core.base.objective.ScalarObjective'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.objective.ScalarObjective'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
+No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 
-Implicitly replacing the Component attribute gwp (type=<class 'pyomo.core.base.var.ScalarVar'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
+No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 
-Implicitly replacing the Component attribute cost (type=<class 'pyomo.core.base.var.ScalarVar'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute performance (type=<class 'pyomo.core.base.var.ScalarVar'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute epi (type=<class 'pyomo.core.base.var.ScalarVar'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.var.AbstractScalarVar'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute C_cost (type=<class 'pyomo.core.base.constraint.ScalarConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.AbstractScalarConstraint'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute C_gwp (type=<class 'pyomo.core.base.constraint.ScalarConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.AbstractScalarConstraint'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute C_performance (type=<class 'pyomo.core.base.constraint.ScalarConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.AbstractScalarConstraint'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute C_epi (type=<class 'pyomo.core.base.constraint.ScalarConstraint'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.constraint.AbstractScalarConstraint'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute O_gwp (type=<class 'pyomo.core.base.objective.ScalarObjective'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.objective.ScalarObjective'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute O_cost (type=<class 'pyomo.core.base.objective.ScalarObjective'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.objective.ScalarObjective'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute O_performance (type=<class 'pyomo.core.base.objective.ScalarObjective'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.objective.ScalarObjective'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
-
-Implicitly replacing the Component attribute O_EPI (type=<class 'pyomo.core.base.objective.ScalarObjective'>) on block battery_design_model with a new Component (type=<class 'pyomo.core.base.objective.ScalarObjective'>).
-This is usually indicative of a modelling error.
-To avoid this warning, use block.del_component() and block.add_component().
+No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 

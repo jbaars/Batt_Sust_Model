@@ -12,62 +12,41 @@ information on commands.
 
 CPLEX> Logfile 'cplex.log' closed.
 Logfile 'some_file_name.log' open.
-CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmp7ov8bb62.pyomo.lp' read.
-Read time = 0.16 sec. (7.51 ticks)
-CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmp7ov8bb62.pyomo.lp
+CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmpe9ie56fi.pyomo.lp' read.
+Read time = 0.17 sec. (7.79 ticks)
+CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmpe9ie56fi.pyomo.lp
 Objective sense      : Maximize
-Variables            :   10470  [Nneg: 99,  Free: 3,  General Integer: 10368]
+Variables            :   10471  [Nneg: 99,  Free: 4,  General Integer: 10368]
 Objective nonzeros   :       1
-Linear constraints   :     104  [Less: 1,  Equal: 103]
-  Nonzeros           :  546023
-  RHS nonzeros       :       3
+Linear constraints   :     105  [Greater: 1,  Equal: 104]
+  Nonzeros           :  566759
+  RHS nonzeros       :       2
 
 Variables            : Min LB: 0.000000         Max UB: all infinite   
 Objective nonzeros   : Min   : 1.000000         Max   : 1.000000       
 Linear constraints   :
-  Nonzeros           : Min   : 0.0004272680     Max   : 5728.320       
-  RHS nonzeros       : Min   : 1.000000         Max   : 18625.44       
+  Nonzeros           : Min   : 0.0004272680     Max   : 2.201737e+16   
+  RHS nonzeros       : Min   : 1.000000         Max   : 1.000000       
 CPLEX> Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
 Tried aggregator 1 time.
-MIP Presolve eliminated 89 rows and 51 columns.
-MIP Presolve modified 496352 coefficients.
-Reduced MIP has 15 rows, 10381 columns, and 45386 nonzeros.
-Reduced MIP has 10368 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.36 sec. (323.31 ticks)
-Found incumbent of value 167.164766 after 0.44 sec. (346.30 ticks)
-Tried aggregator 1 time.
-Detecting symmetries...
-Reduced MIP has 15 rows, 10381 columns, and 45386 nonzeros.
-Reduced MIP has 10368 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.06 sec. (22.43 ticks)
-Probing time = 0.09 sec. (22.14 ticks)
-Clique table members: 16.
-MIP emphasis: balance optimality and feasibility.
-MIP search method: dynamic search.
-Parallel mode: deterministic, using up to 8 threads.
-Root relaxation solution time = 0.03 sec. (7.73 ticks)
-
-        Nodes                                         Cuts/
-   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
-
-*     0+    0                          167.1648  1726490.9507              --- 
-*     0     0      integral     0      213.7206      213.7206        0    0.00%
-Elapsed time = 1.06 sec. (451.81 ticks, tree = 0.00 MB, solutions = 2)
+MIP Presolve eliminated 105 rows and 10471 columns.
+All rows and columns eliminated.
+Presolve time = 0.09 sec. (58.37 ticks)
 
 Root node processing (before b&c):
-  Real time             =    1.08 sec. (452.38 ticks)
+  Real time             =    0.16 sec. (73.38 ticks)
 Parallel b&c, 8 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    1.08 sec. (452.38 ticks)
+Total (root+branch&cut) =    0.16 sec. (73.38 ticks)
 
-Solution pool: 2 solutions saved.
+Solution pool: 1 solution saved.
 
 MIP - Integer optimal solution:  Objective =  2.1372063680e+02
-Solution time =    1.08 sec.  Iterations = 0  Nodes = 0
-Deterministic time = 452.41 ticks  (419.29 ticks/sec)
+Solution time =    0.16 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 73.41 ticks  (470.56 ticks/sec)
 
-CPLEX> Incumbent solution written to file 'C:\Users\Joris\AppData\Local\Temp\tmpckrrjf_5.cplex.sol'.
+CPLEX> Incumbent solution written to file 'C:\Users\Joris\AppData\Local\Temp\tmpwqnhqqh7.cplex.sol'.
 CPLEX> 

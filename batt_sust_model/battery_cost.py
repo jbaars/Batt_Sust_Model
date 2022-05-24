@@ -557,12 +557,12 @@ def cam_price(
     pcpm_cam={
         "cathode active material (LFP)": 5.30,
         "cathode active material (LMO)": 3.11,
-        "cathode active material (NMC333)": 5.08,
-        "cathode active material (NMC532)": 5.08,
+        "cathode active material (NMC333)": 6.72,
+        "cathode active material (NMC532)": 6.72,
         "cathode active material (NMC622)": 7.19,
-        "cathode active material (NMC811)": 11.46,
-        "cathode active material (NCA)": 7.19,
-        "cathode active material (50%/50% NMC532/LMO - )": 4.10,
+        "cathode active material (NMC811)": 15.05,
+        "cathode active material (NCA)": 15.05,
+        "cathode active material (50%/50% NMC532/LMO - )": 4.92,
     },
 ):
     """Calculates the cathode active material price based on metal cost and process cost and profit margin
@@ -572,7 +572,7 @@ def cam_price(
     metal_price : dict
         Metal price based on elemental value
     pcpm_cam : dict
-        process cost and profit margin for cathode active material. Default values are calculated, data: 22-10-2021.
+        process cost and profit margin for cathode active material. Default values are calculated, data: 01-05-2022.
     elemental_content_df : DataFrame
         elemental content of 1 kg cathode active material
 

@@ -511,30 +511,10 @@ def total_metal_cost(cost_element):
     return total_dict
 
 
-def process_cost_profit_margin_cam(elemental_content_df, cam_prices, metal_prices, cathode_list, return_pcpm=False):
-    """Defined as the difference between metal prices and cathode active material sales prices
-
-    Parameters
-    ----------
-    elemental_content_df : DataFrame
-        elemental content of 1kg cathode active material
-    cam_prices : dict
-        sales prices of cathode active materials
-    metal_prices : dict
-        prices of metals
-    cathode_list : list
-        cathode active materials that are calculated
-    return_pcpm : bool, optional
-        returns the calculated process cost profit margin based on the difference between cam prices and metal costs, by default False
-
-    Returns
-    -------
-    DataFrame or dictionary
-        Process cost and profit margin
-    """
-    cost_elements = mineral_cost(elemental_content_df, metal_prices, cathode_list)
+def process_cost_profit_margin_cam(molar_mass_df, cam_prices, metal_prices, return_pcpm=False):
+    cost_elements = mineral_cost(molar_mass_df, metal_prices, cam_prices.keys())
     metal_cost = total_metal_cost(cost_elements)
-    df = pd.DataFrame(index=metal_cost.keys(), columns=["Unit", "Li", "Co", "Mn", "Ni", "Fe", "P", "Al"])
+    df = pd.DataFrame(index=metal_cost.keys(), columns=["Unit", "Li", "Co", "Mn", "Ni", "Fe", "P"])
     df["Unit"] = "$/kg"
 
     for k in metal_cost.keys():

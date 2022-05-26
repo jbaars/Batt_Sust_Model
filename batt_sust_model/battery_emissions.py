@@ -83,8 +83,7 @@ def output_excel_activity_browser(scenario_name, dict_output_bw_format, path=Non
         path (str): Path to store the Excel file.
 
     Returns:
-        Activity Browser Excel parameter file used for the scenario import function. Default name is
-        battery_design_output'
+        Activity Browser Excel parameter file used for the scenario import function. Default name is 'battery_design_output'
     """
     bw.projects.set_current("parameterised_battery_lca")
     param_name = [x.name for x in ProjectParameter]
@@ -501,68 +500,6 @@ def lcia_modules(modules_dict, impact_category):
     bw.calculation_setups["multi_lca"] = {"inv": list_fu, "ia": impact_category}
     MultiLCA = bw.MultiLCA("multi_lca")
     return MultiLCA.results
-
-
-def lcia_modules_dataframe(lcia_score):
-    """Return dataframe with lcia score of modules"""
-    score_rows = {method[2] for method, name in lcia_score.keys()}
-    process_cols = {name for method, name in impact_all.keys()}
-    df = pd.DataFrame(index=score_rows, columns=process_cols).fillna(0)
-
-    for process in process_cols:
-        for method in lcia_score.keys():
-            df.loc[method[0][2], process] = lcia_score[method[0], process]
-    return df
-
-
-def update_formulas(battery_design_dictionary):
-    """Calculates the project parameter and activity formulas
-
-    Args:
-        battery_design_dictionary (dict): dictionary with battery design
-
-    Returns:
-        Dictionary with updated activity amounts
-    """
-    output_dict = {}
-    design_dict = battery_design_dictionary
-    # update the amount in the project parameter dictionary based on battery design:
-    for param in design_dict.keys():
-        project_param_dict[param]["amount"] = design_dict[param]
-    # Update project parameters with formulas:
-    parameter_dictionary = calc_project_formulas(project_param_dict)
-    # Upate all activity formulas based on project parameters:
-    for key in func_dict.keys():
-        if func_dict[key]["material_group"] == "reference product":
-            # Output/reference product is positive
-            amount = eval(func_dict[key]["formula"], parameter_dictionary)
-        else:
-            # Input is negative
-            amount = -eval(func_dict[key]["formula"], parameter_dictionary)
-        output_dict[key] = amount
-    return output_dict
-
-
-def calculate_lcia_module(technology_matrix, pre_calculated_modules, battery_design_dictionary):
-    updated_act = update_formulas(battery_design_dictionary)
-    battery_weight = battery_design_dictionary["battery_pack"]
-    A_matrix = technology_matrix.copy(deep=True)  # To make sure the default A dataframe is not modified
-    h = pre_calculated_modules
-    bat_product_act = [act["name"] for act in bw.Database("battery_production")]
-
-    for idx in A_matrix.index:
-        for col in A_matrix.columns:
-            if (col, idx) in updated_act.keys() and col in bat_product_act:
-                A_matrix.loc[idx, col] = updated_act[(col, idx)] / battery_weight
-            elif (col, idx) in updated_act.keys():
-                A_matrix.loc[idx, col] = updated_act[(col, idx)]
-    A_inv = inverse_technology_matrix(A_matrix.fillna(0))
-    y = pd.Series(data=0, index=A_matrix.index)
-    y.loc["battery pack"] = battery_weight
-    s = A_inv.dot(y)
-    q = impact_all[:, 2] * s
-
-    return q
 
 
 def calc_project_formulas(param_dict):

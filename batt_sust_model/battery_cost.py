@@ -78,10 +78,40 @@ def material_cost_matrix(
     unit_material_to_process_mapping=None,
     overhead_multiplier=None,
 ):
-    """Calculates the unit and mass cost of externally sourced materials for
-    battery production
+    """Calculates the unit and mass cost of externally sourced materials for battery production
 
-    Returns: df: process cost matrix of externally sourced materials
+    Parameters
+    ----------
+    technology_matrix : df
+        Technology matrix
+    price_material_mass : df
+        Mass prices of materials/energy
+    price_material_unit : dict
+        Unit prices of materials
+    system_design_parameters : dict
+        Battery design parameters, including process design
+    run_multiple : bool, optional
+        To calculate several designs, by default False
+    process_columns : _type_, optional
+        Process column order , by default None
+    material_rows : _type_, optional
+        Material/energy index order, by default None
+    disable_tqdm : bool, optional
+        Hides tqdm, by default False
+    unit_material_to_process_mapping : _type_, optional
+        To increase speed up when calculating several design, by default None
+    overhead_multiplier : float, optional
+        Changes the material overhead multiplier, by default None
+
+    Returns
+    -------
+    DataFrame/NP array
+        process cost matrix of externally sourced materials
+
+    Raises
+    ------
+    ValueError
+        _description_
     """
     # import default parameters:
     if run_multiple == False:
@@ -105,8 +135,6 @@ def material_cost_matrix(
     internal_processes = list(set(process_mapping.values()))
 
     for idx, design in tqdm(enumerate(sd_param.values()), total=len(sd_param), disable=disable_tqdm):
-        t0 = time.time()
-
         if run_multiple == True:
             technology_matrix_temp = pd.DataFrame(technology_matrix[idx], columns=process_columns, index=material_rows)
         if run_multiple == False:
@@ -196,16 +224,21 @@ def material_cost_matrix(
 
 
 def battery_material_cost_mass(technology_matrix, price_material_mass):
-    """Monetary matrix based on material mass (technology matrix) and material
-    price of externally procured materials
+    """Monetary matrix based on material mass (technology matrix) and material price of externally procured materials
 
-    Args: technology_matrix (df): input (negative) and output (positive)
-        technology matrix (material is index, columns is processes)
-        price_material_mass (pd series): price of all battery materials (index
-        in technology matrix)
+    Parameters
+    ----------
+    technology_matrix : df
+        A matrix
+    price_material_mass : df
+        material prices mass
 
-    Return: df: ..
+    Returns
+    -------
+    df
+        monetary technology matrix
     """
+
     if price_material_mass.equals(technology_matrix.index) is False:
         price_material_mass = price_material_mass.reindex(technology_matrix.index).fillna(0)
 
@@ -215,12 +248,19 @@ def battery_material_cost_mass(technology_matrix, price_material_mass):
 
 
 def battery_material_cost_unit(price_material_unit, design_parameters):
-    """Calculates the unit cost of battery materials
+    """Calculates the unit cost of battery materials per kg battery
 
-    Args: price_material_unit (dataframe): cost of materials per unit
-        parameter_dict (dict): battery design parameters
+    Parameters
+    ----------
+    price_material_unit : dict
+        cost of materials per unit
+    design_parameters : dict
+        battery design parameters
 
-    Return: dict: unit cost (values) per material (keys) on a pack level
+    Returns
+    -------
+    dict
+        unit cost per kg battery pack
     """
     unit_cost_dict = {}
     for material, v in price_material_unit.items():
@@ -242,8 +282,7 @@ def battery_material_cost_unit(price_material_unit, design_parameters):
 
 
 def modelled_process_rates(design_param):
-    """Annual modelled processing rate of battery production used to calculate
-    the P values
+    """Annual modelled processing rate of battery production used to calculate the P values
 
     Args: parameter_dict (dict): battery and supply chain desing parameters
 

@@ -12,42 +12,42 @@ information on commands.
 
 CPLEX> Logfile 'cplex.log' closed.
 Logfile 'some_file_name.log' open.
-CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmpk_p26val.pyomo.lp' read.
-Read time = 0.17 sec. (8.10 ticks)
-CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmpk_p26val.pyomo.lp
+CPLEX> Problem 'C:\Users\Joris\AppData\Local\Temp\tmphnkmcl_j.pyomo.lp' read.
+Read time = 0.25 sec. (8.11 ticks)
+CPLEX> Problem name         : C:\Users\Joris\AppData\Local\Temp\tmphnkmcl_j.pyomo.lp
 Objective sense      : Maximize
 Variables            :   10471  [Nneg: 99,  Free: 4,  General Integer: 10368]
 Objective nonzeros   :       1
 Linear constraints   :     110  [Greater: 1,  Equal: 109]
-  Nonzeros           :  590433
+  Nonzeros           :  591151
   RHS nonzeros       :       2
 
 Variables            : Min LB: 0.000000         Max UB: all infinite   
 Objective nonzeros   : Min   : 1.000000         Max   : 1.000000       
 Linear constraints   :
-  Nonzeros           : Min   : 2.775558e-17     Max   : 2.201737e+16   
+  Nonzeros           : Min   : 2.775558e-17     Max   : 2.179460e+16   
   RHS nonzeros       : Min   : 1.000000         Max   : 1.000000       
 CPLEX> Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de2ae
 Tried aggregator 1 time.
 MIP Presolve eliminated 110 rows and 10471 columns.
-MIP Presolve modified 23734 coefficients.
+MIP Presolve modified 24392 coefficients.
 All rows and columns eliminated.
-Presolve time = 0.11 sec. (59.14 ticks)
+Presolve time = 0.13 sec. (58.99 ticks)
 
 Root node processing (before b&c):
-  Real time             =    0.14 sec. (74.33 ticks)
+  Real time             =    0.16 sec. (74.19 ticks)
 Parallel b&c, 8 threads:
   Real time             =    0.00 sec. (0.00 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    0.14 sec. (74.33 ticks)
+Total (root+branch&cut) =    0.16 sec. (74.19 ticks)
 
 Solution pool: 1 solution saved.
 
-MIP - Integer optimal solution:  Objective =  2.1372063680e+02
-Solution time =    0.14 sec.  Iterations = 0  Nodes = 0
-Deterministic time = 74.36 ticks  (531.14 ticks/sec)
+MIP - Integer optimal solution:  Objective =  2.2864185466e+02
+Solution time =    0.17 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 74.22 ticks  (431.48 ticks/sec)
 
-CPLEX> Incumbent solution written to file 'C:\Users\Joris\AppData\Local\Temp\tmpnamwbuhw.cplex.sol'.
+CPLEX> Incumbent solution written to file 'C:\Users\Joris\AppData\Local\Temp\tmpip6lbwb3.cplex.sol'.
 CPLEX> 

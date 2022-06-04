@@ -40,6 +40,7 @@ def import_db_brightway(data_path=None):
             print(db_name, " already present")
             continue
         else:
+            print ('Importing ', db_name)
             BW2Package.import_file(path)
 
 

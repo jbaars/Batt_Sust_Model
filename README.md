@@ -2,17 +2,16 @@
 > **ADD PUBLICATION**
 
 
-Integrated modelling framework for lithium-ion batteries to calculate costs, emissions and material demands.
+Integrated modelling framework for lithium-ion batteries to calculate manufacturing costs, cradle-to-gate emissions and manufacturing substance flows.
 
 ## Background
 The integrated modelling framework for batteries aims to address two current gaps:
 * Different sustainability aspects modelled by different studies and disciplines
  * Complexity of battery design and design choices not included in current studies
 
-Model logic:
-* User defined battery parameters (e.g. cathode active material, cell thickness) and vehicle parameters (e.g. driving range, size) are send to an updated version of [BatPaC v5](https://www.anl.gov/cse/batpac-model-software), returning the bill of materials
-* User defined process parameters (e.g. manufacturing capacity, cell aging process yield) are used to estalish foreground system
-* The bill of materials and foreground system are used to calculate the impact layers, including: value added, emission and substance flows
+The model logic is as follow. User defined battery parameters (e.g. cathode active material, cell thickness) and vehicle parameters (e.g. driving range, size) are send to an updated version of [BatPaC v5](https://www.anl.gov/cse/batpac-model-software). A vehicle model is added to your local BatPaC version automatically when vehicle parameters are defined. The BatPaC battery design model runs in the background by calculating the required battery capacity for the user specified design parameters and returns the battery bill of materials and design parameters. 
+
+Next, process parameters (e.g. manufacturing capacity, cell aging process yield) are defined and used to estalish the foreground system. The bill of materials and foreground system are used to calculate the impact layers, including: value added, emission and substance flows and thereby the impact indicators. 
 
 
 <p align="center">

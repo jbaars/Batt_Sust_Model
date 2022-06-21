@@ -7,7 +7,7 @@ Integrated modelling framework for lithium-ion batteries to calculate costs, emi
 ## Background
 
 Model logic:
-* User defined battery parameters (e.g. cathode active material, cell thickness) and vehicle parameters (e.g. driving range, size) are send to an updated version of [BatPaC v5](https://www.anl.gov/cse/batpac-model-software) and returns the detailed bill of materials
+* User defined battery parameters (e.g. cathode active material, cell thickness) and vehicle parameters (e.g. driving range, size) are send to an updated version of [BatPaC v5](https://www.anl.gov/cse/batpac-model-software), returning the bill of materials
 * User defined process parameters (e.g. manufacturing capacity, cell aging process yield) are used to estalish foreground system
 * The bill of materials and foreground system are used to calculate the impact layers, including: value added, emission and substance flows
 

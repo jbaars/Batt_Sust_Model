@@ -7,10 +7,10 @@ Integrated modelling framework for lithium-ion batteries to calculate costs, emi
 ## Background
 
 Model logic:
-* Step 1. Define battery parameters (e.g. cathode active material, cell thickness) and vehicle parameters (e.g. driving range, size)
-
-
-Model utilises the [BatPaC version 5](https://www.anl.gov/cse/batpac-model-software) battery design model to automate the extraction of bill of materials (BOM) and performance parameters of user specific battery design parameters. The BOM is used as input to the battery cost (Python version of BatPaC cost model), LCA (Brightway2 model) and material criticality models. <br>
+* Step 1. User defined battery parameters (e.g. cathode active material, cell thickness) and vehicle parameters (e.g. driving range, size) as send to an updated version of [BatPaC v5](https://www.anl.gov/cse/batpac-model-software) and returns the bill of materials (BOM) and performance parameters
+* Step 2. 
+*  
+*    of user specific battery design parameters. The BOM is used as input to the battery cost (Python version of BatPaC cost model), LCA (Brightway2 model) and material criticality models. <br>
 
 
 <p align="center">

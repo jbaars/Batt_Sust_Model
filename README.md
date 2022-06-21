@@ -5,6 +5,9 @@
 Integrated modelling framework for lithium-ion batteries to calculate costs, emissions and material demands.
 
 ## Background
+The model aims to address two current gaps:
+* 1. Different sustainability aspects modelled by different studies and disciplines
+* 2. Complexity of battery design and design choices not included in current studies
 
 Model logic:
 * User defined battery parameters (e.g. cathode active material, cell thickness) and vehicle parameters (e.g. driving range, size) are send to an updated version of [BatPaC v5](https://www.anl.gov/cse/batpac-model-software), returning the bill of materials

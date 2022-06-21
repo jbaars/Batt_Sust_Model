@@ -1,11 +1,10 @@
 # Battery Sustainability Model
-> **Under development. Updating to BatPaC V5. Final code will follow.**
+> **ADD PUBLICATION**
 
 
-Framework to calculate electric vehicle battery material intensities, cost, life cycle emissions, technical performance and material criticality.  
+Integrated modelling framework for lithium-ion batteries to calculate costs, emissions and material demands.
 
 ## Background
-
 
 
 

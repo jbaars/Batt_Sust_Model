@@ -22,7 +22,9 @@ Next, process parameters (e.g. manufacturing capacity, cell aging process yield)
 ## Usage
 
 There are two ways to use the model, using Python code or a graphical user interface: <br>
+
 `Python code:` <br>
+
 First, using Python code to develop your own models. Each satellite layer can be used in isolation (e.g. cost or emission layer) or in an integrated way. Several example notebooks are added to the repository:
 * [Battery design example](https://github.com/jbaars2/Batt_Sust_Model/blob/main/example%20notebooks/Battery%20design/Example%20notebook%20battery%20design.ipynb): several examples of automating BatPaC and adding a vehicle model
 * [Battery emission example](https://github.com/jbaars2/Batt_Sust_Model/blob/main/example%20notebooks/Battery%20emissions/Example%20LCA%20notebook.ipynb): Examples of parameterised and modular LCA by linking BatPaC to a Brightway LCA model
@@ -30,6 +32,7 @@ First, using Python code to develop your own models. Each satellite layer can be
 * [Integrated modelling example](https://github.com/jbaars2/Batt_Sust_Model/tree/main/example%20notebooks/Example%20publication%20-%20integrated%20modelling): Case study example of integrating cost, carbon footprint, performance and criticality. Notebook based on publication `ADD PUBLICATION`
 
 `Graphical user interface:`<br>
+
 Second way of interacting with the model is by using the online graphical user interface (GUI):
 http://battery-sustainability-app.herokuapp.com/
 Over 20,000 thousand battery designs have been precalculated in BatPaC. The GUI allows users to change battery design (e.g. cathode type, foil thickness), process design (e.g. production location or scale) and impact parameter (e.g. cathode material price or material carbon footprint). Inventories and results can be downloaded. 

@@ -21,3 +21,5 @@ Next, process parameters (e.g. manufacturing capacity, cell aging process yield)
 
 ## Usage
 
+There are two ways to use the model. First, using Python code to develop your own models. Each satellite layer can be used in isolation (e.g. cost or emission layer) or in an integrated way. Several example notebooks are added to the repository:
+* (Battery design notebook)[https://github.com/jbaars2/Batt_Sust_Model/blob/main/example%20notebooks/Battery%20design/Example%20notebook%20battery%20design.ipynb]: severak example of automating BatPaC and adding a vehicle model

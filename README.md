@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/540456211.svg)](https://zenodo.org/badge/latestdoi/540456211)
+
+
 # Battery Sustainability Model
 Integrated modelling framework for lithium-ion batteries to calculate manufacturing costs, cradle-to-gate emissions and manufacturing substance flows.
 

@@ -1,7 +1,4 @@
 # Battery Sustainability Model
-> **ADD PUBLICATION**
-
-
 Integrated modelling framework for lithium-ion batteries to calculate manufacturing costs, cradle-to-gate emissions and manufacturing substance flows.
 
 ## Background

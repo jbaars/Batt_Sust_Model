@@ -2,7 +2,7 @@
 
 
 # Battery Sustainability Model
-Integrated modelling framework for lithium-ion batteries to calculate manufacturing costs, cradle-to-gate emissions and manufacturing substance flows.
+Integrated model to calculate the manufacturing costs, cradle-to-gate emissions, technical performance and material criticality of automotive lithium-ion batteries.
 
 ## Background
 The integrated modelling framework for batteries aims to address two current gaps:

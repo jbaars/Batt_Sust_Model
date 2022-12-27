@@ -15,7 +15,7 @@ Next, process parameters (e.g. manufacturing capacity, cell aging process yield)
 
 
 <p align="center">
-<img src="https://github.com/jbaars2/Batt_Sust_Model/blob/main/docs/battery_model_overview.jpg" width="650">
+<img src="https://github.com/jbaars/Batt_Sust_Model/blob/main/docs/battery_model_overview.jpg" width="650">
 </p>
 
 
@@ -26,10 +26,10 @@ There are two ways to use the model, using Python code or a graphical user inter
 `Python code:` <br>
 
 First, using Python code to develop your own models. Each satellite layer can be used in isolation (e.g. cost or emission layer) or in an integrated way. Several example notebooks are added to the repository:
-* [Battery design example](https://github.com/jbaars2/Batt_Sust_Model/blob/main/example%20notebooks/Battery%20design/Example%20notebook%20battery%20design.ipynb): several examples of automating BatPaC and adding a vehicle model
-* [Battery emission example](https://github.com/jbaars2/Batt_Sust_Model/blob/main/example%20notebooks/Battery%20emissions/Example%20LCA%20notebook.ipynb): Examples of parameterised and modular LCA by linking BatPaC to a Brightway LCA model
-* [Battery cost example](https://github.com/jbaars2/Batt_Sust_Model/tree/main/example%20notebooks/Battery%20cost): Examples of calculating battery costs based on a Python version of the BatPaC cost model
-* [Integrated modelling example](https://github.com/jbaars2/Batt_Sust_Model/tree/main/example%20notebooks/Example%20publication%20-%20integrated%20modelling): Case study example of integrating cost, carbon footprint, performance and criticality. Notebook based on publication `ADD PUBLICATION`
+* [Battery design example](https://github.com/jbaars/Batt_Sust_Model/blob/main/example%20notebooks/Example%20battery%20design.ipynb): several examples of automating BatPaC and adding a vehicle model
+* [Battery LCA example](https://github.com/jbaars/Batt_Sust_Model/blob/main/example%20notebooks/Example%20battery%20LCA.ipynb): Examples of parameterised and modular LCA by linking BatPaC to a Brightway LCA model
+* [Battery cost example](https://github.com/jbaars/Batt_Sust_Model/blob/main/example%20notebooks/Example%20battery%20cost.ipynb ): Examples of calculating battery costs based on a Python version of the BatPaC cost model
+* [Integrated modelling example](https://github.com/jbaars/Batt_Sust_Model/tree/main/example%20notebooks/Example%20publication%20-%20integrated%20modelling): Case study example of integrating cost, carbon footprint, performance and criticality. Notebook based on publication: Baars, J., Cerdas, F., Heidrich, O. (UNDER REVIEW). "An integrated model to conduct multi-criteria technology assessments: the case of electric vehicle batteries". Submitted to Environmental Science and Technology
 
 `Graphical user interface:`<br>
 

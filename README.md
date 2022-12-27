@@ -2,7 +2,8 @@
 
 
 # Battery Sustainability Model
-Integrated model to calculate the manufacturing costs, cradle-to-gate emissions, technical performance and material criticality of automotive lithium-ion batteries.
+Integrated model to calculate the manufacturing costs, cradle-to-gate emissions, technical performance and material criticality of of electric vehicle batteries.
+
 
 ## Background
 The integrated modelling framework for batteries aims to address two current gaps:
@@ -22,11 +23,9 @@ The model logic is as follow:
 
 ## Usage
 
-There are two ways to use the model, using Python code or a graphical user interface: <br>
-
 `Python code:` <br>
 
-First, using Python code to develop your own models. Each satellite layer can be used in isolation (e.g. cost or emission layer) or in an integrated way. Several example notebooks are added to the repository:
+Use Python code to develop your own models. Each impact layer can be used in isolation (e.g. cost or emission layer) or in an integrated way. Several example notebooks are added to the repository:
 * [Battery design example](https://github.com/jbaars/Batt_Sust_Model/blob/main/example%20notebooks/Example%20battery%20design.ipynb): several examples of automating BatPaC and adding a vehicle model
 * [Battery LCA example](https://github.com/jbaars/Batt_Sust_Model/blob/main/example%20notebooks/Example%20battery%20LCA.ipynb): Examples of parameterised and modular LCA by linking BatPaC to a Brightway LCA model
 * [Battery cost example](https://github.com/jbaars/Batt_Sust_Model/blob/main/example%20notebooks/Example%20battery%20cost.ipynb ): Examples of calculating battery costs based on a Python version of the BatPaC cost model
@@ -35,5 +34,5 @@ First, using Python code to develop your own models. Each satellite layer can be
 `Graphical user interface:`<br>
 
 Second way of interacting with the model is by using the online graphical user interface (GUI):
-http://battery-sustainability-app.herokuapp.com/
+* http://battery-sustainability-app.herokuapp.com/
 Over 20,000 thousand battery designs have been precalculated in BatPaC. The GUI allows users to change battery design (e.g. cathode type, foil thickness), process design (e.g. production location or scale) and impact parameter (e.g. cathode material price or material carbon footprint). Inventories and results can be downloaded. 

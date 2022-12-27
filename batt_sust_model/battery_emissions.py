@@ -183,7 +183,9 @@ def add_activity_parameters(database_name):
     """
     db = bw.Database(database_name)
     for act in db:
-        exc_list = [exc for exc in act.exchanges() if "formula" in list(exc)]  # Check if one of the exchanges has formula
+        exc_list = [
+            exc for exc in act.exchanges() if "formula" in list(exc)
+        ]  # Check if one of the exchanges has formula
         if exc_list:
             parameterise_exchanges(act.key)
         continue
@@ -328,68 +330,6 @@ def output_as_bw_param(parameter_dict):
     return return_dic
 
 
-def update_formulas(project_parameters):
-    """Recalculates the project parameter and activity formulas
-
-    Parameters
-    ----------
-    project_parameters : dict
-        Brightway project parameter values
-
-    Returns
-    -------
-    dict
-        Dictionary with updated activity amounts
-    """
-    output_dict = {}
-    project_param_dict = {}
-    for param in ProjectParameter:
-        project_param_dict[param.name] = {
-            "amount": param.amount,
-            "formula": param.formula,
-        }
-    design_dict = project_parameters
-
-    # update the amount in the project parameter dictionary based on battery design:
-    for param in design_dict["design_parameters"].keys():
-        project_param_dict[param]["amount"] = design_dict["design_parameters"][param]
-    # Update project parameters with formulas:
-    parameter_dictionary = calc_project_formulas(project_param_dict)
-
-    # Update all activity formulas based on project parameters:
-
-    for key in func_dict.keys():
-        if func_dict[key]["material_group"] == "reference product":
-            # Output/reference product is positive
-            amount = eval(func_dict[key]["formula"], parameter_dictionary)
-        else:
-            # Input is negative
-            amount = -eval(func_dict[key]["formula"], parameter_dictionary)
-        output_dict[key] = amount
-    return output_dict
-
-
-def emissions_per_module(technology_matrix_default, pre_calculated_modules, battery_design_dictionary):
-    updated_act = update_formulas(battery_design_dictionary)
-    battery_weight = battery_design_dictionary["design_parameters"]["battery_pack"]
-    A_matrix = technology_matrix_default.copy(deep=True)  # To make sure the default A dataframe is not modified
-    h = pre_calculated_modules
-    bat_product_act = [act["name"] for act in bw.Database("battery_production")]
-
-    for idx in A_matrix.index:
-        for col in A_matrix.columns:
-            if (col, idx) in updated_act.keys() and col in bat_product_act:
-                A_matrix.loc[idx, col] = updated_act[(col, idx)] / battery_weight
-            elif (col, idx) in updated_act.keys():
-                A_matrix.loc[idx, col] = updated_act[(col, idx)]
-    A_inv = ev_lca.inverse_technology_matrix(A_matrix.fillna(0))
-    y = pd.Series(data=0, index=A_matrix.index)
-    y.loc["battery pack"] = battery_weight
-    s = A_inv.dot(y)
-    q = h[:, 2] * s
-    return q
-
-
 def get_exc_name(key_tuple):
     db = list(key_tuple)[0]
     code = list(key_tuple)[1]
@@ -425,7 +365,9 @@ def modules_with_cuts(cut_off_database):
         for exc in act.exchanges():
             key = exc["input"]
             parent_act = bw.get_activity(key)
-            if key[0] == cut_off_database and act != parent_act:  # if input is present in cut-off database and not the reference product:
+            if (
+                key[0] == cut_off_database and act != parent_act
+            ):  # if input is present in cut-off database and not the reference product:
                 if exc["amount"] > 0:  # If exchange is not waste (negative in Brightway):
                     act_cuts[parent_act.key] = [
                         parent_act["reference product"],
@@ -787,7 +729,9 @@ def parameter_dictionary(
     return_dic["design_parameters"].update(process_parameters)
     return_dic["design_parameters"].update(battery_parameters)
     # Calculate project parameters:
-    return_dic["project_param"] = get_project_parameters_dict(return_dic["design_parameters"], project_param_dict=project_formulas)
+    return_dic["project_param"] = get_project_parameters_dict(
+        return_dic["design_parameters"], project_param_dict=project_formulas
+    )
 
     return_dic_all = {
         **return_dic["design_parameters"],

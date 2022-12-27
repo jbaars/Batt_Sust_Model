@@ -12,7 +12,10 @@ import tempfile
 
 
 def solve_batpac_battery_system(
-    batpac_path: str, parameter_dict: dict, visible=False, open_workbook=None
+    batpac_path: str,
+    parameter_dict: dict,
+    visible=False,
+    open_workbook=None,
 ):
     """Opens BatPaC model and solves battery system in Excel based on battery design parameters.
 
@@ -47,7 +50,11 @@ def solve_batpac_battery_system(
 
 
 def solve_batpac_battery_system_multiple(
-    batpac_path, parameter_dict_all, visible=False, save=False, save_iterations=50
+    batpac_path,
+    parameter_dict_all,
+    visible=False,
+    save=False,
+    save_iterations=50,
 ):
     """Solves multiple battery systems iteratively. Saves and restarts BatPaC by default every 50 iteration.
 
@@ -76,14 +83,10 @@ def solve_batpac_battery_system_multiple(
         for name in tqdm(list(parameter_dict_all.keys())):
             if counter - counter_old == save_iterations:
                 with open(dirpath + f"/temp_{counter}.pickle", "wb") as handle:
-                    pickle.dump(
-                        output_dictionary, handle, protocol=pickle.HIGHEST_PROTOCOL
-                    )
+                    pickle.dump(output_dictionary, handle, protocol=pickle.HIGHEST_PROTOCOL)
                 # kill batpac and restart:
                 wb_batpac.app.kill()
-                wb_batpac = xw.App(visible=visible, add_book=False).books.open(
-                    batpac_path
-                )
+                wb_batpac = xw.App(visible=visible, add_book=False).books.open(batpac_path)
                 # reset output dictionary:
                 output_dictionary = {}
                 counter_old = counter
@@ -152,7 +155,11 @@ def get_parameter_table(parameter_file=None, tableformat=None):
 
 
 def plot_circle_diagram(
-    result_dict, path_comp_type_linkage=None, save=True, name=None, return_plot=False
+    result_dict,
+    path_comp_type_linkage=None,
+    save=True,
+    name=None,
+    return_plot=False,
 ):
     """Plots a donut diagram of the battery bills of material
     Args:
@@ -192,9 +199,7 @@ def plot_circle_diagram(
     cmap = plt.get_cmap("tab20c")
     inner_colors = cmap([0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 13, 16, 17, 18, 19])
 
-    wedges, texts = ax.pie(
-        values, wedgeprops=dict(width=0.5), startangle=180, colors=inner_colors
-    )
+    wedges, texts = ax.pie(values, wedgeprops=dict(width=0.5), startangle=180, colors=inner_colors)
 
     kw = dict(arrowprops=dict(arrowstyle="-"), zorder=0, va="center")
 
@@ -280,9 +285,7 @@ def plot_bar_chart(result_dict, path_comp_type_linkage=None, save=True, name=Non
 
         return my_format
 
-    wedges, texts = ax.pie(
-        values, wedgeprops=dict(width=0.5), startangle=180, colors=inner_colors
-    )
+    wedges, texts = ax.pie(values, wedgeprops=dict(width=0.5), startangle=180, colors=inner_colors)
 
     bbox_props = dict(boxstyle="square,pad=0.2", fc="w", ec="k", lw=0.72)
     kw = dict(
@@ -319,9 +322,7 @@ def plot_bar_chart(result_dict, path_comp_type_linkage=None, save=True, name=Non
         return plt.show()
     if save is True:
         if name is False:
-            plt.savefig(
-                f"material content {electrode} {capacity} kWh.png", bbox_inches="tight"
-            )
+            plt.savefig(f"material content {electrode} {capacity} kWh.png", bbox_inches="tight")
         plt.savefig(f"{name}.png", bbox_inches="tight")
         return plt.show()
 
@@ -376,9 +377,7 @@ def export_to_excel(result_dict, design_name=None, overwrite=False, output_path=
                 else:
                     df.loc[:, design_name] = result_dict[values[1]].values()
             else:
-                df = pd.DataFrame.from_dict(
-                    result_dict[values[1]], columns=[design_name], orient="index"
-                )
+                df = pd.DataFrame.from_dict(result_dict[values[1]], columns=[design_name], orient="index")
             with pd.ExcelWriter(values[0], engine="openpyxl", mode="w") as writer:
                 df.to_excel(writer, sheet_name="Data")
     else:  # if several designs

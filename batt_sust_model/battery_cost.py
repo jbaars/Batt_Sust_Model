@@ -14,7 +14,9 @@ p_values_process = pd.read_excel(workbook, sheet_name="p_values_process", index_
 manuf_rate_base = pd.read_excel(workbook, sheet_name="default_manufacturing_rates", index_col=0).iloc[:, 0].to_dict()
 base_factors = pd.read_excel(workbook, sheet_name="baseline_factors", index_col=0).T.drop("unit", axis=1)
 volume_ratio_mapping = pd.read_excel(workbook, sheet_name="volume_ratio_mapping", index_col=0).iloc[:, 0].to_dict()
-process_mapping = pd.read_excel(workbook, sheet_name="process_mapping", index_col=0).loc[:, "foreground process"].to_dict()
+process_mapping = (
+    pd.read_excel(workbook, sheet_name="process_mapping", index_col=0).loc[:, "foreground process"].to_dict()
+)
 cost_rates = pd.read_excel(workbook, sheet_name="cost_rates", index_col=0).loc[:, "value"].to_dict()
 variable_overhead_labor = cost_rates["variable_overhead_labor"]
 GSA_labour = cost_rates["GSA_labour"]
@@ -296,12 +298,19 @@ def modelled_process_rates(design_param):
         "energy": pack_per_year * design_param["pack_energy_kWh"],
         "required_cell": required_cells,
         "total_cell": total_cells,
-        "positive_active_material": (design_param["positive_am_per_cell"] / 1000 * required_cells) / design_param["py_am_mixing_total"],
-        "negative_active_material": design_param["negative_am_per_cell"] / 1000 * required_cells / design_param["py_am_mixing_total"],
+        "positive_active_material": (design_param["positive_am_per_cell"] / 1000 * required_cells)
+        / design_param["py_am_mixing_total"],
+        "negative_active_material": design_param["negative_am_per_cell"]
+        / 1000
+        * required_cells
+        / design_param["py_am_mixing_total"],
         "positive_electrode_area": total_cells * design_param["positive_electrode_area"] / 10000,
         "negative_electrode_area": total_cells * design_param["negative_electrode_area"] / 10000,
         "binder_solvent_recovery": pack_per_year
-        * (design_param["binder_solvent_ratio"] * (design_param["cathode_binder_pvdf"] / design_param["py_am_mixing_total"])),
+        * (
+            design_param["binder_solvent_ratio"]
+            * (design_param["cathode_binder_pvdf"] / design_param["py_am_mixing_total"])
+        ),
         "total_cell": total_cells,
         "total_modules": (design_param["modules_per_pack"] * pack_per_year),
         "total_packs": pack_per_year,
@@ -320,7 +329,8 @@ def labour_overhead_multiplier():
         1
         + variable_overhead_labor
         + GSA_labour * (1 + variable_overhead_labor)
-        + pack_profit * (launch_cost_labor * (1 + variable_overhead_labor) + working_capital * (1 + variable_overhead_labor))
+        + pack_profit
+        * (launch_cost_labor * (1 + variable_overhead_labor) + working_capital * (1 + variable_overhead_labor))
     )
     return a * (1 + battery_warranty_costs)
 
@@ -363,7 +373,11 @@ def material_overhead_multiplier():
 
 
 def factors_battery_production(
-    system_design_parameters, run_multiple=False, return_aggregated=True, return_index=["labour", "capital", "land"], return_columns=None
+    system_design_parameters,
+    run_multiple=False,
+    return_aggregated=True,
+    return_index=["labour", "capital", "land"],
+    return_columns=None,
 ):
     """Calculates the total production factor requirement (matrix F) for all production processes as in BatPaC adjusted
     for the manufacturing capacity.
